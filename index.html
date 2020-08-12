@@ -22,12 +22,12 @@
 
   <meta name="description" content="All Dev stories found in here">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Kim facamp&#39;s blog">
+<meta property="og:title" content="Youngseo&#39;s blog">
 <meta property="og:url" content="https://github.com/youngseoim.github.io/index.html">
-<meta property="og:site_name" content="Kim facamp&#39;s blog">
+<meta property="og:site_name" content="Youngseo&#39;s blog">
 <meta property="og:description" content="All Dev stories found in here">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="Kim facamp">
+<meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://github.com/youngseoim.github.io/">
@@ -43,7 +43,7 @@
   };
 </script>
 
-  <title>Kim facamp's blog</title>
+  <title>Youngseo's blog</title>
   
 
 
@@ -94,7 +94,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Kim facamp's blog</h1>
+      <h1 class="site-title">Youngseo's blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">Awesome node.jser..</p>
@@ -148,16 +148,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/12/starbucks%20clone/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/13/WORKSOUT%20clone%20(200710%20~%20200715)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kim facamp">
+      <meta itemprop="name" content="youngseoim">
       <meta itemprop="description" content="All Dev stories found in here">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kim facamp's blog">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/13/WORKSOUT%20clone%20(200710%20~%20200715)/" class="post-title-link" itemprop="url">WORKSOUT clone (200710 ~ 200715)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-13 21:40:59" itemprop="dateCreated datePublished" datetime="2020-08-13T21:40:59+09:00">2020-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-12 21:43:13" itemprop="dateModified" datetime="2020-08-12T21:43:13+09:00">2020-08-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="WORKSOUT-CLONE"><a href="#WORKSOUT-CLONE" class="headerlink" title="WORKSOUT CLONE"></a>WORKSOUT CLONE</h1><ul>
+<li>원본 주소 url(<a target="_blank" rel="noopener" href="http://www.worksout.co.kr/front/main.do">http://www.worksout.co.kr/front/main.do</a>)</li>
+</ul>
+<h2 id="08월-12일-수"><a href="#08월-12일-수" class="headerlink" title="08월 12일 (수)"></a>08월 12일 (수)</h2><h3 id="클론코딩-계획"><a href="#클론코딩-계획" class="headerlink" title="클론코딩 계획"></a>클론코딩 계획</h3><ol>
+<li>Float, position만 사용해서 레이아웃 배치</li>
+<li>시맨틱한 마크업도 중요하지만 시간관계상 css에 좀 더 집중</li>
+<li>css가 빨리 끝나면 javascript 도전해보기</li>
+</ol>
+<h3 id="마크업-구상"><a href="#마크업-구상" class="headerlink" title="마크업 구상"></a>마크업 구상</h3><ol>
+<li><p>헤더영역</p>
+<ol>
+<li><p><img src="https://user-images.githubusercontent.com/68043654/90007743-4069a980-dcd6-11ea-9fb8-b3742608d9a3.jpg" alt="Worksout Markup-2"></p>
+</li>
+<li><p>메인 영역</p>
+<ol>
+<li><img src="https://user-images.githubusercontent.com/68043654/90007748-419ad680-dcd6-11ea-8b52-493208b6998d.jpg" alt="Worksout Markup-3"></li>
+<li>XHTML이나 HTML4에서는 a태그안에 block 요소가 올 수 없는데 HTML5 부터는 </li>
+</ol>
+<p>a태그에 인라인이나 블럭요소가 들어올 수 있게 됐기 때문에 contents 클래스를 가진 div를 a태그로 바꿔주어서 전체요소를 클릭했을 때 링크로 연결되도록 수정했다.</p>
+<ol start="3">
+<li><pre><code class="html">&lt;a href=&quot;#&quot; class=&quot;contents01&quot;&gt;
+            &lt;img class=&quot;visualImg&quot; src=&quot;/img/mainimg.jpg&quot; alt=&quot;메인뉴스 이미지&quot;&gt;
+          &lt;h3 class=&quot;title&quot;&gt;DEUS KOREA SUPER ENDURANCE FESTIVAL&lt;/h3&gt;
+          &lt;span class=&quot;sub&quot;&gt;FEATURE&lt;/span&gt;
+          &lt;span class=&quot;sub&quot;&gt;전남 영암 서킷에서 진행된 Korea Super Endurance Festival에서 CRAZY GARAGE와 데우스 코리아의 레이스 머신이 6시간 내구 레이스에 참가 했습니다.&lt;/span&gt;
+        &lt;/a&gt;</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="현재까지-결과물"><a href="#현재까지-결과물" class="headerlink" title="현재까지 결과물"></a>현재까지 결과물</h3><ol>
+<li><img width="1429" alt="스크린샷 2020-08-12 오후 8 05 53" src="https://user-images.githubusercontent.com/68043654/90008624-9d199400-dcd7-11ea-8a12-8a1af143db3a.png">
+<img width="1429" alt="스크린샷 2020-08-12 오후 8 05 59" src="https://user-images.githubusercontent.com/68043654/90008660-a440a200-dcd7-11ea-9db5-f66a04061d29.png">
+<img width="1429" alt="스크린샷 2020-08-12 오후 8 06 09" src="https://user-images.githubusercontent.com/68043654/90008664-a4d93880-dcd7-11ea-8e32-9a2f7b410383.png">
+<img width="1429" alt="스크린샷 2020-08-12 오후 8 06 19" src="https://user-images.githubusercontent.com/68043654/90008666-a60a6580-dcd7-11ea-8695-2b59e7d24671.png"></li>
+<li>헤더 = position:fixed;</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/12/starbucks%20clone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -344,12 +447,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kim facamp">
+      <meta itemprop="name" content="youngseoim">
       <meta itemprop="description" content="All Dev stories found in here">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kim facamp's blog">
+      <meta itemprop="name" content="Youngseo's blog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -387,7 +490,7 @@
 <p>–&gt; Git을 이용해서 효율적으로 버젼관리</p>
 <h3 id="Git-명령어"><a href="#Git-명령어" class="headerlink" title="Git 명령어"></a>Git 명령어</h3><h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><ul>
 <li>사용자 이름 등록 : git config –global user.name “John Doe”</li>
-<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#x6a;&#x6f;&#104;&#x6e;&#100;&#x6f;&#101;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;">&#x6a;&#x6f;&#104;&#x6e;&#100;&#x6f;&#101;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;</a></li>
+<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#x6a;&#x6f;&#104;&#x6e;&#100;&#x6f;&#101;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#x6f;&#104;&#x6e;&#100;&#x6f;&#101;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></li>
 <li>Git의 설정 정보 조회 : git config –list</li>
 <li>–global 옵션을 주면 전역 속성을 적용시킨다</li>
 </ul>
@@ -1581,12 +1684,12 @@ align-items: center;</code></pre>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kim facamp">
+      <meta itemprop="name" content="youngseoim">
       <meta itemprop="description" content="All Dev stories found in here">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kim facamp's blog">
+      <meta itemprop="name" content="Youngseo's blog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1617,6 +1720,128 @@ align-items: center;</code></pre>
 
       
           <p>Hi, there!<br>Nice to meet you!<br>I’m Iron man.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/10/Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/10/Git/" class="post-title-link" itemprop="url">Git</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-10 22:00:59" itemprop="dateCreated datePublished" datetime="2020-08-10T22:00:59+09:00">2020-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-12 21:42:00" itemprop="dateModified" datetime="2020-08-12T21:42:00+09:00">2020-08-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Git-강의"><a href="#Git-강의" class="headerlink" title="Git 강의"></a>Git 강의</h1><ol>
+<li>$ 입력받을 준비가 됐다  없다면 뭔가가 실행중인것</li>
+<li>~ 최상위 폴더 </li>
+<li>Ls -a/l  a는 숨김 </li>
+<li>Clear </li>
+<li>pwd 현재 쓰고 있는 디렉토리를 절대경로로 출력</li>
+<li>Echo “” 따옴표 안에 내용 출력</li>
+<li>Mkdir 디렉토리명  디렉토리(폴더) 생성</li>
+<li>Touch 파일명 엑셀같은 애들은 생성 불가</li>
+<li>Mv(move) style.css(파일명) bin(위치)  </li>
+<li>cp(copy) style.css(파일명) ..(상위폴더) 복사</li>
+<li>copy 사본의 이름 , move 위치이동 하면서 이름변경(rename) mv style.css index.js</li>
+<li>rm(remove삭제)  rm index.* &gt; index 들어간거 다 삭제<ol>
+<li>rm *.py py 확장자 다삭제</li>
+<li>rm은 폴더삭제는 불가능 </li>
+<li>rm -r 안에 오브젝트를 다 지우고 자기자신까지 삭제 (오브젝트가 남아있으면 폴더가 지워지지 않는다 경로를 잃기 떄문에)</li>
+<li>/ 경로에서는 어떤 것도 삭제하면 안된다</li>
+<li>sudo키워드를 쓸 땐 꼭 잘 확인할 것</li>
+</ol>
+</li>
+<li>chmod 777 style.css 권한부여 0부터 8까지 8진수를 3개의 숫자로 권한 </li>
+<li>Drwx(나)rwx(유저그룹)rwx(게스트) rwx 는 421 원하는걸 더한다 r,w만 키고 싶다면 4,2를 더해서 chmod 666 파일명</li>
+<li>open 파일명 기본확장자로 열어준다 </li>
+<li>Cat READE.me = 안의 내용을 터미널에 텍스트로 제공받는다. </li>
+<li>Gitignore 깃에 올라갈 때 제외시키는 목록 </li>
+</ol>
+<h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><ol>
+<li>i = insert </li>
+<li>샵 = h1 , 샵샵 = h2</li>
+<li>데쉬 = ul 태그 li 태그</li>
+<li>1.2.3. =  ol태그</li>
+<li>p = 그냥 텍스트 작성</li>
+<li>` 3개에 양식 작성 후 코드작성</li>
+<li>대괄호go to google대괄호(주소) =링크 </li>
+<li>느낌표 대괄호macbook with iPad] (이미지경로) = 이미지 삽입</li>
+<li>y (복사)  p (붙여넣기)</li>
+<li>u 누르면 삭제 </li>
+<li>dd 잘라내기</li>
+<li>붙여넣기 p </li>
+<li>컨트롤 r 되돌리기 </li>
+<li>쉬프트 + 세미콜론 = 상단 메뉴바 소환</li>
+<li>w = 저장</li>
+<li>q = 나가기, q! = 처음상태를 덮어쓰고 나간다 wq = 저장후 종료</li>
+</ol>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><ul>
+<li>Git 초기 설정<ul>
+<li>Git username, email </li>
+<li>git config –global core.editer “vim”</li>
+<li>git config –global core.pager “cat”</li>
+</ul>
+</li>
+</ul>
+<h3 id="hexo-블로그-관련-명령어"><a href="#hexo-블로그-관련-명령어" class="headerlink" title="hexo 블로그 관련 명령어"></a>hexo 블로그 관련 명령어</h3><ol>
+<li>Init은 한번만</li>
+<li>hexo new layout title</li>
+<li>Hexo clean &amp;&amp; hexo generate = 다 지우고 다시 만든다 </li>
+<li>Run hexo clean &amp;&amp; hexo deploy = 배포 </li>
+</ol>
 
       
     </div>
@@ -1690,7 +1915,7 @@ align-items: center;</code></pre>
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Kim facamp</p>
+  <p class="site-author-name" itemprop="name">youngseoim</p>
   <div class="site-description" itemprop="description">All Dev stories found in here</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -1698,7 +1923,7 @@ align-items: center;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1730,7 +1955,7 @@ align-items: center;</code></pre>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Kim facamp</span>
+  <span class="author" itemprop="copyrightHolder">youngseoim</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
