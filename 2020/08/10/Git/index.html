@@ -28,7 +28,7 @@
 <meta property="og:description" content="Git 강의 $ 입력받을 준비가 됐다  없다면 뭔가가 실행중인것 ~ 최상위 폴더  Ls -a&#x2F;l  a는 숨김  Clear  pwd 현재 쓰고 있는 디렉토리를 절대경로로 출력 Echo “” 따옴표 안에 내용 출력 Mkdir 디렉토리명  디렉토리(폴더) 생성 Touch 파일명 엑셀같은 애들은 생성 불가 Mv(move) style.css(파일명) bin(위치)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-10T13:00:59.000Z">
-<meta property="article:modified_time" content="2020-08-12T12:42:00.975Z">
+<meta property="article:modified_time" content="2020-08-13T12:05:14.994Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
 
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-12 21:42:00" itemprop="dateModified" datetime="2020-08-12T21:42:00+09:00">2020-08-12</time>
+                <time title="Modified: 2020-08-13 21:05:14" itemprop="dateModified" datetime="2020-08-13T21:05:14+09:00">2020-08-13</time>
               </span>
 
           
@@ -253,6 +253,79 @@
 <li>Hexo clean &amp;&amp; hexo generate = 다 지우고 다시 만든다 </li>
 <li>Run hexo clean &amp;&amp; hexo deploy = 배포 </li>
 </ol>
+<h4 id="Branch-분기"><a href="#Branch-분기" class="headerlink" title="Branch 분기"></a>Branch 분기</h4><p>branching models</p>
+<ol>
+<li><p>git flow</p>
+<ol>
+<li>Hotfix - master - release - develop - feature</li>
+<li>Pros : 가장많이적용, 각 단계가 명확히 구분 </li>
+<li>Cons: 복잡<ol>
+<li>Git flow init 초기화</li>
+<li>git flow feature start style-start </li>
+<li>git flow feature finish style-start </li>
+<li>Git flow release start v0.0.1.200813001<ol>
+<li>release commit 3개.  master ,taging, develope 순서로 commit 메세지 작성</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>GitHub flow</p>
+</li>
+<li><p>gitlab flow</p>
+</li>
+</ol>
+<p>클론해오는거 </p>
+<ol>
+<li><p>협업하는 방법</p>
+<ol>
+<li>collaboration &gt;&gt; settings &gt; manage access 권한 부여 &gt; 내 레포를 남에게 권한 부여 (권장하지 않는 방식)</li>
+<li>pusll request 팀원이 짠 코드를 팀장레포에 추가<ol>
+<li>팀장 레포에 있는걸 포크떠서 내 레포에서 클론 시작</li>
+<li>내가 할 내용을 팀장 레포에 issues에 적어주기 </li>
+<li>git branch 브렌치명  - 브렌치 생성</li>
+<li>git checkout 브렌치 - 해당 브렌치로 이동</li>
+<li>작업 </li>
+<li>Add,Commit,Push</li>
+<li>Merge</li>
+<li>Add,Commit,Push</li>
+<li>Git remote add pmorigin 팀장 코드를 최신화 하기 위해 팀장 레포를 추가로 연결해 준다. <ol>
+<li>git pull pmorigin master  병합 시 오류가 뜨면 수정 해준후 Add,Commit,Push</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>팀장이 할일 <ol>
+<li>레포 생성</li>
+<li>생성된 레포 폴더생성후 클론</li>
+<li>기본적인 문서 생성 및 작성 및 Add,Commit,Push</li>
+<li>팀원이 pull request를 올리면 해당 내용 확인해서 팀장 파일에 merge후 팀원에게 재 배포</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>git branch - 브렌치 리스트</p>
+<ol>
+<li>-a</li>
+</ol>
+</li>
+<li><p>git branch 만들 브렌치 이름. –내가 있는 위치를 기준으로 생성</p>
+</li>
+<li><p>git checkout 이동할 브렌치이름 – 브렌치이동</p>
+</li>
+<li><p>git merge 병합할 브렌치 이름 —  브렌치를 병합 시킴, 병합된 브렌치는 존재하고 복사해서 붙여넣어진다</p>
+</li>
+<li><p>Git branch -D(대문자) 삭제할 브렌치 이름 — 용도가 끝난 브렌치 삭제</p>
+</li>
+<li><p>git checkout – .  –현재 브렌치의 가장 최근 커밋으로 되돌아가기</p>
+</li>
+<li><p>Mv templates/headr.html templates/partials &gt;&gt; 파일 디렉토리 이동 (삭제후 재생성)</p>
+</li>
+<li><p>git mv  templates/headr.html templates/partials &gt;&gt; 파일 디렉토리이동(이름 변경 방식 이동, 권장방식)</p>
+</li>
+</ol>
+<p>   Gitignore.io === 입력한 키워드를 토대로 ignore파일 셋팅, ignore 파일은 습관처럼 늘 작성할 것 .</p>
 
     </div>
 
@@ -330,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%EA%B0%95%EC%9D%98"><span class="nav-number">1.</span> <span class="nav-text">Git 강의</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim"><span class="nav-number">1.1.</span> <span class="nav-text">Vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">1.2.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4"><span class="nav-number">1.2.1.</span> <span class="nav-text">hexo 블로그 관련 명령어</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%EA%B0%95%EC%9D%98"><span class="nav-number">1.</span> <span class="nav-text">Git 강의</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim"><span class="nav-number">1.1.</span> <span class="nav-text">Vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">1.2.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4"><span class="nav-number">1.2.1.</span> <span class="nav-text">hexo 블로그 관련 명령어</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Branch-%EB%B6%84%EA%B8%B0"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Branch 분기</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
