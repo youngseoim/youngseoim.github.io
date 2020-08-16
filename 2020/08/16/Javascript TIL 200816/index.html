@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Javascript TIL 20 08 16변수란 ? 아무리 복잡한 애플리케이션이라 해도 데이터를 입력(input )받아 처리하고 그 결과를 출력(output)하는것이 전부다, 변수는 데이터를 관리하기 위한 핵심 개념이다.  10 + 20이라는 식의 의미를 자바스크립트 엔진이 해석하면 +연산을 수행하기 위해 먼저 +연산자의 좌변,우변의 값, 즉 피연산자(op">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript TIL 200816">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/16/Javascript%20TIL%20200816/index.html">
+<meta property="og:site_name" content="Youngseo&#39;s blog">
+<meta property="og:description" content="Javascript TIL 20 08 16변수란 ? 아무리 복잡한 애플리케이션이라 해도 데이터를 입력(input )받아 처리하고 그 결과를 출력(output)하는것이 전부다, 변수는 데이터를 관리하기 위한 핵심 개념이다.  10 + 20이라는 식의 의미를 자바스크립트 엔진이 해석하면 +연산을 수행하기 위해 먼저 +연산자의 좌변,우변의 값, 즉 피연산자(op">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-16T10:00:59.000Z">
+<meta property="article:modified_time" content="2020-08-16T10:07:08.563Z">
+<meta property="article:author" content="youngseoim">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/16/Javascript%20TIL%20200816/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Javascript TIL 200816 | Youngseo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Youngseo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Awesome node.jser..</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/16/Javascript%20TIL%20200816/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript TIL 200816
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-16 19:00:59 / Modified: 19:07:08" itemprop="dateCreated datePublished" datetime="2020-08-16T19:00:59+09:00">2020-08-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Javascript-TIL-20-08-16"><a href="#Javascript-TIL-20-08-16" class="headerlink" title="Javascript TIL 20 08 16"></a>Javascript TIL 20 08 16</h1><h3 id="변수란"><a href="#변수란" class="headerlink" title="변수란 ?"></a>변수란 ?</h3><ol>
+<li><p>아무리 복잡한 애플리케이션이라 해도 데이터를 입력(input )받아 처리하고 그 결과를 출력(output)하는것이 전부다, 변수는 데이터를 관리하기 위한 핵심 개념이다.</p>
+</li>
+<li><p>10 + 20이라는 식의 의미를 자바스크립트 엔진이 해석하면 +연산을 수행하기 위해 먼저 +연산자의 좌변,우변의 값, 즉 피연산자(operand)를 기억한다 그 후에 CPU를 사용해 연산하고, 메모리를 사용해 데이터를 기억한다 .</p>
+</li>
+<li><p>메모리(memory)는 데이터를 저장할 수 있는 메모리 셀(memory cell)의 집합체이다. 메모리 셀 하나의 크기는 1바이트(8비트)이며, 컴퓨터는 메모리 셀의 크기, 즉 1바이트 단위로 데이터를 저장하거나 읽어 들인다.</p>
+</li>
+<li><p>각 셀은 고유의 메모리 주소를 갖는다, 이 주소는 공간의 위치를 나타내며, 0부터 시작해서 메모리의 크기만큼 정수로 표현된다</p>
+</li>
+<li><p>위 예제의 숫자 값 10과 20은 메모리상의 임의의 위치(메모리 주소)에 기억되고 CPU는 이 값을  읽어 들여 연산을 수행한다. 연산 결과로 생성된 숫자 30도 메모리로 저장되고 저장되는 모든 값은 2진수로 저장된다 </p>
+</li>
+<li><p>10 + 20이라는 연산을 했다는 것은 그 연산 결과가 필요하고 이를 사용해 무언가를 하겠다는 의도가 있었을 것이다, 연산 결과 30을 재사용 하고 싶다면 메모리 주소에 직접 접근하는 것 외에는 방법이 없다</p>
+<ol>
+<li>하지만 <strong><em>메모리 주소를 통해 값에 직접 접근하는 것</em></strong> 은 치명적 오류를 발생시킬 가능성이 높은 <strong><em>매우  위험한 일이다</em></strong> </li>
+<li>만약 실수로 운영체제가 사용하고 있는 값을 변경하면 시스템을 멈추게 하는 치명적인 오류가 발생할 수도 있다. 때문에 <strong><em>자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다</em></strong>.                                                                                                                                                                                                                                                                                                                                                          </li>
+<li>만약 자바스크립트가 개발자의 직접적인 메모리 제어를 허용 하더라도, 값이 저장될 메모리 주소는 코드가 실행될 때마다 값이 변경된다, 따라서 메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다 . </li>
+</ol>
+</li>
+<li><p><strong><em>변수(variable)은 하나의 값을 저장하기 위해 확보한 메모리 공간 자체 또는 그 메모리 공간을 식별하기 위해 붙인 이름을 말한다.</em></strong></p>
+<ol>
+<li>프로그래밍 언어에서 값을 저장하고 참조하는 매커니즘으로, <strong><em>값의 위치를 가르키는 상징적인 이름</em></strong>이다.</li>
+<li>변수는 프로그래밍 언어의 컴파일러 또는 인터프리터에 의해 값이 저장된 메모리 공간의 주소로 치환되어 실행된다. 따라서 개발자가 직접 메모리 주소를 통해 값을 저장하고 참조할 필요가 없고 변수를 통해 안전하게 값에 접근할 수 있다 .<ol>
+<li>컴파일러(compiler)란? = 특정 프로그래밍 언어로 쓰여있는 문서를 다른 프로그래밍 언어로 옮기는 프로그램.</li>
+<li>인터프리터(interpreter)란? = 프로그래밍 언어의 소스 코드를 바로 실행하는 컴퓨터 프로그램 또는 환경.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><pre><code class="javascript">// 변수는 하나의 값을 저장하기 위한 수단
+var userId = 1;
+var userName = &#39;Lee&#39;;
+
+// 객체나 배열 같은 자료구조를 사용하면 여러개의 값을 하나로 그룹화해서 하나의 값처럼 사용할 수 있다.
+var user = &#123;id:1, name: &#39;Lee&#39;&#125;;
+
+var users = &#123;
+  &#123;id:1, name: &#39;Lee&#39;&#125;
+    &#123;id:2, name: &#39;Kim&#39;&#125;
+&#125;</code></pre>
+<ol>
+<li>객체(object)란? = 키(key)와 값(value)로 구성된 프로퍼티(property)들의 집합이다.<ol>
+<li>프로퍼티의 값으로 자바스크립트에서 사용할 수 있는 모든 값을 사용할 수 있다.</li>
+<li>자바스크립트의 함수는 일급 객체이므로 값으로 취급할 수 있다, 따라서 프로퍼티 값으로 함수가 사용 가능하며 <strong><em>함수일 경우</em></strong> 일반 함수와 구분하기 위해 <strong><em>메소드</em></strong>라고 부른다</li>
+<li>이와 같이 객체는 데이터를 의미하는 프로퍼티(property)와 데이터를 참조하고 조작할 수 있는 동작(bejavior)을 의미하는 메소드(method)로 구성된 집합 이다, 객체는 데이터(프로퍼티)와 그 데이터에 관려되는 동작(메소드)를 모두 포함할 수 있기 때문에 데이터와 동작을 하나의 단위로 구조화 할 수있어 유용하다.</li>
+</ol>
+</li>
+<li>자료구조란? = 컴퓨터 과학에서 효율적인 접근 및 수정을 가능케 하는 자료의 조직, 관리,저장을 의미한다.<ol>
+<li>데이터 값의 모임, 데이터 간의 관계, 데이터에 적용할 수 있는 함수나 명령을 의미</li>
+<li>효과적으로 설계된 자료구조는 실행시간 혹은 메모리 용량과 같은 자원을 최소한으로 사용하면서 연산을 수행하도록 해준다.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>변수에 값을 저장하는 것을 <strong><em>할당(assignment,대입,저장)</em></strong>이라고 하고, 변수에 저장된 값을 읽어들이는 것을 <strong><em>참조(reference)</em></strong>라고 한다.</p>
+</li>
+</ol>
+<h3 id="식별자"><a href="#식별자" class="headerlink" title="식별자"></a>식별자</h3><ol>
+<li>변수 이름을 식별자(Identifier)라고도 한다.<strong><em>식별자란 어떤 값을 구별해서 식별할 수 있는 고유한 이름</em></strong> 을 말한다.</li>
+<li><strong><em>식별자는 값이 아니라 메모리 주소를 기억하고 있다</em></strong>.</li>
+<li>메모리 상에 존재하는 어떤 값을 식별할 수 있는 이름은 모두 식별자 라고 부른다.</li>
+<li>변수,함수, 클래스 등의 이름과 같은 식별자는 네이밍규칙을 준수해야하며 , <strong><em>선언(declaration)</em></strong>에 의해 자바스크립트 엔진에 식별자의 존재를 알린다.</li>
+</ol>
+<h3 id="변수-선언"><a href="#변수-선언" class="headerlink" title="변수 선언"></a>변수 선언</h3><ol>
+<li>변수 선언(variable declaration)이란 변수를 생성하는 것을 말한다.</li>
+<li>값을 저장하기 위한 메모리 공간을 확보(allocate)하고 변수 이름과 확보된 메모리 공간의 주소를 연결(name binding)해서 값을 저장할 수 있게 준비하는 것이다.</li>
+<li>변수 선언에 의해 확보된 메모리 공간은 확보가 해제(release)되기 전까지는 누구도 확보된 메모리 공간을 사용할 수 없도록 보호된다.</li>
+<li>변수를 선언 할 땐 <strong><em>var, let, const</em></strong> 키워드를 사용한다<ol>
+<li>var의 단점중 가장 대표적인 것이 블록 레벨 스코프를 지원하지 않고 함수 레벨 스코프를 지원한다는 것이다.</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/13/8%E1%84%8B%E1%85%AF%E1%86%AF%2013%E1%84%8B%E1%85%B5%E1%86%AF%20TIL/" rel="prev" title="8월 13일 TIL">
+      <i class="fa fa-chevron-left"></i> 8월 13일 TIL
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript-TIL-20-08-16"><span class="nav-number">1.</span> <span class="nav-text">Javascript TIL 20 08 16</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EC%88%98%EB%9E%80"><span class="nav-number">1.0.1.</span> <span class="nav-text">변수란 ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%8B%9D%EB%B3%84%EC%9E%90"><span class="nav-number">1.0.2.</span> <span class="nav-text">식별자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8"><span class="nav-number">1.0.3.</span> <span class="nav-text">변수 선언</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">youngseoim</p>
+  <div class="site-description" itemprop="description">All Dev stories found in here</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youngseoim</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
