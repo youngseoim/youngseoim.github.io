@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Javascropt TIL 20 08 19출처:link:https&#x2F;&#x2F;poiemaweb.com 데이터 타입 원시 타입 (primitive type)  숫자 (number): 정수 실수의 구분 없이 하나의 숫자 타입만 존재  c나 자바의 경우 정수와 실수를 구분해서 다양한 숫자타입을 제공한다 자바스크립트는 배정밀도 64비트 부동소수점 형식을 따르며 정수만 표현">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript TIL 200819">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/19/Javascript%20TIL%20200819/index.html">
+<meta property="og:site_name" content="Youngseo&#39;s blog">
+<meta property="og:description" content="Javascropt TIL 20 08 19출처:link:https&#x2F;&#x2F;poiemaweb.com 데이터 타입 원시 타입 (primitive type)  숫자 (number): 정수 실수의 구분 없이 하나의 숫자 타입만 존재  c나 자바의 경우 정수와 실수를 구분해서 다양한 숫자타입을 제공한다 자바스크립트는 배정밀도 64비트 부동소수점 형식을 따르며 정수만 표현">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-19T12:54:17.000Z">
+<meta property="article:modified_time" content="2020-08-19T12:57:03.758Z">
+<meta property="article:author" content="youngseoim">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/19/Javascript%20TIL%20200819/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Javascript TIL 200819 | Youngseo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Youngseo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Awesome node.jser..</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/19/Javascript%20TIL%20200819/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript TIL 200819
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-19 21:54:17 / Modified: 21:57:03" itemprop="dateCreated datePublished" datetime="2020-08-19T21:54:17+09:00">2020-08-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Javascropt-TIL-20-08-19"><a href="#Javascropt-TIL-20-08-19" class="headerlink" title="Javascropt TIL 20 08 19"></a>Javascropt TIL 20 08 19</h1><p>출처:link:https//poiemaweb.com</p>
+<h3 id="데이터-타입"><a href="#데이터-타입" class="headerlink" title="데이터 타입"></a>데이터 타입</h3><ol>
+<li><p>원시 타입 (primitive type)</p>
+<ol>
+<li><p>숫자 (number): 정수 실수의 구분 없이 하나의 숫자 타입만 존재</p>
+<ol>
+<li>c나 자바의 경우 정수와 실수를 구분해서 다양한 숫자타입을 제공한다</li>
+<li>자바스크립트는 배정밀도 64비트 부동소수점 형식을 따르며 정수만 표현하기 위한 데이터 타입은 존재하지 않으며  모든 수를 실수로 처리한다.</li>
+<li>추가적으로 세 가지 특별한 값도 표현 가능하다<ol>
+<li>infinity : 양의 무한대</li>
+<li>-infinity : 음의 무한대</li>
+<li>NaN : 산술 연산 불가 (자바스크립트는 대소문자를 구별하기 때문에 대소문자를 구별해서 적어야한다)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>문자열 (string): 문자열</p>
+<ol>
+<li><p>작은따옴표,큰따옴표 또는 백틱 으로 텍스트를 감싸고 가장 일반적인 표기법은 작은따옴표를 사용하는 것이다 </p>
+</li>
+<li><p>문자열을 따옴표로 감싸는 이유는 키워드나 식별자 같은 토근과 구분하기 위해서 이다.</p>
+</li>
+<li><p>자바스크립트의 문자열은 원시타입이며 변경 불가능한 값이다</p>
+</li>
+<li><p>템플릿 리터럴(template literal) : ES6 부터 도입된 새로운 문자열이다</p>
+<ol>
+<li><p>멀티라인 문자열 (multi-line string)</p>
+<ol>
+<li><p>일반 문자열 내에서는 줄바꿈(개행)이 허용되지 않는다 따라서 일반 문자열에서 줄바꿈 등의 공백을  표현하려면 백슬래시로 시작하는 이스케이프 시퀸스(escape sequence)를 사용해야 한다.</p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th align="left">이스케이프 시퀀스</th>
+<th align="left">의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\0</td>
+<td align="left">Null</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td align="left">백스페이스</td>
+</tr>
+<tr>
+<td align="left">\f</td>
+<td align="left">폼 피드(Form Feed): 프린터로 출력할 경우 다음 페이지의 시작 지점으로 이동한다.</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">개행(LF, Line Feed): 다음 행으로 이동</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td align="left">개행(CR, Carriage Return): 커서를 처음으로 이동</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">탭(수평)</td>
+</tr>
+<tr>
+<td align="left">\v</td>
+<td align="left">탭(수직)</td>
+</tr>
+<tr>
+<td align="left">\uXXXX</td>
+<td align="left">유니코드. 예를 들어 ‘\u0041’은 ‘A’, ‘\uD55C’는 ‘한’, ‘\u{1F600}’는 😀이다.</td>
+</tr>
+<tr>
+<td align="left">\’</td>
+<td align="left">작은따옴표</td>
+</tr>
+<tr>
+<td align="left">\”</td>
+<td align="left">큰따옴표</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">백슬래시</td>
+</tr>
+</tbody></table>
+<p>예를 들어, 줄바꿈과 들여쓰기가 적용된 HTML 문자열은 다음과 같이 이스케이프 시퀀스를 사용해 작성한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> template = <span class="string">&#x27;&lt;ul&gt;\n\t&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(template);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&lt;ul&gt;</span></span><br><span class="line"><span class="comment">  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;/ul&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>일반 문자열과 달리 템플릿 리터럴 내에서는 이스케이프 시퀀스를 사용하지 않고도 줄바꿈이 허용되며, 모든 공백도 있는 그대로 적용된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> template = <span class="string">`&lt;ul&gt;</span></span><br><span class="line"><span class="string">  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">&lt;/ul&gt;`</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(template);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&lt;ul&gt;</span></span><br><span class="line"><span class="comment">  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;/ul&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>표현식 삽입 (expression interpolation)</p>
+<ol>
+<li><p>문자열은 문자열 연산자 +를 이용해 연결할 수 있다 +연사자는 피연산자 중 하나 이상이 문자열인 경우 연결 연산자로 동작하고 그외는 덧셈 연산자로 동작한다.</p>
+</li>
+<li><p>템플릿 리터럴 내에서는 표현식 삽입을 통해 문자열 연산자 보다 가독성 좋고 간편하게 문자를 조합할 수 있다.</p>
+<ol>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = <span class="string">&#x27;young-seo&#x27;</span></span><br><span class="line"><span class="keyword">var</span> last = <span class="string">&#x27;Im&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;My name is&#x27;</span> + <span class="string">&#x27;first&#x27;</span> + <span class="string">&#x27;last&#x27;</span> + .)</span><br><span class="line"><span class="comment">// My nane us young-seo Im.</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>표현식을 삽입하려면 ${} 으로 표현식을 감싼다 , 이때 표현식의 평가 결과가 문자열이 아니더라도 문자열로 타입이 강제로 변환되어 삽입된다.</p>
+<ol>
+<li><pre><code class="javascript">var first = &#39;young-seo&#39;
+var last = &#39;Im&#39;;
+
+console.log(`My name is $&#123;first&#125; $&#123;last&#125; .`)
+// My nane us young-seo Im.
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. 테그드 템플릿 (tagged template)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. 템플릿 리터럴은 백틱을 사용해 표현한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   var template &amp;#x3D; &amp;#96;Template literal&amp;#96;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(template); &amp;#x2F;&amp;#x2F;Template literal&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>불리언(boolean): true or false</p>
+</li>
+<li><p>undefined: var 키워드로 선언을 했지만 값을 할당하지 않았을 때 변수에 암묵적으로 할당 되는 값</p>
+</li>
+<li><p>null:값이 없다는 것을 의도적으로 명시할 때 사용하는 값 </p>
+</li>
+<li><p>Symbol : ES6 에서 추가된 7번째 타입</p>
+</li>
+</ol>
+</li>
+<li><p>객체 타입 (object / reference type): 객체, 함수, 배열 등</p>
+<ol>
+<li>자바스크립트는 객체 기반의 언어이며 자바스크립트를 이루고 있는 거의 모든 것이 객체이고 원시타입의 6가지를 제외 하면 나머지는 모두 객체 타입이다.</li>
+</ol>
+</li>
+</ol>
+<h3 id="데이터-타입의-필요성"><a href="#데이터-타입의-필요성" class="headerlink" title="데이터 타입의 필요성"></a>데이터 타입의 필요성</h3><ol>
+<li>변수에 할당되는 값의 데이터 타입에 따라 확보해야 할 메모리 공간의 크기가 결정된다</li>
+<li>값을 저장할 때 확보해야 하는 <strong>메모리 공간의 크기</strong>를 결정하기 위해<ol>
+<li>ECMAscript 사양에 숫자 타입은 배정밀도 64비트 부동소수점 형식을 사용한다고 명시되어 있고 부동소수점 형식은 8바이트로 숫자를 표현하므로 이 책에서는 숫자 값의 크기를 8바이트로 설명한다 </li>
+</ol>
+</li>
+<li>값을 참조할 때 한 번에 읽어 들여야 할 <strong>메모리 공간의 크기</strong>를 결정하기 위해</li>
+<li>메모리에서 읽어 들인 <strong>2진수를 어떻게 해석</strong>할지 결정하기 위해</li>
+</ol>
+<h3 id="동적-타이핑"><a href="#동적-타이핑" class="headerlink" title="동적 타이핑"></a>동적 타이핑</h3><h4 id="동적-타입-언어와-정적-타입-언어"><a href="#동적-타입-언어와-정적-타입-언어" class="headerlink" title="동적 타입 언어와 정적 타입 언어"></a>동적 타입 언어와 정적 타입 언어</h4><ol>
+<li>정적 타입 언어<ol>
+<li>정적 타입 언어는 변수의 타입을 변경할 수 없으며, 변수에 선언한 타입에 맞는 값만 할당할 수 있다</li>
+<li>정적 타입 언어는 컴파일 시점에 타입체크(선언한 타입에 맞는 값을 할당했는지)를 수행한다, 만약 타입체크를 통과하지 못한다면 에러를 발생시키고 프로그램의 실행을 막는다</li>
+</ol>
+</li>
+<li>동적 타입 언어<ol>
+<li>정정 타입 언어와는 다르게 변수를 선언할 때 타입을 선언하지 않는다.</li>
+<li>동적 타입 언어는 어떠한 <strong>데이터 타입의 값</strong>이라도 <strong>자유롭게 할당</strong>할 수 있다.</li>
+<li>자바스크립트 변수는 <strong>선언이 아닌 할당에 의해 타입이 결정</strong> 된다</li>
+</ol>
+</li>
+</ol>
+<h4 id="동적-타입-언어와-변수"><a href="#동적-타입-언어와-변수" class="headerlink" title="동적 타입 언어와 변수"></a>동적 타입 언어와 변수</h4><ol>
+<li>모든 소프트웨어 아키텍처에는 트레이드오프(trade-off)가 존재하며, 모든 애플리케이션에 적합한 은 탄환(silver bullet)은 없듯이 동적 타입 언어 또한 구조적이 단점이 있다<ol>
+<li>트레이드오프(trade-off)<ol>
+<li>두 개의 정책 목표 가운데 하나를 달성하려고 하면 다른 목표의 달성이 늦어지거나 희생되는 모순적 관계를 의미한다 예를 들어 실업률을 줄이면 물가가 상승하고, 물가를 안정시키면 실업률이 높아진다 </li>
+</ol>
+</li>
+<li>은 탄환(silver bullet)<ol>
+<li>고질적인 문제를 단번에 해결할 수 있는 명쾌한 해결책</li>
+</ol>
+</li>
+<li><strong>동적 타입 언어의 변수는 값을 확인하기 전에는 타입을 확신할 수 없다.</strong></li>
+<li>더욱이 자바스크립트는 개발자의 의도와는 상관없이 엔진에 의해 암묵적으로 타입이 자동으로 변환되기도 한다,이와 같은 이유 때문에 동적 타입 언어는 유연성은 높지만 신뢰성은 떨어진다.</li>
+<li>이러한 이유로 안정적인 프로그램을 만들기 위해 변수를 사용하기 이전에 데이터 타입을 체크해야 하는 경우가 있는데 이는 매우 번거로울뿐더러 코드의 양도 증가한다. </li>
+</ol>
+</li>
+</ol>
+<h4 id="변수를-사용할-때-주의사항"><a href="#변수를-사용할-때-주의사항" class="headerlink" title="변수를 사용할 때 주의사항"></a>변수를 사용할 때 주의사항</h4><ol>
+<li>변수는 꼭 필요한 경우에 한해 제한적으로 사용한다, 변수 값은 재할당에 의해 언제든지 변경될 수 있다 이로인해 타입을 잘못 예측해 오류가 발생할 가능성이 크다,</li>
+<li>변수의 유효 범위(스코프)는 최대한 좁게 만들어 변수의 부작용을 억제해야 한다 .</li>
+<li>전역 변수는 최대한 사용하지 않도록 한다, 어디서든지 참조와 변경이 가능한 전역변수는 오류가 발생할 경우 원인을 특정하기 어렵게 만든다</li>
+<li>변수 보다는 상수를 사용해 값의 변경을 억제한다 .</li>
+<li>존재 이유를 파악할 수 있는 변수의 이름을 지어줘야 한다 .</li>
+</ol>
+<h3 id="연산자-operator"><a href="#연산자-operator" class="headerlink" title="연산자(operator)"></a>연산자(operator)</h3><ol>
+<li><p>연산자는 하나 이상의 <strong>표현식을 대상</strong>으로 산술, 할당, 비교, 논리, 타입, 지수 연산 등을 수행해 <strong>하나의 값</strong>을 만든다 .</p>
+</li>
+<li><p>연산의 <strong>대상을 피연산자</strong> 라고한다.</p>
+</li>
+<li><pre><code class="javascript">//산술 연산자
+5 * 4 //20
+//문자열 연결 연산자
+&#39;My name is&#39; + &#39;young-seo&#39; // &#39;My name is young-soe&#39;
+//할당 연산자
+color = red; // &#39;red&#39;
+//비교 연산자
+    3 &gt; 5 // false
+//논리 연산자
+true &amp;&amp; false // false
+//타입 연산자
+typeof &#39;Hi&#39; // string
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. 피연산자는 연산의 대상이 되어야 하므로 **값으로 평가할 수 있어야한다** 연산자는 값으로 평가된 피연산자를 연산해 새로운 값을 만든다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. 산술 연산자 (산술 연산이 불가능한 경우 NaN을 반환한다)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. 이항 산술 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1. 2개의 피연산자를 산술하여 숫자 값을 만들며 덧셈,뺄셈,곱셈,나눗셈 등이 있다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. 단항 산술 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1. 1개의 피연산자를 산술 연산하여 숫자 값을 만든다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      2. ++(증가), --(감소), +(어떠한 효과도 없다), -(양수를 음수로, 음수를 양수로 반전한 값을 반환한다.)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      3. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         var x &amp;#x3D; 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &amp;#x2F;&amp;#x2F; ++연산자는 피연산자의 값을 변경하는 암묵적 할당이 이뤄진다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         x++; &amp;#x2F;&amp;#x2F;x &amp;#x3D; x + 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         console.log(x);&amp;#x2F;&amp;#x2F; 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &amp;#x2F;&amp;#x2F; --연산자는 피연산자의 값을 변경하는 암묵적 할당이 이뤄진다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         x--; &amp;#x2F;&amp;#x2F; 현재 x의 값은 2, x &amp;#x3D; x - 1     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         console.log(x); &amp;#x2F;&amp;#x2F; 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+   4. 증가/감소(++/--)연산자는 위치에 의미가 있다
+
+      1. 피연산자 앞에 위치한 증가/감소 연산자는 값을 증가/감소 시킨후 다른 연산을 진행한다
+
+      2. 피연산자 뒤에 위치한 증가/감소 연산자는먼저 다른 연산을 수행한 후, 값을 증가/감소 시킨다.
+
+      3. ```javascript
+         var x = 5, result;
+         // 선할당 후증가
+         result = x++;
+         console.log(result, x); // x는 5 result = x++이기 떄문에 5를할당 한 후 증가해서 5, 6 
+         // 선증가 후할당
+         result = ++x;
+         console.log(result, x); // x는 6이됐고 증가시킨후 증가된 x의 값을 할당 시키기 때문에 7, 7
+         // 선할당 후감소
+         result = x--;
+         console.log(result, x); // x는 7이고 할당한 후 감소됐기 때문에 7,6
+         // 선감소 후할당
+         result = --x;
+         console.log(result, x); // x는 6이고 감소한 상태에서 할당했기 때문에 5, 5
+         &lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. +단항 연산자는 피연산자에 어떠한 효과도 없다, 음수를 양수로 반환하지도 않는다 단, 숫자 타입이 아닌 피연산자에 사용하면 피연산자를 숫자 타입으로 변환하여 반환한다, 피연산자를 변경하는 것은 아니고 숫자 타입으로 변환한 값을 생성해서 반환한다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      var x  &amp;#x3D; &amp;#39;1&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 문자열을 숫자로 타입 변환한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(+x); &amp;#x2F;&amp;#x2F; 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 부수 효과는 없다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(x);  &amp;#x2F;&amp;#x2F; &amp;quot;1&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 불리언 값을 숫자로 타입 변환한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      x &amp;#x3D; true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(+x); &amp;#x2F;&amp;#x2F; 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 부수 효과는 없다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(x);  &amp;#x2F;&amp;#x2F; true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 불리언 값을 숫자로 타입 변환한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      x &amp;#x3D; false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(+x); &amp;#x2F;&amp;#x2F; 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 부수 효과는 없다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(x);  &amp;#x2F;&amp;#x2F; false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 문자열을 숫자로 타입 변환할 수 없으므로 NaN을 반환한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      x &amp;#x3D; &amp;#39;Hello&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(+x); &amp;#x2F;&amp;#x2F; NaN&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 부수 효과는 없다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(x);  &amp;#x2F;&amp;#x2F; &amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+   6. -단항 연산자는 피연산자의 부호를 반전, +단항 연산자와 마찬가지로 숫자타입이아닌 피연산자를 숫자 타입으로 변환하여 반환, 부호를 반전한 값을 생성해 반환한다 .
+
+      1. ```javascript
+         // 부호를 반전한다.
+         -(-10); // -&gt; 10
+
+         // 문자열을 숫자로 타입 변환한다.
+         -&#39;10&#39;; // -&gt; -10
+
+         // 불리언 값을 숫자로 타입 변환한다.
+         -true; // -&gt; -1
+
+         // 문자열은 숫자로 타입 변환할 수 없으므로 NaN을 반환한다.
+         -&#39;Hello&#39;; // -&gt; NaN
+         &lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7. 문자열 연결 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. +연산자는 피연산자 중 하나 이상이 문자열인 경우 문자열 연결 연산자로 동작한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F;문자열 연결 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;#39;1&amp;#39; + 2; &amp;#x2F;&amp;#x2F; &amp;#39;12&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       1 + &amp;#39;2&amp;#39; &amp;#x2F;&amp;#x2F; &amp;#39;12&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; true는 1로 타입 변환된다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1 + true; &amp;#x2F;&amp;#x2F; -&amp;gt; 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; false는 0으로 타입 변환된다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1 + false; &amp;#x2F;&amp;#x2F; -&amp;gt; 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; null은 0으로 타입 변환된다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1 + null; &amp;#x2F;&amp;#x2F; -&amp;gt; 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; undefined는 숫자로 타입 변환되지 않는다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      +undefined;    &amp;#x2F;&amp;#x2F; -&amp;gt; NaN&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1 + undefined; &amp;#x2F;&amp;#x2F; -&amp;gt; NaN&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+   8. 
+
+   9. 
+
+
+</code></pre>
+</li>
+</ol>
+<h3 id="할당-연결자"><a href="#할당-연결자" class="headerlink" title="할당 연결자"></a>할당 연결자</h3><ol>
+<li><p>우항에 있는 피연산자의 평가 결과를 좌항에 있는 변수에 할당한다. 할당 연산자는 좌항의 변수에 값을 할당하므로 변수 값이 변하는 부수 효과가 있다</p>
+</li>
+<li><p>표현식은 값으로 평가될 수 있는 문, 문에는 표현식과 표현식이 아닌 문 </p>
+<ol>
+<li><p><strong>할당문은 값으로 평가되는  표현식인 문으로서 할당된 값으로 평가</strong>된다 .</p>
+</li>
+<li><pre><code class="javascript">var x;
+// 할당문은 표현식인 문이다
+console.log(x=10); // 10
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;99&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;100&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;101&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;102&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;103&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;104&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;105&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;106&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;107&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;108&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;109&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;110&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;111&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;112&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;113&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;114&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;115&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;116&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;117&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;118&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;119&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   3. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 비교 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1. 좌항과 우항의 피연산자를 비교한 다음 그 결과를 불리언 값으로 반환 한다 ,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 비교연산자는 if문이나 for 문과 같은 제어문의 조건식에서 주로 사용한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. x&amp;#x3D;&amp;#x3D;&amp;#x3D;y  , x와 y의 값과 타입이 같음&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. !&amp;#x3D;&amp;#x3D;  , x와 y의 값과 타입이 다름&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 삼항 조건 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1. 조건식의 평가 결과에 따라 반환할 값을 결정한다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 문법&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. 조건식 ? 조건식이 true 일때 반환할 값 : false일 때 반환할 값&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. var result &amp;#x3D; score &amp;gt;&amp;#x3D; 60 ? &amp;#39;pass&amp;#39; : &amp;#39;fail&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   3. true로 평가되면 pass 반환, false일 시 fail 반환 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;산술 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;이항 산술 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(5 * 4); &amp;#x2F;&amp;#x2F; 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(10 + 10); &amp;#x2F;&amp;#x2F; 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(100 &amp;#x2F; 5); &amp;#x2F;&amp;#x2F; 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(30 - 10); &amp;#x2F;&amp;#x2F; 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(120 % 100); &amp;#x2F;&amp;#x2F; 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;단항 산술 연산자 (++,--)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var x &amp;#x3D; 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x++); &amp;#x2F;&amp;#x2F; 할당 후 증감 이기 때문에 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(++x); &amp;#x2F;&amp;#x2F; 위에 코드에서 할당된 1값에서 증감이 이루어져서 2가되고 증감 후 에 할당이기 때문에 3이된다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x--); &amp;#x2F;&amp;#x2F; 3을 할당한 후 감소 되기 때문에 3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(--x); &amp;#x2F;&amp;#x2F; 위에 코드에서 3을 할당한 후에 감소가 이루어져서 2가됐고 감소 후에 할당이 되기 때문에 1이 됐다 . &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;단항 산술 연산자 (+, -)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var x &amp;#x3D; &amp;#39;1&amp;#39;;  &amp;#x2F;&amp;#x2F; + 단항 산술 연산자의 경우 숫자가 들어있는 문자열을 숫자열로 타입을 변환시킨다, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(typeof +x);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var y &amp;#x3D; &amp;#39;Hello&amp;#39;;  &amp;#x2F;&amp;#x2F; 숫자가 아닌 문자열은 NaN을 반환한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(+y);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;문자열 연결 연산자 (문자열이 하나라도 존재할 시 문자열로 변경)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(&amp;#39;1&amp;#39; + 2);    &amp;#x2F;&amp;#x2F;&amp;#39;12&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(1 + &amp;#39;2&amp;#39;);    &amp;#x2F;&amp;#x2F;&amp;#39;12&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(typeof &amp;#39;1&amp;#39;+2); &amp;#x2F;&amp;#x2F; string 2 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(1 + &amp;#39;hello&amp;#39;); &amp;#x2F;&amp;#x2F;1hello&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;할당 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var x;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x &amp;#x3D; 10;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x); &amp;#x2F;&amp;#x2F; 10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x +&amp;#x3D; 5;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x); &amp;#x2F;&amp;#x2F; 15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x -&amp;#x3D; 5;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x); &amp;#x2F;&amp;#x2F; 10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x *&amp;#x3D; 5;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x); &amp;#x2F;&amp;#x2F; 50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x &amp;#x2F;&amp;#x3D; 5;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x); &amp;#x2F;&amp;#x2F; 10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x %&amp;#x3D; 5;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x); &amp;#x2F;&amp;#x2F;0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;비교 연산자 (일치 비교 연산자)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var a &amp;#x3D; 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var y &amp;#x3D; &amp;#39;1&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(a&amp;#x3D;&amp;#x3D;&amp;#x3D;y); &amp;#x2F;&amp;#x2F;&amp;#x2F;a, y 의 타입과 값이 같은지를 물어본다 같다면 true, 다르다면 false반환 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(typeof (a+y)); &amp;#x2F;&amp;#x2F; a의 타입이 number이고 y의 타입이 string인 경우 숫자열을 문자열로 인식해서 string으로 반환된다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(a&amp;#x3D;&amp;#x3D;y); &amp;#x2F;&amp;#x2F; 동등 비교 연산자는 타입은 비교하지 않고 값만 비교하기 떄문에 True가 반환되는데 이처럼 예측하기 어려운 결과를 만들어 내기 때문에 사용하지 않는것을 권장한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(NaN &amp;#x3D;&amp;#x3D;&amp;#x3D; NaN); &amp;#x2F;&amp;#x2F; &amp;gt;&amp;gt; false,  NaN은 자신과 일치하지 않는 유일한 값이다. 따라서 숫자가 NaN인지 조사하려면 빌트인 합수isNAN을 사용한다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isNaN(NaN)); &amp;#x2F;&amp;#x2F; false, 지정한 값이 NaN인지 확인하고 결과를 불리언 값으로 반환한다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isNaN(10)); &amp;#x2F;&amp;#x2F; true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isNaN(1 + undefined)); &amp;#x2F;&amp;#x2F; true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;삼항 조건 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var n &amp;#x3D; 5; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var n &amp;#x3D;  n % 5 &amp;#x3D;&amp;#x3D;&amp;#x3D; 0 ? &amp;#39;5의 배수입니다.&amp;#39; : &amp;#39;5의 배수가 아닙니다.&amp;#39;;  &amp;#x2F;&amp;#x2F; 조건문이 true 일경우 ? 의 뒷부분이 적용되는데 콜론의 앞이 true , 뒤가 false값이 반환된다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; n % 5를 하면 5의 배수가 나오지만 그 값이 0이기 때문에 false가 반환된다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F;원하는 값은 true의 값인 5의 배수입니다를 반환해야 하기 때문에 일치 연산자를 사용하여 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; n % 5가 0과 타입과 값이 동등한지를 묻고 동등하기 떄문에 true의 값을 반환시킨다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(n);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;증감 연산자&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var i &amp;#x3D; 1; &amp;#x2F;&amp;#x2F; i &amp;#x3D; 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var j &amp;#x3D; i++ + 1  &amp;#x2F;&amp;#x2F; i가 1이 할당된 후에 증감되서 1+1 &amp;#x3D; 2 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; i가 증감되서 2인 상태&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var k &amp;#x3D; ++i +1 &amp;#x2F;&amp;#x2F; i가 증감이 되서 3이 된 후에 할당되기 때문에 3 + 1 &amp;#x3D; 4 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(i); 3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(j); 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(k); 4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var x &amp;#x3D; 10;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;x +&amp;#x3D; 10;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var y &amp;#x3D; 20;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;y +&amp;#x3D; x;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(y);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var x &amp;#x3D; 20;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var y &amp;#x3D; &amp;#39;원&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x+y);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var x &amp;#x3D; 100;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var y &amp;#x3D; &amp;#39;50&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(x-y);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+
+
+
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="내일-할-내용-논리연산자-쉼표-연산자-그룹연산자-typeof-연산자-지수-연산자-그-외에-연산자-연산자의-부수-효과-연산자-우선순위-연산자-결합-순서"><a href="#내일-할-내용-논리연산자-쉼표-연산자-그룹연산자-typeof-연산자-지수-연산자-그-외에-연산자-연산자의-부수-효과-연산자-우선순위-연산자-결합-순서" class="headerlink" title="내일 할 내용 -논리연산자, 쉼표 연산자, 그룹연산자, typeof 연산자,지수 연산자,그 외에 연산자,연산자의 부수 효과 , 연산자 우선순위, 연산자 결합 순서"></a>내일 할 내용 -논리연산자, 쉼표 연산자, 그룹연산자, typeof 연산자,지수 연산자,그 외에 연산자,연산자의 부수 효과 , 연산자 우선순위, 연산자 결합 순서</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/18/Javascript%20TIL%20200818/" rel="prev" title="Javascript TIL 200818">
+      <i class="fa fa-chevron-left"></i> Javascript TIL 200818
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascropt-TIL-20-08-19"><span class="nav-number">1.</span> <span class="nav-text">Javascropt TIL 20 08 19</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85"><span class="nav-number">1.0.1.</span> <span class="nav-text">데이터 타입</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1"><span class="nav-number">1.0.2.</span> <span class="nav-text">데이터 타입의 필요성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8F%99%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91"><span class="nav-number">1.0.3.</span> <span class="nav-text">동적 타이핑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%8F%99%EC%A0%81-%ED%83%80%EC%9E%85-%EC%96%B8%EC%96%B4%EC%99%80-%EC%A0%95%EC%A0%81-%ED%83%80%EC%9E%85-%EC%96%B8%EC%96%B4"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">동적 타입 언어와 정적 타입 언어</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%8F%99%EC%A0%81-%ED%83%80%EC%9E%85-%EC%96%B8%EC%96%B4%EC%99%80-%EB%B3%80%EC%88%98"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">동적 타입 언어와 변수</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%B3%80%EC%88%98%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%95%8C-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">변수를 사용할 때 주의사항</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%97%B0%EC%82%B0%EC%9E%90-operator"><span class="nav-number">1.0.4.</span> <span class="nav-text">연산자(operator)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A0%EB%8B%B9-%EC%97%B0%EA%B2%B0%EC%9E%90"><span class="nav-number">1.0.5.</span> <span class="nav-text">할당 연결자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%82%B4%EC%9D%BC-%ED%95%A0-%EB%82%B4%EC%9A%A9-%EB%85%BC%EB%A6%AC%EC%97%B0%EC%82%B0%EC%9E%90-%EC%89%BC%ED%91%9C-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B7%B8%EB%A3%B9%EC%97%B0%EC%82%B0%EC%9E%90-typeof-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%A7%80%EC%88%98-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B7%B8-%EC%99%B8%EC%97%90-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%97%B0%EC%82%B0%EC%9E%90%EC%9D%98-%EB%B6%80%EC%88%98-%ED%9A%A8%EA%B3%BC-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B2%B0%ED%95%A9-%EC%88%9C%EC%84%9C"><span class="nav-number">1.0.6.</span> <span class="nav-text">내일 할 내용 -논리연산자, 쉼표 연산자, 그룹연산자, typeof 연산자,지수 연산자,그 외에 연산자,연산자의 부수 효과 , 연산자 우선순위, 연산자 결합 순서</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">youngseoim</p>
+  <div class="site-description" itemprop="description">All Dev stories found in here</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youngseoim</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
