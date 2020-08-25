@@ -22,19 +22,22 @@
 
   <meta name="description" content="Javascript TIL 20 08 20블록문 0개 이상의 문을 중괄호로 묶은 것, 코드 블록 또는 블록. 자바스크립트는 블록문을 하나의 실행 단위로 취급한다, 제어문이나 함수를 정의할 때 사용하는 것이 일반적이다. {var foo &#x3D; 10;} &#x3D;&#x3D; 문의 끝에는 세미콜론을 붙이는 것이 일반적이지만 블록문은 자체 종결성을 갖기 때문에 붙이지 않는다.  조건">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript TIL 200820">
-<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/20/Javascript%20TIL%20200820/index.html">
+<meta property="og:title" content="Javascript TIL (제어문)">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/20/Javascript%20TIL%20200820%20(%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%86%AB)/index.html">
 <meta property="og:site_name" content="Youngseo&#39;s blog">
 <meta property="og:description" content="Javascript TIL 20 08 20블록문 0개 이상의 문을 중괄호로 묶은 것, 코드 블록 또는 블록. 자바스크립트는 블록문을 하나의 실행 단위로 취급한다, 제어문이나 함수를 정의할 때 사용하는 것이 일반적이다. {var foo &#x3D; 10;} &#x3D;&#x3D; 문의 끝에는 세미콜론을 붙이는 것이 일반적이지만 블록문은 자체 종결성을 갖기 때문에 붙이지 않는다.  조건">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91163542-af002b80-e708-11ea-9524-36575e163206.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91163576-bde6de00-e708-11ea-93d5-c700e9f4dd8e.png">
 <meta property="og:image" content="https://poiemaweb.com/assets/fs-images/8-1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91163607-cf2fea80-e708-11ea-8a9a-814dacc58059.png">
 <meta property="article:published_time" content="2020-08-20T13:00:59.000Z">
-<meta property="article:modified_time" content="2020-08-24T08:33:22.610Z">
+<meta property="article:modified_time" content="2020-08-25T10:24:05.350Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://poiemaweb.com/assets/fs-images/8-1.png">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/91163542-af002b80-e708-11ea-9524-36575e163206.png">
 
-<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/20/Javascript%20TIL%20200820/">
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/20/Javascript%20TIL%20200820%20(%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%86%AB)/">
 
 
 <script id="page-configurations">
@@ -47,7 +50,7 @@
   };
 </script>
 
-  <title>Javascript TIL 200820 | Youngseo's blog</title>
+  <title>Javascript TIL (제어문) | Youngseo's blog</title>
   
 
 
@@ -153,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/20/Javascript%20TIL%20200820/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/20/Javascript%20TIL%20200820%20(%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%86%AB)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -166,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Javascript TIL 200820
+          Javascript TIL (제어문)
         </h1>
 
         <div class="post-meta">
@@ -183,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-24 17:33:22" itemprop="dateModified" datetime="2020-08-24T17:33:22+09:00">2020-08-24</time>
+                <time title="Modified: 2020-08-25 19:24:05" itemprop="dateModified" datetime="2020-08-25T19:24:05+09:00">2020-08-25</time>
               </span>
 
           
@@ -219,25 +222,22 @@
 </li>
 <li><p>대부분의 if..else문은 삼항 조건 연산자로 바꿔 쓸 수 있다.</p>
 <ol>
-<li><pre><code class="javascript">var x = 2;
-var result;
-
-if (x % 2) &#123; // 2 % 2 는 0이다, 이때 0은 false로 암묵적 강제 변환 된다.
-      result = &#39;홀수&#39;;
-&#125; else &#123;
-  result = &#39;짝수&#39;;
-&#125;
-
-console.log(result); // 짝수
-
-var x = 2;
-var result = x % 2 ? &#39;홀수&#39; : &#39;짝수&#39;;  // 0은 false로 취급된다
-console.log(result); // true가 홀수 false가 짝수이기 때문에 2 % 2 = 0 이라서 짝수 반환 
-
-&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. **Switch**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. 주어진 표현식을 평가하여 그 값과 일치하는 표현식을 갖는 case 문으로 실행 흐름을 옮긴다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. default 문은 일치하는 case문이 없다면 실행되는 문이고 선택사항이다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   3. break가 존재하지 않으면 실행이 되야하는 문부터 계속 내려가기 때문에 꼭 필요하다 , 이를 **폴스루**라고 한다 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   4. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      switch (표현식) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case 표현식1:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          switch 문의 표현식과 표현식1이 일치하면 실행될 문;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case 표현식2:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          switch 문의 표현식과 표현식2가 일치하면 실행될 문;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          switch 문의 표현식과 일치하는 표현식을 갖는 case 문이 없을 때 실행될 문;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
-</code></pre>
+<li><img width="838" alt="스크린샷 2020-08-25 오후 7 22 53" src="https://user-images.githubusercontent.com/68043654/91163542-af002b80-e708-11ea-9524-36575e163206.png">
 </li>
 </ol>
+</li>
+</ol>
+</li>
+<li><p><strong>Switch</strong></p>
+<ol>
+<li><p>주어진 표현식을 평가하여 그 값과 일치하는 표현식을 갖는 case 문으로 실행 흐름을 옮긴다.</p>
+</li>
+<li><p>default 문은 일치하는 case문이 없다면 실행되는 문이고 선택사항이다 </p>
+</li>
+<li><p>break가 존재하지 않으면 실행이 되야하는 문부터 계속 내려가기 때문에 꼭 필요하다 , 이를 <strong>폴스루</strong>라고 한다 </p>
+</li>
+<li><img width="838" alt="스크린샷 2020-08-25 오후 7 23 18" src="https://user-images.githubusercontent.com/68043654/91163576-bde6de00-e708-11ea-93d5-c700e9f4dd8e.png">
+
 </li>
 </ol>
 </li>
@@ -264,15 +264,7 @@ console.log(result); // true가 홀수 false가 짝수이기 때문에 2 % 2 = 0
 </li>
 <li><p>무한 루프에서 탈출 하기 위해서는 if 문으로 탈출 조건을 만들고 break문으로 코드 블록을 탈출한다 </p>
 </li>
-<li><pre><code class="javascript">var count = 0;
-
-// 무한루프
-while (true) &#123;
-  console.log(count);
-  count++;
-  // count가 3이면 코드 블록을 탈출한다.
-  if (count === 3) break;
-&#125; // 0 1 2</code></pre>
+<li><img width="838" alt="스크린샷 2020-08-25 오후 7 23 48" src="https://user-images.githubusercontent.com/68043654/91163607-cf2fea80-e708-11ea-8a9a-814dacc58059.png">
 </li>
 </ol>
 </li>
@@ -307,12 +299,12 @@ while (true) &#123;
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/19/Javascript%20TIL%20200819/" rel="prev" title="Javascript TIL 200819">
-      <i class="fa fa-chevron-left"></i> Javascript TIL 200819
+    <a href="/2020/08/19/Javascript%20TIL%20200819%20(%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8)/" rel="prev" title="Javascript TIL (데이터 타입)">
+      <i class="fa fa-chevron-left"></i> Javascript TIL (데이터 타입)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/21/Javascript%20TIL%20200821/" rel="next" title="Javascript TIL 200821">
-      Javascript TIL 200821 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/21/Javascript%20TIL%20200821%20(%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%AA%20%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1)/" rel="next" title="Javascript TIL (타입 변환과 단축 평가)">
+      Javascript TIL (타입 변환과 단축 평가) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -386,7 +378,7 @@ while (true) &#123;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

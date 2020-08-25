@@ -22,17 +22,17 @@
 
   <meta name="description" content="Javascript TIL 200821타입변환 개발자가 의도적으로 값의 타입을 변환하는 것을 **명시적 타입변환(explicit coercion)**또는 **타입 캐스팅(type casting)**이라고 한다   개발자의 의도와는 상관 없이 표현식을 평가하는 도중에 자바크스크립트 엔진에 이해 암묵적으로 타입이 자동 변환 되기도 한다 . 이를 암묵적 타입변환">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript TIL 200821">
-<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821/index.html">
+<meta property="og:title" content="Javascript TIL (타입 변환과 단축 평가)">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821%20(%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%AA%20%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1)/index.html">
 <meta property="og:site_name" content="Youngseo&#39;s blog">
 <meta property="og:description" content="Javascript TIL 200821타입변환 개발자가 의도적으로 값의 타입을 변환하는 것을 **명시적 타입변환(explicit coercion)**또는 **타입 캐스팅(type casting)**이라고 한다   개발자의 의도와는 상관 없이 표현식을 평가하는 도중에 자바크스크립트 엔진에 이해 암묵적으로 타입이 자동 변환 되기도 한다 . 이를 암묵적 타입변환">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-21T13:00:59.000Z">
-<meta property="article:modified_time" content="2020-08-24T08:33:11.194Z">
+<meta property="article:modified_time" content="2020-08-25T10:07:35.792Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821/">
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821%20(%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%AA%20%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1)/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>Javascript TIL 200821 | Youngseo's blog</title>
+  <title>Javascript TIL (타입 변환과 단축 평가) | Youngseo's blog</title>
   
 
 
@@ -151,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821%20(%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%AA%20%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -164,7 +164,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Javascript TIL 200821
+          Javascript TIL (타입 변환과 단축 평가)
         </h1>
 
         <div class="post-meta">
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-24 17:33:11" itemprop="dateModified" datetime="2020-08-24T17:33:11+09:00">2020-08-24</time>
+                <time title="Modified: 2020-08-25 19:07:35" itemprop="dateModified" datetime="2020-08-25T19:07:35+09:00">2020-08-25</time>
               </span>
 
           
@@ -270,12 +270,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/20/Javascript%20TIL%20200820/" rel="prev" title="Javascript TIL 200820">
-      <i class="fa fa-chevron-left"></i> Javascript TIL 200820
+    <a href="/2020/08/20/Javascript%20TIL%20200820%20(%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%86%E1%85%AE%E1%86%AB)/" rel="prev" title="Javascript TIL (제어문)">
+      <i class="fa fa-chevron-left"></i> Javascript TIL (제어문)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/23/Javascript%20TIL%20200823/" rel="next" title="Javascript TIL 200823">
-      Javascript TIL 200823 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/23/Javascript%20TIL%20200823%20(%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A5%E1%84%85%E1%85%A5%E1%86%AF)/" rel="next" title="Javascript TIL (객체 리터럴)">
+      Javascript TIL (객체 리터럴) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -349,7 +349,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
