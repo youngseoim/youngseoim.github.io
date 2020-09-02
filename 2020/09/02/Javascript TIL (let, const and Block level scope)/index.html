@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="var 키워드로 선언한 변수의 문제점 ES5 까지 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이었다. Var 키워드로 선언된 변수는 다음과 같은 특징이 있다, 이는 다른 언어와는 구별되는 독특한 특징으로 주의를 기울이지 않으면 심각한 문제를 발생시킬 수 있다  변수 중복 선언 허용 var 키워드로 선언한 변수는 중복 선언이 가능하다 다">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript TIL (let, const and Block level scope)">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/09/02/Javascript%20TIL%20(let,%20const%20and%20Block%20level%20scope)/index.html">
+<meta property="og:site_name" content="Youngseo&#39;s blog">
+<meta property="og:description" content="var 키워드로 선언한 변수의 문제점 ES5 까지 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이었다. Var 키워드로 선언된 변수는 다음과 같은 특징이 있다, 이는 다른 언어와는 구별되는 독특한 특징으로 주의를 기울이지 않으면 심각한 문제를 발생시킬 수 있다  변수 중복 선언 허용 var 키워드로 선언한 변수는 중복 선언이 가능하다 다">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91965820-ff503c80-ed4b-11ea-8481-c9f00b99dcdf.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91966383-b947a880-ed4c-11ea-9d63-8d7cbc59c3f1.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91967427-30317100-ed4e-11ea-996c-ef1c12c2386b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91968264-5a376300-ed4f-11ea-8692-b8998ae3f08a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91969792-a388b200-ed51-11ea-8d9f-b0f9bec6c178.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91970060-0f6b1a80-ed52-11ea-9095-1e8885596954.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91970393-8dc7bc80-ed52-11ea-9649-e7b9d5be567c.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91970972-71784f80-ed53-11ea-8941-28aff2369f51.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91971013-7fc66b80-ed53-11ea-8c70-cde440e3414b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91971208-c9af5180-ed53-11ea-916f-9cbea01f7bf8.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91972183-43940a80-ed55-11ea-9cbd-282d920b23ea.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91971848-d4b6b180-ed54-11ea-83df-18e00a27ca97.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91973066-8f937f00-ed56-11ea-8ff6-b657de66d7a0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91973380-1f392d80-ed57-11ea-80df-c59a3868d877.png">
+<meta property="article:published_time" content="2020-09-02T11:04:59.000Z">
+<meta property="article:modified_time" content="2020-09-02T11:05:17.788Z">
+<meta property="article:author" content="youngseoim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/91965820-ff503c80-ed4b-11ea-8481-c9f00b99dcdf.png">
+
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/09/02/Javascript%20TIL%20(let,%20const%20and%20Block%20level%20scope)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>Javascript TIL (let, const and Block level scope) | Youngseo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Youngseo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Awesome node.jser..</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/02/Javascript%20TIL%20(let,%20const%20and%20Block%20level%20scope)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript TIL (let, const and Block level scope)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-02 20:04:59 / Updated at: 20:05:17" itemprop="dateCreated datePublished" datetime="2020-09-02T20:04:59+09:00">2020-09-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="var-키워드로-선언한-변수의-문제점"><a href="#var-키워드로-선언한-변수의-문제점" class="headerlink" title="var 키워드로 선언한 변수의 문제점"></a>var 키워드로 선언한 변수의 문제점</h2><ol>
+<li>ES5 까지 변수를 선언할 수 있는 유일한 방법은 var 키워드를 사용하는 것이었다. Var 키워드로 선언된 변수는 다음과 같은 특징이 있다, 이는 다른 언어와는 구별되는 독특한 특징으로 주의를 기울이지 않으면 심각한 문제를 발생시킬 수 있다</li>
+</ol>
+<h3 id="변수-중복-선언-허용"><a href="#변수-중복-선언-허용" class="headerlink" title="변수 중복 선언 허용"></a>변수 중복 선언 허용</h3><ol>
+<li>var 키워드로 선언한 변수는 중복 선언이 가능하다 다음 예제를 살펴보자.</li>
+<li><img width="571" alt="스크린샷 2020-09-02 오후 6 39 32" src="https://user-images.githubusercontent.com/68043654/91965820-ff503c80-ed4b-11ea-8481-c9f00b99dcdf.png"></li>
+<li>위 예제의 var 키워드로 선언한 x변수와 y변수는 중복 선언되었다 이처럼 var 키워드로 선언한 변수를 중복 선언하면 초기화문(변수 선언과 동시에 초기값을 할당하는 문) 유무에 따라 다르게 동작한다 초기화문이 있는 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가 없는 것처럼 동작하고 초기화문이 없는 변수 선언문은 무시된다 이때 에러는 발생하지 않는다</li>
+<li>위 예제와 같이 만약 동일한 이름의 변수가 이미 선언되어 있는 것을 모르고 변수를 중복 선언하면서 값까지 할당했다면 의도치 않게 먼저 선언된 변수 값이 변경되는 부작용이 발생한다.</li>
+</ol>
+<h3 id="함수-레벨-스코프"><a href="#함수-레벨-스코프" class="headerlink" title="함수 레벨 스코프"></a>함수 레벨 스코프</h3><ol>
+<li>var 키워드로 선언한 변수는 오로지 함수의 코드 블록만을 지역 스코프로 인정한다 따라서 함수 외부에서 var 키워드로 선언한 변수는 코드 블록 내에서 선언해도 모두 전역 변수가 된다.</li>
+<li><img width="515" alt="스크린샷 2020-09-02 오후 6 44 44" src="https://user-images.githubusercontent.com/68043654/91966383-b947a880-ed4c-11ea-9d63-8d7cbc59c3f1.png"></li>
+<li>for 문의 변수 선언문에서 var 키워드로 선언한 변수도 전역 변수가 된다.</li>
+<li><img width="546" alt="스크린샷 2020-09-02 오후 6 55 14" src="https://user-images.githubusercontent.com/68043654/91967427-30317100-ed4e-11ea-996c-ef1c12c2386b.png"></li>
+<li>함수 레벨 스코프는 전역 변수를 남발할 가능성을 높인다 이로 인해 의도치 않게 전역 변수가 중복 선언되는 경우가 발생한다.</li>
+</ol>
+<h3 id="변수-호이스팅"><a href="#변수-호이스팅" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><ol>
+<li>앞에서 여러번 말했듯이 var 키워드로 선언하면 변수 호이스팅에 의해 변수 선언문이 스코프의 선두로 끌어올려진 것처럼 동장한다.</li>
+<li>변수 선언문 이전에 변수를 참조하는 것은 변수 호이스팅에 의해 에러를 발생시키지는 않지만 프로그램의 흐름상 맞지 않을뿐더러 가독성을 떨어뜨리고 오류를 발생시킬 여지를 남긴다.</li>
+</ol>
+<h2 id="let-키워드"><a href="#let-키워드" class="headerlink" title="let 키워드"></a>let 키워드</h2><ol>
+<li>앞에서 살펴본 var 키워드의 단점을 보완하기 위해 ES6에서는 새로운 변수 선언 키워드인 let과 const를 도입했다 var 키워드와의 차이점을 중심으로 let 키워드를 살펴보자.</li>
+</ol>
+<h3 id="변수-중복-선언-금지"><a href="#변수-중복-선언-금지" class="headerlink" title="변수 중복 선언 금지"></a>변수 중복 선언 금지</h3><ol>
+<li>var 키워드로 이름이 동일한 변수를 중복 선언하면 아무런 에러가 발생하지 않는다 이때 변수를 중복 선언하면서 값까지 할당했다면 의도치 않게 먼저 선언된 변수 값이 재할당되어 변경되는 부작용이 발생한다.</li>
+<li>하지만 let 키워드로 이름이 같은 변수를 중복 선언하면 문법에러가 발생한다.</li>
+<li><img width="585" alt="스크린샷 2020-09-02 오후 7 03 35" src="https://user-images.githubusercontent.com/68043654/91968264-5a376300-ed4f-11ea-8692-b8998ae3f08a.png">
+
+</li>
+</ol>
+<h3 id="블록-레벨-스코프"><a href="#블록-레벨-스코프" class="headerlink" title="블록 레벨 스코프"></a>블록 레벨 스코프</h3><ol>
+<li>var 키워드로 선언한 변수는 오로지 함수의 코드 블록만을 지역 스코프로 인정하는 함수 레벨 스코프를 따른다 </li>
+<li>하지만 let 키워드로 선언한 변수는 모든 코드 블록(함수, if 문, for 문, while 문, tty/catch 문 등)을 지역 스코프로 인정하는 블록 레벨 스코프를 따른다 .</li>
+<li><img width="455" alt="스크린샷 2020-09-02 오후 7 19 56" src="https://user-images.githubusercontent.com/68043654/91969792-a388b200-ed51-11ea-8d9f-b0f9bec6c178.png"></li>
+<li>Let 키워드로 선언된 변수는 블록 레벨 스코프를 따른다 따라서 위 예제의 코드 블록 내에서 선언된 foo 변수와 bar 변수는 지역 변수다 전역에서 선언된 foo 변수와 코드 블록 내에서 선언된 foo 변수는 다른 별개의 변수다 또한 bar 변수도 블록 레벨 스코프를 갖는 지역 변수다 따라서 전역에서는 bar 변수를 참조할 수 없다.</li>
+<li>함수도 코드 블록이므로 스코프를 만든다 이때 함수 내의 코드 블록은 함수 레벨 스코프에 중첩된다.</li>
+<li><img width="490" alt="스크린샷 2020-09-02 오후 7 22 57" src="https://user-images.githubusercontent.com/68043654/91970060-0f6b1a80-ed52-11ea-9095-1e8885596954.png">
+
+</li>
+</ol>
+<h3 id="변수-호이스팅-1"><a href="#변수-호이스팅-1" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><ol>
+<li>var 키워드로 선언한 변수와 달리 let 키워드로 선언한 변수는 변수 호이스팅이 발생하지 않는 것처럼 동작한다 .</li>
+<li><img width="490" alt="스크린샷 2020-09-02 오후 7 26 29" src="https://user-images.githubusercontent.com/68043654/91970393-8dc7bc80-ed52-11ea-9649-e7b9d5be567c.png"></li>
+<li>이처럼 let 키워드로 선언한 변수를 변수 선언문 이전에 참조하면 참조 에러가 발생한다.</li>
+<li>앞에 변수 선언에서 살펴본 바와 같이 var 키워드로 선언한 변수는 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 “선언 단계”와 “초기화 단계”가 한번에 진행된다.</li>
+<li>하지만 <strong>let 키워드로 선언한 변수는 “선언 단계”와 “초기화 단계”가 분리되어 진행된다.</strong></li>
+<li>즉, 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 선언 단계가 먼저 실행되지만 초기화 단계는 변수 선언문에 도달했을 때 실행된다.</li>
+<li>만약 초기화 단계가 실행되기 이전에 변수에 접근하려고 하면 참조 에러가 발생한다. let 키워드로 선언한 변수는 스코프의 시작 지점부터 초기화 단계 시작 지점(변수 선언문)까지 변수를 참조할 수 없다 스코프의 시작 지점부터 초기화 시작 지점까지 변수를 참조할 수 없는 구간을 **일시적 사각지대(Temporal Dead Zone; TDZ)**라고 부른다.</li>
+<li><img width="428" alt="스크린샷 2020-09-02 오후 7 32 51" src="https://user-images.githubusercontent.com/68043654/91970972-71784f80-ed53-11ea-8941-28aff2369f51.png"></li>
+<li><img width="477" alt="스크린샷 2020-09-02 오후 7 33 15" src="https://user-images.githubusercontent.com/68043654/91971013-7fc66b80-ed53-11ea-8c70-cde440e3414b.png"></li>
+<li>결국 let 키워드로 선언한 변수는 변수 호이스팅이 발생하지 않는 것처럼 보인다. 하지만 그렇지 않다.</li>
+<li><img width="640" alt="스크린샷 2020-09-02 오후 7 35 19" src="https://user-images.githubusercontent.com/68043654/91971208-c9af5180-ed53-11ea-916f-9cbea01f7bf8.png"></li>
+<li>let 키워드로 선언한 변수의 경우, 변수 호이스팅이 발생하지 않는다면 위 예제는 전역 변수 foo의 값을 출력해야 한다 하지만 let 키워드로 선언한 변수도 여전히 호이스팅이 발생하기 때문에 참조 에러가 발생한다.</li>
+<li>자바스크립트는 ES6에서 도입된 let,const를 포함해서 모든 선언(var,let,const,fnction,function*,class 등) 을 호이스팅한다.</li>
+<li>단, ES6에서 도입된 let,const,class 를 사용한 선언문은 호이스팅이 발생하지 않는 것처럼 동작한다.</li>
+</ol>
+<h3 id="전역-객체와-let"><a href="#전역-객체와-let" class="headerlink" title="전역 객체와 let"></a>전역 객체와 let</h3><ol>
+<li>Var 키워드로 선언한 전역 변수와 전역 함수, 그리고 선언하지 않은 변수에 값을 할당한 암묵적 전역은 전역 객체 window의 프로퍼티가 된다 전역 객체의 프로퍼티를 참조할 때 window를 생략할 수있다.</li>
+<li><img width="412" alt="스크린샷 2020-09-02 오후 7 45 51" src="https://user-images.githubusercontent.com/68043654/91972183-43940a80-ed55-11ea-9cbd-282d920b23ea.png"></li>
+<li>브라우저 환경 에서 출력<img width="242" alt="스크린샷 2020-09-02 오후 7 42 48" src="https://user-images.githubusercontent.com/68043654/91971848-d4b6b180-ed54-11ea-83df-18e00a27ca97.png"></li>
+<li>Let 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다 즉, window.foo 와 같이 접근할 수 없다. let 전역 변수는 보이지 않는 개념적인 블록(전역 렉시컬 환경의 선언적 환경 레코드)내에 존재하게 된다.</li>
+</ol>
+<h2 id="const-키워드"><a href="#const-키워드" class="headerlink" title="const 키워드"></a>const 키워드</h2><ol>
+<li>const 키워드는 상수(constant)를 선언하기 위해 사용한다 하지만 반드시 상수만을 위해 사용하지는 않는다 이에 대해서는 후반부에 설명한다. const 키워드의 특징은 let 키워드와 대부분 동일하므로 let 키워드와 다른점을 중심으로 살펴보자.</li>
+</ol>
+<h3 id="선언과-초기화"><a href="#선언과-초기화" class="headerlink" title="선언과 초기화"></a>선언과 초기화</h3><ol>
+<li><strong>const 키워드로 선언한 변수는 반드시 선언과 동시에 초기화해야 한다.</strong></li>
+<li>선언만 하고 할당만 할 경우에는 문법 에러가 발생한다.</li>
+<li>const 키워드로 선언한 변수는 let 키워드로 선언한 변수와 마찬가지로 블록 레벨 스코프를 가지며, 변수 호이스팅이 발생하지 않는 것처럼 동작한다.</li>
+</ol>
+<h3 id="재할당-금지"><a href="#재할당-금지" class="headerlink" title="재할당 금지"></a>재할당 금지</h3><ol>
+<li>var 또는 let 키워드로 선언한 변수는 재할당이 자유로우나 <strong>const 키워드로 선언한 변수는 재할당이 금지된다.</strong></li>
+</ol>
+<h3 id="상수"><a href="#상수" class="headerlink" title="상수"></a>상수</h3><ol>
+<li>const 키워드로 선언한 변수에 원시값을 할당한 경우 변수 값을 변경할 수 없다. 원시 값은 변경 불가능한 값이므로 재할당 없이 값을 변경할 수 있는 방법이 없기 때문이다 이러한 특징을 이용해 const 키워드를 상수를 표현하는 데 사용하기도 한다.</li>
+<li>변수의 상대 개념인 <strong>상수는 재할당이 금지된 변수를 말한다.</strong> 상수도 값을 저장하기 위한 메모리 공간이 필요하므로 변수라고 할 수 있다.</li>
+<li>단, 변수는 언제든지 재할당을 통해 변수 값을 변경할 수 있지만 상수는 재할당이 금지된다.</li>
+<li>상수는 상태 유지와 가독성, 유지보수의 편의를 위해 적극적으로 사용해야 한다.</li>
+<li><img width="443" alt="스크린샷 2020-09-02 오후 7 55 10" src="https://user-images.githubusercontent.com/68043654/91973066-8f937f00-ed56-11ea-8ff6-b657de66d7a0.png"></li>
+<li>코드 내에서 사용한 0.1은 어떤 의미로 사용했는지 명확히 알기 어렵기 때문에 가독성이 좋지 않다 또한 세율을 의미하는 0.1은 쉽게 바뀌지 않는 값이며, 프로그램 전체에서 고정된 값을 사용해야 한다. 이때 세율을 상수로 정의하면 값의 의미를 쉽게 파악할 수 있고 변경될 수 없는 고정값으로 사용할 수 있다.</li>
+<li>const 키워드로 선언된 변수는 재할당이 급지된다. *<em>const 키워드로 선언된 변수에 원시값을 할당한 경우, 원시값은 변경할 수 없는값</em>(immutable value)이고 const 키워드에 의해 재할당이 금지되므로 할당된 값을 변경할 수 있는 방법은 없다.**</li>
+<li>또한 상수는 프로그램 전체에서 공통적으로 사용하므로 나중에 세율이 변경되면 상수만을 변경하면 되기 때문에 유지보수성이 대폭 향상된다.</li>
+<li>일반적으로 상수의 이름은 대문자로 선언해 상수임을 명확히 나타낸다 여러 단어로 이루어진 경우에는 언더스코어(_)로 구분해서 스네이크 케이스로 표현하는 것이 일반적이다.</li>
+<li><img width="483" alt="스크린샷 2020-09-02 오후 7 59 12" src="https://user-images.githubusercontent.com/68043654/91973380-1f392d80-ed57-11ea-80df-c59a3868d877.png">
+
+</li>
+</ol>
+<h3 id="const-키워드와-객체"><a href="#const-키워드와-객체" class="headerlink" title="const 키워드와 객체"></a>const 키워드와 객체</h3><ol>
+<li>const  키워드로 선언된 변수에 원시값을 할당한 경우 값을 변경할 수 없다 하지만 <strong>const 키워드로 선언된 변수에 객체를 할당한 경우, 값을 변경할 수 있다.</strong></li>
+<li>변경 불가능한 값인 원시값은 재할당없이 변경 할 수 있는 방법이 없지만 변경 가능한 값인 객체는 재할당 없이도 직접 변경이 가능하기 때문이다.</li>
+<li><strong>const 키워드는 재할당을 금지할 뿐 “불변”을 의미하지는 않는다.</strong></li>
+<li>다시 말해 새로운 값을 재할당 하는 것은 불가능하지만 프로퍼티 동적 생성, 삭제, 프로퍼티 값의 변경을 통해 객체를 변경하는 것은 가능하다 이때 객체가 변경되더라도 변수에 할당된 참조값은 변경되지 않는다.</li>
+</ol>
+<h2 id="var-vs-let-vs-const"><a href="#var-vs-let-vs-const" class="headerlink" title="var vs let vs const"></a>var vs let vs const</h2><ol>
+<li>변수 선언에는 기본적으로 const를 사용하고</li>
+<li>let은 재할당이 필요한 경우에 한정해 사용하는 것이 좋다.</li>
+<li>const 키워드를 사용하면 의도치 않은 재할당을 방지하기 때문에 좀 더 안전하다.</li>
+<li>var 와 let 그리고 const 키워드는 다음과 같이 사용하는 것을 권장한다.<ol>
+<li>ES6를 사용한다면 var 키워드는 사용하지 않는다.</li>
+<li>재할당이 필요한 경우에 한정해 let 키워드를 사용한다. 이때 변수의 스코프는 최대한 좁게 만든다.</li>
+<li>변경이 발생하지 않고 읽기 전용으로 사용하는(재할당이 필요 없는 상수) 원시값과 객체에는 const 키워드를 사용한다. const 키워드는 재할당을 금지하므로 var,let 키워드보다 안전하다.</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/01/Javascript%20TIL%20(Variable,%20Problems%20with%20Global%20Variables)/" rel="prev" title="Javascript TIL (Variable, Problems with Global Variables)">
+      <i class="fa fa-chevron-left"></i> Javascript TIL (Variable, Problems with Global Variables)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#var-%ED%82%A4%EC%9B%8C%EB%93%9C%EB%A1%9C-%EC%84%A0%EC%96%B8%ED%95%9C-%EB%B3%80%EC%88%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90"><span class="nav-number">1.</span> <span class="nav-text">var 키워드로 선언한 변수의 문제점</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EC%88%98-%EC%A4%91%EB%B3%B5-%EC%84%A0%EC%96%B8-%ED%97%88%EC%9A%A9"><span class="nav-number">1.1.</span> <span class="nav-text">변수 중복 선언 허용</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="nav-number">1.2.</span> <span class="nav-text">함수 레벨 스코프</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85"><span class="nav-number">1.3.</span> <span class="nav-text">변수 호이스팅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let-%ED%82%A4%EC%9B%8C%EB%93%9C"><span class="nav-number">2.</span> <span class="nav-text">let 키워드</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EC%88%98-%EC%A4%91%EB%B3%B5-%EC%84%A0%EC%96%B8-%EA%B8%88%EC%A7%80"><span class="nav-number">2.1.</span> <span class="nav-text">변수 중복 선언 금지</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B8%94%EB%A1%9D-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="nav-number">2.2.</span> <span class="nav-text">블록 레벨 스코프</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85-1"><span class="nav-number">2.3.</span> <span class="nav-text">변수 호이스팅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%A0%84%EC%97%AD-%EA%B0%9D%EC%B2%B4%EC%99%80-let"><span class="nav-number">2.4.</span> <span class="nav-text">전역 객체와 let</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const-%ED%82%A4%EC%9B%8C%EB%93%9C"><span class="nav-number">3.</span> <span class="nav-text">const 키워드</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%84%A0%EC%96%B8%EA%B3%BC-%EC%B4%88%EA%B8%B0%ED%99%94"><span class="nav-number">3.1.</span> <span class="nav-text">선언과 초기화</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%AC%ED%95%A0%EB%8B%B9-%EA%B8%88%EC%A7%80"><span class="nav-number">3.2.</span> <span class="nav-text">재할당 금지</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%83%81%EC%88%98"><span class="nav-number">3.3.</span> <span class="nav-text">상수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const-%ED%82%A4%EC%9B%8C%EB%93%9C%EC%99%80-%EA%B0%9D%EC%B2%B4"><span class="nav-number">3.4.</span> <span class="nav-text">const 키워드와 객체</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#var-vs-let-vs-const"><span class="nav-number">4.</span> <span class="nav-text">var vs let vs const</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">youngseoim</p>
+  <div class="site-description" itemprop="description">All Dev stories found in here</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youngseoim</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
