@@ -148,6 +148,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/08/Javascript%20Practice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/Javascript%20Practice/" class="post-title-link" itemprop="url">Javascript Practice</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-08 20:50:59 / Updated at: 20:51:27" itemprop="dateCreated datePublished" datetime="2020-09-08T20:50:59+09:00">2020-09-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1번-과제"><a href="#1번-과제" class="headerlink" title="1번 과제"></a>1번 과제</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">var</span> res;</span><br><span class="line"><span class="keyword">if</span> (x === <span class="number">0</span>) &#123;</span><br><span class="line">  res = <span class="string">&#x27;영&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (x % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">  res = <span class="string">&#x27;짝수&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  res = <span class="string">&#x27;홀수&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 위의 코드를 삼항 연산자로 바꾸시오.</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">var</span> res = x === <span class="number">0</span> ? <span class="string">&#x27;영&#x27;</span> : (x % <span class="number">2</span> === <span class="number">0</span> ? <span class="string">&#x27;짝수&#x27;</span> : <span class="string">&#x27;홀수&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(res);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="2번-과제"><a href="#2번-과제" class="headerlink" title="2번 과제"></a>2번 과제</h1><h2 id="1-변수-x가-10보다-크고-20보다-작을-때-변수-x를-출력하는-조건식을-완성하라"><a href="#1-변수-x가-10보다-크고-20보다-작을-때-변수-x를-출력하는-조건식을-완성하라" class="headerlink" title="1. 변수 x가 10보다 크고 20보다 작을 때 변수 x를 출력하는 조건식을 완성하라"></a>1. 변수 x가 10보다 크고 20보다 작을 때 변수 x를 출력하는 조건식을 완성하라</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">15</span>;</span><br><span class="line"><span class="comment">// 변수 x 가 10보다 크고 20보다 작을 때 변수 x를 출력하는 조건식을 완성하라.</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">10</span> &lt; x &amp;&amp; x &lt; <span class="number">20</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-for문을-사용하여-0부터-10미만의-정수-중에서-짝수만을-작은-수부터-출력하시오"><a href="#2-for문을-사용하여-0부터-10미만의-정수-중에서-짝수만을-작은-수부터-출력하시오" class="headerlink" title="2. for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 출력하시오."></a>2. for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(i % <span class="number">2</span> === <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-for문을-사용하여-0부터-10미만의-정수-중에서-짝수만을-작은-수부터-문자열로-출력하시오"><a href="#3-for문을-사용하여-0부터-10미만의-정수-중에서-짝수만을-작은-수부터-문자열로-출력하시오" class="headerlink" title="3. for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 문자열로 출력하시오."></a>3. for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 문자열로 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span> (i % <span class="number">2</span> === <span class="number">0</span>)&#123; </span><br><span class="line">  str = str+i; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(str);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-for문을-사용하여-0부터-10미만의-정수-중에서-홀수만을-큰수부터-출력하시오"><a href="#4-for문을-사용하여-0부터-10미만의-정수-중에서-홀수만을-큰수부터-출력하시오" class="headerlink" title="4. for문을 사용하여 0부터 10미만의 정수 중에서 홀수만을 큰수부터 출력하시오."></a>4. for문을 사용하여 0부터 10미만의 정수 중에서 홀수만을 큰수부터 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">9</span>; i &gt; <span class="number">0</span>; i--)&#123;</span><br><span class="line">  <span class="keyword">if</span>(i % <span class="number">2</span>)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-while문을-사용하여-0부터-10미만의-정수-중에서-짝수만을-작은-수부터-출력하시오"><a href="#5-while문을-사용하여-0부터-10미만의-정수-중에서-짝수만을-작은-수부터-출력하시오" class="headerlink" title="5. while문을 사용하여 0부터 10미만의 정수  중에서 짝수만을 작은 수부터 출력하시오."></a>5. while문을 사용하여 0부터 10미만의 정수  중에서 짝수만을 작은 수부터 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (count &lt; <span class="number">10</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(count % <span class="number">2</span> === <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">  &#125;</span><br><span class="line">  count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-while문을-사용하여-0-부터-10-미만의-정수-중에서-홀수만을-큰수부터-출력하시오"><a href="#6-while문을-사용하여-0-부터-10-미만의-정수-중에서-홀수만을-큰수부터-출력하시오" class="headerlink" title="6. while문을 사용하여 0 부터 10 미만의 정수 중에서 홀수만을 큰수부터 출력하시오."></a>6. while문을 사용하여 0 부터 10 미만의 정수 중에서 홀수만을 큰수부터 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(count % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">  &#125;</span><br><span class="line">  count--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-for-문을-사용하여-0부터-10미만의-정수의-합을-출력하시오"><a href="#7-for-문을-사용하여-0부터-10미만의-정수의-합을-출력하시오" class="headerlink" title="7. for 문을 사용하여 0부터 10미만의 정수의 합을 출력하시오."></a>7. for 문을 사용하여 0부터 10미만의 정수의 합을 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">  x = x + i;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-1부터-20미만의-정수-중에서-2또는-3의-배수가-아닌-수의-총합을-구하시오"><a href="#8-1부터-20미만의-정수-중에서-2또는-3의-배수가-아닌-수의-총합을-구하시오" class="headerlink" title="8. 1부터 20미만의 정수 중에서 2또는 3의 배수가 아닌 수의 총합을 구하시오."></a>8. 1부터 20미만의 정수 중에서 2또는 3의 배수가 아닌 수의 총합을 구하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(i % <span class="number">2</span> !== <span class="number">0</span> &amp;&amp; i % <span class="number">3</span> !== <span class="number">0</span> )&#123;</span><br><span class="line">    x = x+i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-1부터-20미만의-정수-중에서-2또는-3의-배수인-수의-총합을-구하시오"><a href="#9-1부터-20미만의-정수-중에서-2또는-3의-배수인-수의-총합을-구하시오" class="headerlink" title="9. 1부터 20미만의 정수 중에서 2또는 3의 배수인 수의 총합을 구하시오."></a>9. 1부터 20미만의 정수 중에서 2또는 3의 배수인 수의 총합을 구하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(i % <span class="number">2</span> === <span class="number">0</span> || i % <span class="number">3</span> === <span class="number">0</span> )&#123;</span><br><span class="line">    x = x+i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="10-두-개의-주사위를-던졌을-때-눈의-합이-6이-되는-모든-경우의-수를-출력하시오"><a href="#10-두-개의-주사위를-던졌을-때-눈의-합이-6이-되는-모든-경우의-수를-출력하시오" class="headerlink" title="10. 두 개의 주사위를 던졌을 때, 눈의 합이 6이 되는 모든 경우의 수를 출력하시오."></a>10. 두 개의 주사위를 던졌을 때, 눈의 합이 6이 되는 모든 경우의 수를 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> x = <span class="number">1</span>; x &lt;= <span class="number">6</span>; x++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(x + i === <span class="number">6</span>) <span class="built_in">console</span>.log(<span class="string">`[<span class="subst">$&#123;x&#125;</span>, <span class="subst">$&#123;i&#125;</span>]`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-삼각형-출력하기-pattern-1"><a href="#11-삼각형-출력하기-pattern-1" class="headerlink" title="11. 삼각형 출력하기 - pattern 1"></a>11. 삼각형 출력하기 - pattern 1</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/02/Javascript%20TIL%20(let,%20const%20and%20Block%20level%20scope)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1806,134 +1892,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/21/Javascript%20TIL%20200821%20(%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%AA%20%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/21/Javascript%20TIL%20200821%20(%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%AA%20%E1%84%83%E1%85%A1%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1)/" class="post-title-link" itemprop="url">Javascript TIL (타입 변환과 단축 평가)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-08-21 22:00:59" itemprop="dateCreated datePublished" datetime="2020-08-21T22:00:59+09:00">2020-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-08-25 19:07:35" itemprop="dateModified" datetime="2020-08-25T19:07:35+09:00">2020-08-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Javascript-TIL-200821"><a href="#Javascript-TIL-200821" class="headerlink" title="Javascript TIL 200821"></a>Javascript TIL 200821</h1><h2 id="타입변환"><a href="#타입변환" class="headerlink" title="타입변환"></a>타입변환</h2><ol>
-<li>개발자가 의도적으로 값의 타입을 변환하는 것을 **명시적 타입변환(explicit coercion)**또는 **타입 캐스팅(type casting)**이라고 한다  </li>
-<li>개발자의 의도와는 상관 없이 표현식을 평가하는 도중에 자바크스크립트 엔진에 이해 암묵적으로 타입이 자동 변환 되기도 한다 .</li>
-<li>이를 암묵적 타입변환(implicit coercion)  타입 강제 변환 (type coercio)이라고 한다 .  </li>
-<li>명시적 타입 변환이나 암묵적 타입 변환 기준이 기존 원시값을 직접 변경하는 것은 아니다 </li>
-<li>원시값은 변경 불가능한 값이므로 변경할 수 없다, <strong>타입 변환이란 기존 원시값을 사용해 다른 타입의 새로운 원시값을 생성</strong>하는 것이다.</li>
-</ol>
-<h3 id="문자열-타입으로-변환"><a href="#문자열-타입으로-변환" class="headerlink" title="문자열 타입으로 변환"></a>문자열 타입으로 변환</h3><ol>
-<li>+산술 연산자는 피연산자중 하나 이상이 문자열일 경우 문자열 연결 연산자로 동작한다<ol>
-<li>1 + ‘2’ // -&gt; “12” 숫자열 1을 문자열로 타입변환하여서 문자열 12출력 </li>
-</ol>
-</li>
-</ol>
-<h3 id="숫자-타입으로-변환"><a href="#숫자-타입으로-변환" class="headerlink" title="숫자 타입으로 변환"></a>숫자 타입으로 변환</h3><ol>
-<li>-,*,/ 산술 연산자의 역할은 숫자 값을 만드는 것이다 따라서 산술 연산자의 피연산자는 코드 문맥상 숫자 타입이여야 한다</li>
-<li>그렇기 때문에 엔진은 피연산자 중에서 숫자 타입이 아닌 피연산자를 숫자타입으로 암묵적 타입변환을 한다</li>
-<li>이 때 숫자 타입으로 변호한 될수 없는 경우는 산술연산을 할 수 없기때문에 NaN을 반환한다.</li>
-<li>비교 연산자의 역할은 불리언 값을 만드는 것이다. 크기를 비교하는 비교연산자는 모두 숫자 타입이어야 한다 </li>
-<li>이 역시 숫자 타입이 아닌 피연산자를 숫자타입으로 암묵적 타입변환을 한다 .</li>
-<li>비어있는 문자열,배열,null,false는 0, true는 1로 변환된다. 객체와 빈 배열이 아닌 배열, undefined는 NaN이 된다.</li>
-</ol>
-<h3 id="불리언-타입으로-변환"><a href="#불리언-타입으로-변환" class="headerlink" title="불리언 타입으로 변환"></a>불리언 타입으로 변환</h3><ol>
-<li>if문이나 for문과 같은 제어문 또는 삼항 조건 연산자의 조건식은 불리언 값, 즉 논리적 참/거짓으로 평가되어야 하는 표현식이다.</li>
-<li>자바스크립트 엔진은 조건식의 평가 결과를 불리언 타입으로 암묵적 타입 변환한다 .</li>
-</ol>
-<h2 id="단축-평가"><a href="#단축-평가" class="headerlink" title="단축 평가"></a>단축 평가</h2><h3 id="논리-연산자를-사용한-단축-평가"><a href="#논리-연산자를-사용한-단축-평가" class="headerlink" title="논리 연산자를 사용한 단축 평가"></a>논리 연산자를 사용한 단축 평가</h3><ol>
-<li>|| (논리합) 연산자와 &amp;&amp;(논리곱) 연산자 표현식의 평가 결과는 불리언 값이 아닐 수도 있다.</li>
-<li>두 연산자는 언제나 2개의 피연산자 중 어느 한쪽으로 평가된다 .</li>
-<li>논리곱<ol>
-<li>‘cat’ &amp;&amp; ‘dog’ // &gt;&gt; dog반환</li>
-<li>&amp;&amp;(논리곱) 연산자는 두 개의 피연산자가 모두 true로 평가될 때 true를 반환한다 . 좌항에서 우항으로 평가가 진행된다.</li>
-<li>첫번째 ‘cat’은 thurthy 값이므로 ture로 평가된다. 하지만 이 시점까지는 위 표현식을 평가할 수 없다</li>
-<li>두번째 피연산자가 위 논리곱 연산자 표현식의 평가 결과를 결정한다 . 이때 <strong>논리곱 연산자는 논리 연산의 결과를 결정하는 두 번째 피연산자, 즉 문자열’Dog’를 그대로 반환한다 .</strong></li>
-</ol>
-</li>
-<li>논리합<ol>
-<li>‘cat’ || ‘dog’ // &gt;&gt; cat 반환<ol>
-<li>논리합 연산자는 두 개의 피연산자 중 하나만 true여도 true를 반환한다, 마찬가지로 좌항에서 우항으로 평가 된다.</li>
-<li>첫번째 피연산자 ‘cat’은 thurhy값이 므로 true로 평가된다. 이때 <strong>논리합 연산자는 논리 연산의 결과를 결정한 첫 번째 피연산자, 즉 문자열 ‘cat’을 그대로 반환한다.</strong></li>
-</ol>
-</li>
-</ol>
-</li>
-<li>이처럼 <strong>논리 연산의 결과를 결정하는 피연산자를 타입 변환하지 않고 그대로 반환한다, 이를 단축평가라고 한다</strong></li>
-<li><strong>단축 평가는 표현식을 평가하는 도중에 평가 결과가 확정된 경우 나머지 평가 과정을 생략하는 것을 말한다.</strong></li>
-<li>어떤 조건이 Thurthy값일 때 무언가를 해야 한다면 논리곱 연산자 표현식으로 if문을 대체할 수 있다.</li>
-<li>반대로 어떤 조건이 Falsy값일 때 무언가를 해야 한다면 논리합 연산자 표현식으로 if문을 대체할 수 있다.</li>
-</ol>
-<h3 id="옵셔널-체이닝-연산자-optional-chaining"><a href="#옵셔널-체이닝-연산자-optional-chaining" class="headerlink" title="옵셔널 체이닝 연산자(optional chaining)"></a>옵셔널 체이닝 연산자(optional chaining)</h3><ol>
-<li>ES11 에서 도입된 옵셔널 체이닝 연산자 ?.는 좌항의 피연산자가 null또는 undefined인 경우 undefined 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다 .</li>
-<li>논리 연산자 &amp;&amp;는 좌항 피연산자가 false로 평가되는 falsy값(false, undefined, null, 0 -0, NaN, “”)이면 좌항 피연산자를 그대로 반환한다</li>
-<li>flasy값인 0이나 “인 경우도 마찬가지다 하지만 0이나 “은 객체로 평가될 때도 있다.</li>
-</ol>
-<h3 id="null-병합-연산자"><a href="#null-병합-연산자" class="headerlink" title="null 병합 연산자"></a>null 병합 연산자</h3><ol>
-<li>ES11 에서 도입된 null병합 연산자 ??는 좌항의 피연산자가 null 또는 undefined인 경우 우항의 피연산자를 반환하고 , 그렇지 않으면 좌항의 피연산자를 반환한다.</li>
-<li>Null 병합 연산자 ??는 변수에 기본값을 설정할 때 유용하다 . </li>
-<li>null 병합 연산자가 도입되기 전에는 논리 연산자 ||를 사용한 단축 평가를 통해 변수에 기본 값을 설정했다. </li>
-<li>논리 연산자 ||를 사용한 단축 평가의 경우 좌항의 피연산자가 false로 평가되는 falsy값 (false, undefined, null, 0 ,-0, NaN, “)이면 우항의 피연산자를 반환한다, 만약 falsy 값인 0 이나 “도 기본값으로서 유효하다면 예기치 않은 동작이 발생할 수 있다.</li>
-<li>하지만 null 병합 연산자 ??는 좌항의 피연산자가 false로 평가되는 Falsy 값(false, undefined, null, 0, -0, NaN, ‘‘)이라도 null 또는 undefined가 아니면 좌항의 피연산자를 그대로 반환한다.</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1999,7 +1961,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
