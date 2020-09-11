@@ -171,10 +171,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2020-09-08 20:50:59 / Updated at: 20:51:27" itemprop="dateCreated datePublished" datetime="2020-09-08T20:50:59+09:00">2020-09-08</time>
+              <time title="Post created: 2020-09-08 20:50:59" itemprop="dateCreated datePublished" datetime="2020-09-08T20:50:59+09:00">2020-09-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-09-12 06:22:44" itemprop="dateModified" datetime="2020-09-12T06:22:44+09:00">2020-09-12</time>
+              </span>
 
           
 
@@ -213,8 +219,18 @@
 
 <h2 id="10-두-개의-주사위를-던졌을-때-눈의-합이-6이-되는-모든-경우의-수를-출력하시오"><a href="#10-두-개의-주사위를-던졌을-때-눈의-합이-6이-되는-모든-경우의-수를-출력하시오" class="headerlink" title="10. 두 개의 주사위를 던졌을 때, 눈의 합이 6이 되는 모든 경우의 수를 출력하시오."></a>10. 두 개의 주사위를 던졌을 때, 눈의 합이 6이 되는 모든 경우의 수를 출력하시오.</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> x = <span class="number">1</span>; x &lt;= <span class="number">6</span>; x++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(x + i === <span class="number">6</span>) <span class="built_in">console</span>.log(<span class="string">`[<span class="subst">$&#123;x&#125;</span>, <span class="subst">$&#123;i&#125;</span>]`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="11-삼각형-출력하기-pattern-1"><a href="#11-삼각형-출력하기-pattern-1" class="headerlink" title="11. 삼각형 출력하기 - pattern 1"></a>11. 삼각형 출력하기 - pattern 1</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="11-삼각형-출력하기-pattern-1"><a href="#11-삼각형-출력하기-pattern-1" class="headerlink" title="11. 삼각형 출력하기 - pattern 1"></a>11. 삼각형 출력하기 - pattern 1</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> line= <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">4</span>; i++)&#123;</span><br><span class="line"> <span class="keyword">for</span>( <span class="keyword">var</span> star = <span class="number">0</span>; star &lt;= i; star++)&#123;</span><br><span class="line">   line += <span class="string">&quot;*&quot;</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> line += <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(line);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h2 id="12-삼각형-출력하기-pattern-2"><a href="#12-삼각형-출력하기-pattern-2" class="headerlink" title="12. 삼각형 출력하기 - pattern 2"></a>12. 삼각형 출력하기 - pattern 2</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> line = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> star = <span class="number">5</span>; star &gt; i ; star--)&#123;</span><br><span class="line"></span><br><span class="line">    line += <span class="string">&quot;*&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  line += <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(i === <span class="number">0</span>)&#123;</span><br><span class="line">    line += <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i === <span class="number">1</span>)&#123;</span><br><span class="line">      line += <span class="string">&#x27;  &#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i === <span class="number">2</span>)&#123;</span><br><span class="line">      line += <span class="string">&#x27;   &#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i === <span class="number">3</span>)&#123;</span><br><span class="line">      line += <span class="string">&#x27;    &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(line);</span><br></pre></td></tr></table></figure>
+
+<h2 id="13-삼각형-출력하기-pattern-3"><a href="#13-삼각형-출력하기-pattern-3" class="headerlink" title="13. 삼각형 출력하기 - pattern 3"></a>13. 삼각형 출력하기 - pattern 3</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> line = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> star = <span class="number">5</span>; star &gt; i ; star--)&#123;</span><br><span class="line">    line += <span class="string">&quot;*&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  line += <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(line);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>13</p>
+<p>14</p>
+<p>[<a target="_blank" rel="noopener" href="https://youngseoim.github.io/2020/09/01/Javascript%20TIL%20(Variable,%20Problems%20with%20Global%20Variables)/]">https://youngseoim.github.io/2020/09/01/Javascript%20TIL%20(Variable,%20Problems%20with%20Global%20Variables)/]</a>(<a target="_blank" rel="noopener" href="https://youngseoim.github.io/2020/09/01/Javascript">https://youngseoim.github.io/2020/09/01/Javascript</a> TIL (Variable, Problems with Global Variables)/)</p>
+<p>15</p>
 
       
     </div>
@@ -655,14 +671,14 @@
               </span>
               <span class="post-meta-item-text">작성일</span>
 
-              <time title="Post created: 2020-08-31 23:59:59" itemprop="dateCreated datePublished" datetime="2020-08-31T23:59:59+09:00">2020-08-31</time>
+              <time title="Post created: 2020-08-31 23:59:00" itemprop="dateCreated datePublished" datetime="2020-08-31T23:59:00+09:00">2020-08-31</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-01 00:08:24" itemprop="dateModified" datetime="2020-09-01T00:08:24+09:00">2020-09-01</time>
+                <time title="Updated at: 2020-09-12 06:30:28" itemprop="dateModified" datetime="2020-09-12T06:30:28+09:00">2020-09-12</time>
               </span>
 
           
@@ -676,7 +692,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Javascript-TIL-200831"><a href="#Javascript-TIL-200831" class="headerlink" title="Javascript TIL 200831"></a>Javascript TIL 200831</h1><h2 id="자바스크립트-예제-문제"><a href="#자바스크립트-예제-문제" class="headerlink" title="자바스크립트 예제 문제"></a>자바스크립트 예제 문제</h2><p>문제, 이미지 출처:<a target="_blank" rel="noopener" href="https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php">https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php</a></p>
+          <h1 id="Javascript-TIL-200831"><a href="#Javascript-TIL-200831" class="headerlink" title="Javascript TIL 200831"></a>Javascript TIL 200831</h1><h2 id="자바스크립트-예제-문제"><a href="#자바스크립트-예제-문제" class="headerlink" title="자바스크립트 예제 문제"></a>자바스크립트 예제 문제</h2><p>문제, 이미지 출처: <a target="_blank" rel="noopener" href="https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php">https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php</a></p>
 <ol>
 <li><p>New 연산자</p>
 <ol>

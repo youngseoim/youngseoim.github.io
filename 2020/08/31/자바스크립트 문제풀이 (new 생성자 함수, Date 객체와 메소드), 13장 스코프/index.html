@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Javascript TIL 200831자바스크립트 예제 문제문제, 이미지 출처:https:&#x2F;&#x2F;www.w3resource.com&#x2F;javascript-exercises&#x2F;javascript-basic-exercise-1.php  New 연산자  new 연산자는 사용자 정의 객체 타입 또는 내장 객체 타입의 인스턴스를 생성한다 사용자 정의 객체를 생성하는데에는 두">
+  <meta name="description" content="Javascript TIL 200831자바스크립트 예제 문제문제, 이미지 출처: https:&#x2F;&#x2F;www.w3resource.com&#x2F;javascript-exercises&#x2F;javascript-basic-exercise-1.php  New 연산자  new 연산자는 사용자 정의 객체 타입 또는 내장 객체 타입의 인스턴스를 생성한다 사용자 정의 객체를 생성하는데에는">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript TIL example(new constructor function, Date object, Date method), scope">
 <meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3/index.html">
 <meta property="og:site_name" content="Youngseo&#39;s blog">
-<meta property="og:description" content="Javascript TIL 200831자바스크립트 예제 문제문제, 이미지 출처:https:&#x2F;&#x2F;www.w3resource.com&#x2F;javascript-exercises&#x2F;javascript-basic-exercise-1.php  New 연산자  new 연산자는 사용자 정의 객체 타입 또는 내장 객체 타입의 인스턴스를 생성한다 사용자 정의 객체를 생성하는데에는 두">
+<meta property="og:description" content="Javascript TIL 200831자바스크립트 예제 문제문제, 이미지 출처: https:&#x2F;&#x2F;www.w3resource.com&#x2F;javascript-exercises&#x2F;javascript-basic-exercise-1.php  New 연산자  new 연산자는 사용자 정의 객체 타입 또는 내장 객체 타입의 인스턴스를 생성한다 사용자 정의 객체를 생성하는데에는">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91712053-f6336400-ebc1-11ea-9986-17ca4e862a90.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91713033-eddc2880-ebc3-11ea-8a4a-28889ec2eddc.png">
@@ -40,8 +40,8 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91734145-7fa85d80-ebe5-11ea-86ab-96afcf9fe9cc.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91734303-c26a3580-ebe5-11ea-9be3-14c52837c5b5.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/91734771-520fe400-ebe6-11ea-8322-01968c1b0899.png">
-<meta property="article:published_time" content="2020-08-31T14:59:59.000Z">
-<meta property="article:modified_time" content="2020-08-31T15:08:24.891Z">
+<meta property="article:published_time" content="2020-08-31T14:59:00.000Z">
+<meta property="article:modified_time" content="2020-09-11T21:30:28.410Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/91712053-f6336400-ebc1-11ea-9986-17ca4e862a90.png">
@@ -188,14 +188,14 @@
               </span>
               <span class="post-meta-item-text">작성일</span>
 
-              <time title="Post created: 2020-08-31 23:59:59" itemprop="dateCreated datePublished" datetime="2020-08-31T23:59:59+09:00">2020-08-31</time>
+              <time title="Post created: 2020-08-31 23:59:00" itemprop="dateCreated datePublished" datetime="2020-08-31T23:59:00+09:00">2020-08-31</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-01 00:08:24" itemprop="dateModified" datetime="2020-09-01T00:08:24+09:00">2020-09-01</time>
+                <time title="Updated at: 2020-09-12 06:30:28" itemprop="dateModified" datetime="2020-09-12T06:30:28+09:00">2020-09-12</time>
               </span>
 
           
@@ -209,7 +209,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Javascript-TIL-200831"><a href="#Javascript-TIL-200831" class="headerlink" title="Javascript TIL 200831"></a>Javascript TIL 200831</h1><h2 id="자바스크립트-예제-문제"><a href="#자바스크립트-예제-문제" class="headerlink" title="자바스크립트 예제 문제"></a>자바스크립트 예제 문제</h2><p>문제, 이미지 출처:<a target="_blank" rel="noopener" href="https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php">https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php</a></p>
+        <h1 id="Javascript-TIL-200831"><a href="#Javascript-TIL-200831" class="headerlink" title="Javascript TIL 200831"></a>Javascript TIL 200831</h1><h2 id="자바스크립트-예제-문제"><a href="#자바스크립트-예제-문제" class="headerlink" title="자바스크립트 예제 문제"></a>자바스크립트 예제 문제</h2><p>문제, 이미지 출처: <a target="_blank" rel="noopener" href="https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php">https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-1.php</a></p>
 <ol>
 <li><p>New 연산자</p>
 <ol>
