@@ -23,7 +23,7 @@
   <meta name="description" content="Javascript TIL 200831자바스크립트 예제 문제문제, 이미지 출처: https:&#x2F;&#x2F;www.w3resource.com&#x2F;javascript-exercises&#x2F;javascript-basic-exercise-1.php  New 연산자  new 연산자는 사용자 정의 객체 타입 또는 내장 객체 타입의 인스턴스를 생성한다 사용자 정의 객체를 생성하는데에는">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript TIL example(new constructor function, Date object, Date method), scope">
-<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3/index.html">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3%2020200831/index.html">
 <meta property="og:site_name" content="Youngseo&#39;s blog">
 <meta property="og:description" content="Javascript TIL 200831자바스크립트 예제 문제문제, 이미지 출처: https:&#x2F;&#x2F;www.w3resource.com&#x2F;javascript-exercises&#x2F;javascript-basic-exercise-1.php  New 연산자  new 연산자는 사용자 정의 객체 타입 또는 내장 객체 타입의 인스턴스를 생성한다 사용자 정의 객체를 생성하는데에는">
 <meta property="og:locale" content="ko_KR">
@@ -46,7 +46,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/91712053-f6336400-ebc1-11ea-9986-17ca4e862a90.png">
 
-<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3/">
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3%2020200831/">
 
 
 <script id="page-configurations">
@@ -165,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/31/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B8%E1%84%90%E1%85%B3%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A6%E1%84%91%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B5%20(new%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE,%20Date%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%AA%20%E1%84%86%E1%85%A6%E1%84%89%E1%85%A9%E1%84%83%E1%85%B3),%2013%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%89%E1%85%B3%E1%84%8F%E1%85%A9%E1%84%91%E1%85%B3%2020200831/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -452,7 +452,7 @@
       <i class="fa fa-chevron-left"></i> Unicode and Aski code
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/01/Javascript%20TIL%20(Variable,%20Problems%20with%20Global%20Variables)/" rel="next" title="Javascript TIL (Variable, Problems with Global Variables)">
+    <a href="/2020/09/01/Javascript%20TIL%2020200901%20(Variable,%20Problems%20with%20Global%20Variables)/" rel="next" title="Javascript TIL (Variable, Problems with Global Variables)">
       Javascript TIL (Variable, Problems with Global Variables) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -527,7 +527,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
