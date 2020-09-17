@@ -20,17 +20,24 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="All Dev stories found in here">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Youngseo&#39;s blog">
-<meta property="og:url" content="https://github.com/youngseoim.github.io/archives/2020/08/page/2/index.html">
+  <meta name="description" content="1번 과제 (선형 검색)      2번 과제 (이진 검색)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Date Structure and Algorithm (linear search &#x2F; binary search)">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/index.html">
 <meta property="og:site_name" content="Youngseo&#39;s blog">
-<meta property="og:description" content="All Dev stories found in here">
+<meta property="og:description" content="1번 과제 (선형 검색)      2번 과제 (이진 검색)">
 <meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93465398-b096cb00-f925-11ea-86fa-672411d78f88.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93465486-d45a1100-f925-11ea-90a5-2d738c636eb7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93465580-f81d5700-f925-11ea-9b00-e8ea521b8263.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93486630-63275780-f93f-11ea-962c-e8949ad9d69d.png">
+<meta property="article:published_time" content="2020-09-17T14:30:59.000Z">
+<meta property="article:modified_time" content="2020-09-17T14:51:14.741Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/93465398-b096cb00-f925-11ea-86fa-672411d78f88.png">
 
-<link rel="canonical" href="https://github.com/youngseoim.github.io/archives/2020/08/page/2/">
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/">
 
 
 <script id="page-configurations">
@@ -38,12 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'ko'
   };
 </script>
 
-  <title>아카이브 | Youngseo's blog</title>
+  <title>Date Structure and Algorithm (linear search / binary search) | Youngseo's blog</title>
   
 
 
@@ -142,194 +149,87 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">음..! 총 24개의 포스트 포스트를 마저 작성하세요</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Date Structure and Algorithm (linear search / binary search)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-17 23:30:59 / Updated at: 23:51:14" itemprop="dateCreated datePublished" datetime="2020-09-17T23:30:59+09:00">2020-09-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
+        <h2 id="1번-과제-선형-검색"><a href="#1번-과제-선형-검색" class="headerlink" title="1번 과제 (선형 검색)"></a>1번 과제 (선형 검색)</h2><ol>
+<li><img width="1056" alt="스크린샷 2020-09-17 오후 8 35 07" src="https://user-images.githubusercontent.com/68043654/93465398-b096cb00-f925-11ea-86fa-672411d78f88.png"></li>
+<li><img width="492" alt="스크린샷 2020-09-17 오후 8 36 05" src="https://user-images.githubusercontent.com/68043654/93465486-d45a1100-f925-11ea-90a5-2d738c636eb7.png">
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-18T21:56:59+09:00"
-              content="2020-08-18">
-          08-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/18/Javascript%20TIL%20200818%20(javascript%20%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A5%E1%86%B8%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A6%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB)/" itemprop="url">
-            <span itemprop="name">Javascript TIL (variable, Javascript)</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-17T20:51:59+09:00"
-              content="2020-08-17">
-          08-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/17/Javascript%20TIL%20200817%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE,%20%E1%84%91%E1%85%AD%E1%84%92%E1%85%A7%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8%E1%84%80%E1%85%AA%20%E1%84%86%E1%85%AE%E1%86%AB)/" itemprop="url">
-            <span itemprop="name">Javascript TIL (variable, expression and statement)</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-16T19:00:59+09:00"
-              content="2020-08-16">
-          08-16
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/16/Javascript%20TIL%20200816%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE)/" itemprop="url">
-            <span itemprop="name">Javascript TIL (variable)</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-13T21:49:59+09:00"
-              content="2020-08-13">
-          08-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/13/8%E1%84%8B%E1%85%AF%E1%86%AF%2013%E1%84%8B%E1%85%B5%E1%86%AF%20TIL/" itemprop="url">
-            <span itemprop="name">8월 13일 TIL</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-13T21:40:59+09:00"
-              content="2020-08-13">
-          08-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/13/WORKSOUT%20clone%20(200710%20~%20200715)/" itemprop="url">
-            <span itemprop="name">WORKSOUT clone (200710 ~ 200715)</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-12T19:43:59+09:00"
-              content="2020-08-12">
-          08-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/12/starbucks%20clone/" itemprop="url">
-            <span itemprop="name">Starbucks clone</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-11T16:40:13+09:00"
-              content="2020-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/11/HTML5-CSS3/" itemprop="url">
-            <span itemprop="name">HTML5/CSS3 TIL 정리</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-10T22:00:59+09:00"
-              content="2020-08-10">
-          08-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/10/Git/" itemprop="url">
-            <span itemprop="name">Git</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+</li>
+</ol>
+<h2 id="2번-과제-이진-검색"><a href="#2번-과제-이진-검색" class="headerlink" title="2번 과제 (이진 검색)"></a>2번 과제 (이진 검색)</h2><ol>
+<li><img width="1082" alt="스크린샷 2020-09-17 오후 8 37 08" src="https://user-images.githubusercontent.com/68043654/93465580-f81d5700-f925-11ea-9b00-e8ea521b8263.png"></li>
+<li><img width="497" alt="스크린샷 2020-09-17 오후 11 39 04" src="https://user-images.githubusercontent.com/68043654/93486630-63275780-f93f-11ea-962c-e8949ad9d69d.png"></li>
+</ol>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/17/Javascript%20TIL%2020200917%2016%E1%84%80%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A5%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%84%87%E1%85%B2%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5%E1%84%90%E1%85%B5/" rel="prev" title="Javascript TIL (Property Attribute)">
+      <i class="fa fa-chevron-left"></i> Javascript TIL (Property Attribute)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/08/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/archives/2020/08/">1</a><span class="page-number current">2</span>
-  </nav>
+  
+  
 
 
 
@@ -381,6 +281,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EB%B2%88-%EA%B3%BC%EC%A0%9C-%EC%84%A0%ED%98%95-%EA%B2%80%EC%83%89"><span class="nav-number">1.</span> <span class="nav-text">1번 과제 (선형 검색)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EB%B2%88-%EA%B3%BC%EC%A0%9C-%EC%9D%B4%EC%A7%84-%EA%B2%80%EC%83%89"><span class="nav-number">2.</span> <span class="nav-text">2번 과제 (이진 검색)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
