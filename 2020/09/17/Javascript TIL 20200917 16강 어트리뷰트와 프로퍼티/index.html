@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Property Attribute내부 슬롯과 내부 메서드 내부 슬롯과 내부 메서드는 자바스크립트 엔진의 구현 알고리즘을 설명하기 위해 ECMAScript에서 사용하는 의사 프로퍼티(pseudo proery)와 의사 메서드(pseudo method)이다. ECMAScript에 등장하는 이중 대괄호( [[…]] )로 감싼 이름들이 내부 슬롯과 내부 메서드이다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript TIL (Property Attribute)">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/09/17/Javascript%20TIL%2020200917%2016%E1%84%80%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A5%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%84%87%E1%85%B2%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5%E1%84%90%E1%85%B5/index.html">
+<meta property="og:site_name" content="Youngseo&#39;s blog">
+<meta property="og:description" content="Property Attribute내부 슬롯과 내부 메서드 내부 슬롯과 내부 메서드는 자바스크립트 엔진의 구현 알고리즘을 설명하기 위해 ECMAScript에서 사용하는 의사 프로퍼티(pseudo proery)와 의사 메서드(pseudo method)이다. ECMAScript에 등장하는 이중 대괄호( [[…]] )로 감싼 이름들이 내부 슬롯과 내부 메서드이다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93454388-e764e500-f915-11ea-8444-be209dbe31ff.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93454305-c43a3580-f915-11ea-8e1f-9bda5bada2a0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93457398-e3d35d00-f919-11ea-8eb6-2e98ca12b3e7.png">
+<meta property="article:published_time" content="2020-09-17T10:10:59.000Z">
+<meta property="article:modified_time" content="2020-09-17T10:12:44.558Z">
+<meta property="article:author" content="youngseoim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/93454388-e764e500-f915-11ea-8444-be209dbe31ff.png">
+
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/09/17/Javascript%20TIL%2020200917%2016%E1%84%80%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A5%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%84%87%E1%85%B2%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5%E1%84%90%E1%85%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ko'
+  };
+</script>
+
+  <title>Javascript TIL (Property Attribute) | Youngseo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Youngseo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Awesome node.jser..</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>아카이브</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/17/Javascript%20TIL%2020200917%2016%E1%84%80%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A5%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%84%87%E1%85%B2%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5%E1%84%90%E1%85%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript TIL (Property Attribute)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-17 19:10:59 / Updated at: 19:12:44" itemprop="dateCreated datePublished" datetime="2020-09-17T19:10:59+09:00">2020-09-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Property-Attribute"><a href="#Property-Attribute" class="headerlink" title="Property Attribute"></a>Property Attribute</h2><h3 id="내부-슬롯과-내부-메서드"><a href="#내부-슬롯과-내부-메서드" class="headerlink" title="내부 슬롯과 내부 메서드"></a>내부 슬롯과 내부 메서드</h3><ol>
+<li>내부 슬롯과 내부 메서드는 자바스크립트 엔진의 구현 알고리즘을 설명하기 위해 ECMAScript에서 사용하는 의사 프로퍼티(pseudo proery)와 의사 메서드(pseudo method)이다. ECMAScript에 등장하는 이중 대괄호( [[…]] )로 감싼 이름들이 내부 슬롯과 내부 메서드이다.</li>
+<li>내부 슬롯과 내부 메서드는 개발자가 직접 접근할 수 있도록 외부로 공개된 객체의 프로퍼티는 아니다 단, 일부 내부 슬롯과 내부 메서드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.<ol>
+<li>예를 들어, 모든 객체는 [[Property]] 라는 내부 슬롯을 갖는데 이는 자바스크립트 엔진의 내부 로직이므로 원칙적으로 직접 접근할 수 없지만 (__ proto __)를 통해 간접적으로 접근할 수 있다.</li>
+</ol>
+</li>
+</ol>
+<h2 id="프로퍼티-어트리뷰트와-프로퍼티-디스크립터-객체"><a href="#프로퍼티-어트리뷰트와-프로퍼티-디스크립터-객체" class="headerlink" title="프로퍼티 어트리뷰트와 프로퍼티 디스크립터 객체"></a>프로퍼티 어트리뷰트와 프로퍼티 디스크립터 객체</h2><ol>
+<li><strong>자바스크립트 엔진은 프로퍼티를 생성할 때 프로퍼티의 상태를 나타내는 프로퍼티 어트리뷰트를 기본값으로 자동 정의한다.</strong></li>
+<li>프로퍼티의 상태란<ol>
+<li>프로퍼티의 값(value)</li>
+<li>값의 갱신 가능 여부(writable)</li>
+<li>열거 가능 여부(enumerable)</li>
+<li>재정의 가능 여부(configurable)을 말한다.</li>
+</ol>
+</li>
+<li>프로퍼티 어트리뷰트는 자바스크립트 엔진이 관리하는 내부 상태 값(meta-property)인 내부 슬롯 [[Value]], [[Writable]], [[Enumerable]], [[Configurable]]이다. 따라서 프로퍼티 어트리뷰트에 직접 접근할 수 없지만 Object.getOwnPropertyDescriptor 메서드를 사용하여 간접적으로 확인할 수는 있다.</li>
+<li>Object.getOwnPropertyDescriptor 호출 할 때<ol>
+<li>첫번째 매개변수에는 객체의 참조(식별자)를 전달하고</li>
+<li>두번째 매개변수에는 프로퍼팅 키를 문자열로 전달한다.</li>
+<li>이때 메서드는 프로퍼티 어트리뷰트 정보를 제공하는 <strong>프로퍼티 디스크립터(PropertyDescriptor)객체</strong>를 반환한다.</li>
+<li>Object.getOwnPropertyDescriptor 메서드는 하나의 프로퍼티에 대해 디스크립터 객체를 반환하고</li>
+<li>Object.getOwnPropertyDescriptors(ES8에 도입)메서드는 모든 프로퍼티에 대해 디스크립터 객체를 반환한다.</li>
+</ol>
+</li>
+</ol>
+<h3 id="데이터-프로퍼티와-접근자-프로퍼티"><a href="#데이터-프로퍼티와-접근자-프로퍼티" class="headerlink" title="데이터 프로퍼티와 접근자 프로퍼티"></a>데이터 프로퍼티와 접근자 프로퍼티</h3><ol>
+<li>데이터 프로퍼티(data property)<ol>
+<li>키와 값으로 구성된 일반적인 프로퍼티다 지금까지 살펴본 모든 프로퍼티는 데이터 프로퍼티이다.</li>
+</ol>
+</li>
+<li>접근자 프로퍼티(accessor property)<ol>
+<li>자체적으로는 값을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 호출되는 접근자 함수(accessor function)로 구성된 프로퍼티다.</li>
+</ol>
+</li>
+</ol>
+<h4 id="데이터-프로퍼티"><a href="#데이터-프로퍼티" class="headerlink" title="데이터 프로퍼티"></a>데이터 프로퍼티</h4><table>
+<thead>
+<tr>
+<th>프로퍼티 어트리뷰트</th>
+<th>프로퍼티 디스크립터 객체의 프로퍼티</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[[Value]]</td>
+<td>Value</td>
+<td>-프로퍼티 키를 통해 프로퍼티 값에 접근하면 반환되는 값이다.<br>-프로퍼티 키를 통해 프로퍼티 값을 변경하면[[value]]에 값을 재할당 한다. 이때 프로퍼티가 없으면 프로퍼티를 동적 생성하고 생성된 프로퍼티의 [[value]]에 저장.</td>
+</tr>
+<tr>
+<td>[[Writable]]</td>
+<td>Writable</td>
+<td>- 프로퍼티 값의 변경 가능 여부를 나타내며 불리언 값을 갖는다.<br/>- [[Writable]]의 값이 false인 경우 해당 프로퍼티의 [[Value]]의 값을 변경할 수 없는 읽기 전용 프로퍼티가 된다.</td>
+</tr>
+<tr>
+<td>[[Enumerable]]</td>
+<td>Enumerable</td>
+<td>- 프로퍼티의 열거 가능 여부를 나타내며 불리언 값을 갖는다. - [[Enumerable]]의 값이 false인 경우 해당 프로퍼티는 for…in 문이나 Object.keys 메서드 등으로 <a target="_blank" rel="noopener" href="https://poiemaweb.com/fastcampus/prototype#14-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%97%B4%EA%B1%B0">열거</a>할 수 없다.</td>
+</tr>
+<tr>
+<td>[[Configurable]]</td>
+<td>Configurable</td>
+<td>- 프로퍼티의 재정의 가능 여부를 나타내며 불리언 값을 갖는다.<br/>- [[Configurable]]의 값이 false인 경우 해당 프로퍼티의 삭제, 프로퍼티 어트리뷰트 값의 변경이 금지된다. 단, [[Writable]]이 true인 경우 [[Value]]의 변경과 [[Writable]]을 false로 변경하는 것은 허용된다.(<a target="_blank" rel="noopener" href="https://poiemaweb.com/fastcampus/property-definition#52-%EA%B0%9D%EC%B2%B4-%EB%B0%80%EB%B4%89">“16.5.2. 객체 밀봉”</a>과 <a target="_blank" rel="noopener" href="https://poiemaweb.com/fastcampus/property-definition#53-%EA%B0%9D%EC%B2%B4-%EB%8F%99%EA%B2%B0">“16.5.3. 객체 동결”</a> 참고)</td>
+</tr>
+</tbody></table>
+<h4 id="접근자-프로퍼티"><a href="#접근자-프로퍼티" class="headerlink" title="접근자 프로퍼티"></a>접근자 프로퍼티</h4><ol>
+<li><p>접근자 프로퍼티는 자체적으로는 값을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수(accessor function)로 구성된 프로퍼티다.</p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th align="left">프로퍼티 어트리뷰트</th>
+<th align="left">프로퍼티 디스크립터 객체의 프로퍼티</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">[[Get]]</td>
+<td align="left">get</td>
+<td align="left">접근자 프로퍼티를 통해 데이터 프로퍼티의 값을 읽을 때 호출되는 접근자 함수다. 즉, 접근자 프로퍼티 키로 프로퍼티 값에 접근하면 프로퍼티 어트리뷰트 [[Get]]의 값, 즉 getter 함수가 호출되고 그 결과가 프로퍼티 값으로 반환된다.</td>
+</tr>
+<tr>
+<td align="left">[[Set]]</td>
+<td align="left">set</td>
+<td align="left">접근자 프로퍼티를 통해 데이터 프로퍼티의 값을 저장할 때 호출되는 접근자 함수다. 즉, 접근자 프로퍼티 키로 프로퍼티 값을 저장하면 프로퍼티 어트리뷰트 [[Set]]의 값, 즉 setter 함수가 호출되고 그 결과가 프로퍼티 값으로 저장된다.</td>
+</tr>
+<tr>
+<td align="left">[[Enumerable]]</td>
+<td align="left">enumerable</td>
+<td align="left">데이터 프로퍼티의 [[Enumerable]]과 같다.</td>
+</tr>
+<tr>
+<td align="left">[[Configurable]]</td>
+<td align="left">configurable</td>
+<td align="left">데이터 프로퍼티의 [[Configurable]]과 같다.</td>
+</tr>
+</tbody></table>
+<p>접근자 함수는 getter / setter 함수라고도 부른다. 접근자 프로퍼티는 getter와 setter함수를 모두 정의할 수도 있고 하나만 정의할 수도 있다.</p>
+<ol>
+<li><img width="711" alt="스크린샷 2020-09-17 오후 6 42 06" src="https://user-images.githubusercontent.com/68043654/93454388-e764e500-f915-11ea-8444-be209dbe31ff.png"></li>
+<li><img width="505" alt="스크린샷 2020-09-17 오후 6 41 08" src="https://user-images.githubusercontent.com/68043654/93454305-c43a3580-f915-11ea-8e1f-9bda5bada2a0.png"></li>
+<li>Person 객체의 firstName과 lastName 프로퍼티는 일반적인 데이터 프로퍼티다. 메서드 앞에 get,set이 붙은 메서드가 있는데 이것들이 바로 getter와 setter함수이고, getter/setter 함수의 이름 fullName이 접근자 프로퍼티다</li>
+<li>접근자 프로퍼티는 자체적으로 값(프로퍼티 어트리뷰트[[value]])를 가지지 않으며 다만 데이터 프로퍼티의 값을 읽거나 저장할 때 관여할 뿐이다.</li>
+<li>이를 내부 슬롯/메서드 관점에서 설명하면 다음과 같다. 접근자 프로퍼티 fullName으로 프로퍼티 값에 접근하면 내부적으로 [[Get]] 내부 메서드가 호출되어 다음과 같이 동작한다.<ol>
+<li>ECMAScript 스펙에서 정의한 [[Get]] 내부 메서드의 사양을 만족시키는 구현체가 자바스크립트 엔진에 존재한다는 것이 중요하지 [[Get]]이란 이름으로 실제 자바스크립트 엔진이 구현되었는지는 중요하지 않다. 어차피 [[Get]] 내부 메서드에 직접 접근할 수도 없다 . </li>
+<li>프로퍼티 키가 유효한지 확인한다. 프로퍼티 키는 문자열 또는 심벌이어야 한다. 프로퍼티 키 “fullName”은 문자열이므로 유효한 프로퍼티 키이다.</li>
+<li>프로토타입 체인에서 프로퍼티를 검색한다. person 객체에 fullName 프로퍼티가 존재한다.</li>
+<li>검색된 fullName 프로퍼티가 데이터 프로퍼티인지 접근자 프로퍼티인지 확인한다. fullName은 접근자 프로퍼티이다.</li>
+<li>접근자 프로퍼티 fullName의 프로퍼티 어트리뷰트 [[Get]]의 값, 즉 getter 함수를 호출하여 그 결과를 반환한다. 프로퍼티 fullName의 프로퍼티 어트리뷰트[[Get]]의 값은 Object.getOwnPropertyDescriptor 메서드가 반환하는 프로퍼티 디스크립터(PropertyDescriptor) 객체의 get 프로퍼티 값과 같다.</li>
+</ol>
+</li>
+<li><strong>프로토타입(prototype)</strong><ol>
+<li>프로토타입은 어떤 객체의 상위 객체의 역할을 하는 객체다.</li>
+<li>프로토타입은 하위 객체에게 자신의 프로퍼티와 메서드를 상속한다.</li>
+<li>프로토타입 객체의 프로퍼티나 메서드를 상속받은 하위 객체는 자신의 프로퍼티 또는 메서드인 것처럼 자유롭게 사용할 수 있다.</li>
+<li>프로토타입 체인은 프로토타입이 단방향 링크드 리스트 형태로 연결되어 있는 상속 구조를 말한다 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 프로토타입 체인을 따라 프로토타입의 프로퍼티나 메서드를 차례대로 검색한다.</li>
+</ol>
+</li>
+<li><img width="523" alt="스크린샷 2020-09-17 오후 7 10 39" src="https://user-images.githubusercontent.com/68043654/93457398-e3d35d00-f919-11ea-8eb6-2e98ca12b3e7.png">
+1. Object.getOwnPropertyDescriptor 메서드가 반환한 프로퍼티 어트리뷰트를 객체로 표현한 프로퍼티 디스크립터 객체를 유심히 살펴보자. 접근자 프로퍼티와 데이터 프로퍼티의 프로퍼티 디스크립터 객체의 프로퍼티가 다른 것을 알 수 있다.
+
+</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/14/%20javascript%20TIL%20200914%20(Function%20review)/" rel="prev" title="Javascript TIL (Function Review)">
+      <i class="fa fa-chevron-left"></i> Javascript TIL (Function Review)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Property-Attribute"><span class="nav-number">1.</span> <span class="nav-text">Property Attribute</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%82%B4%EB%B6%80-%EC%8A%AC%EB%A1%AF%EA%B3%BC-%EB%82%B4%EB%B6%80-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="nav-number">1.1.</span> <span class="nav-text">내부 슬롯과 내부 메서드</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%96%B4%ED%8A%B8%EB%A6%AC%EB%B7%B0%ED%8A%B8%EC%99%80-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EB%94%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%84%B0-%EA%B0%9D%EC%B2%B4"><span class="nav-number">2.</span> <span class="nav-text">프로퍼티 어트리뷰트와 프로퍼티 디스크립터 객체</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0%EC%99%80-%EC%A0%91%EA%B7%BC%EC%9E%90-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0"><span class="nav-number">2.1.</span> <span class="nav-text">데이터 프로퍼티와 접근자 프로퍼티</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0"><span class="nav-number">2.1.1.</span> <span class="nav-text">데이터 프로퍼티</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%A0%91%EA%B7%BC%EC%9E%90-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">접근자 프로퍼티</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">youngseoim</p>
+  <div class="site-description" itemprop="description">All Dev stories found in here</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youngseoim</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

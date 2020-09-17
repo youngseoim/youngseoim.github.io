@@ -148,6 +148,198 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/12/starbucks%20clone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/12/starbucks%20clone/" class="post-title-link" itemprop="url">Starbucks clone</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-12 19:43:59 / Updated at: 19:44:30" itemprop="dateCreated datePublished" datetime="2020-08-12T19:43:59+09:00">2020-08-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="스타벅스-클론코딩-팀-프로젝트-7월-3일-월-7월-7일-금"><a href="#스타벅스-클론코딩-팀-프로젝트-7월-3일-월-7월-7일-금" class="headerlink" title="스타벅스 클론코딩 팀 프로젝트 ( 7월 3일 월 ~ 7월 7일 금 )"></a>스타벅스 클론코딩 팀 프로젝트 ( 7월 3일 월 ~ 7월 7일 금 )</h1><h4 id="프로젝트-구성"><a href="#프로젝트-구성" class="headerlink" title="프로젝트 구성"></a>프로젝트 구성</h4><ol>
+<li>크로스 브라우징 = x  </li>
+<li>고정형 / 반응형 = 반응형   </li>
+<li>CSS 표기 방법 =  BEM</li>
+<li>기존에 수업 때 float,position을 주로 사용했기때문에 배치 방법으로는 flex를 채택</li>
+</ol>
+<h4 id="프로젝트-진행-순서"><a href="#프로젝트-진행-순서" class="headerlink" title="프로젝트 진행 순서"></a>프로젝트 진행 순서</h4><ol>
+<li>구조파악</li>
+<li>문제파악<ol>
+<li>메인메뉴 리스트들 간 좌우 여백 맞지 않음</li>
+<li>푸터영역 고용노동부 a태그사용 , 링크로 진입 x </li>
+<li>모바일 메뉴 텝 열 때 다른텝 안닫힘</li>
+<li>반응형 모바일로 변할 때 멘트 잘리는 현상 등 애니메이션 버벅거림</li>
+<li>반응형 뷰 노출 시  홈,sign in , join us 중복 </li>
+<li>대다수의 중복 컨텐츠 </li>
+</ol>
+</li>
+</ol>
+<h4 id="프로젝트-진행-계획"><a href="#프로젝트-진행-계획" class="headerlink" title="프로젝트 진행 계획"></a>프로젝트 진행 계획</h4><ol>
+<li><p>월요일 (7월 3일)</p>
+<ol>
+<li>월요일 최종 목표 = Html 구조 끝내기</li>
+<li>주말 간 구조 파악 해온 내용 오전에 토론해서 마크업</li>
+<li>Semantic tag, 클래스 이름 </li>
+</ol>
+</li>
+<li><p>화요일 (7월 4일) </p>
+<ol>
+<li>화요일 최종 목표 = CSS 구조 끝내기</li>
+<li>디자인 공통모듈 정하기 배치방법 , 배치<ol>
+<li>공통 모듈<ol>
+<li>A태그 hover 시 밑줄</li>
+<li>section 별로 공통 font-size 지정</li>
+<li>버튼</li>
+<li>반응형 작업을 고려한 rem, em 사용</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>수요일 (7월 4일) </p>
+<ol>
+<li>문제점 해결 및 문법, 접근성 검사, 보이스오버 체크</li>
+</ol>
+</li>
+<li><p>목요일 (7월 5일)</p>
+<ol>
+<li>수요일에 해결하지 못한 문제점 해결 및 디테일 수정</li>
+<li>프로젝트 발표 할 slides 작성</li>
+</ol>
+</li>
+<li><p>금요일 (7월 6일)</p>
+<ol>
+<li>오전에 프로젝트 마무리</li>
+<li>오후에 프로젝트 발표</li>
+</ol>
+</li>
+</ol>
+<h4 id="프로젝트-시작-전-고려-해야-할-문제"><a href="#프로젝트-시작-전-고려-해야-할-문제" class="headerlink" title="프로젝트 시작 전 고려 해야 할 문제"></a>프로젝트 시작 전 고려 해야 할 문제</h4><ol>
+<li>reset css </li>
+<li>Meta tag, og, twitter card</li>
+<li>뱀 방식 사용법 </li>
+<li>스타벅스 폰트 및 이미지 다운로드</li>
+</ol>
+<h4 id="프로젝트-CSS-분기"><a href="#프로젝트-CSS-분기" class="headerlink" title="프로젝트 CSS 분기"></a>프로젝트 CSS 분기</h4><ol>
+<li>Common = 모바일, 데스크탑 공통</li>
+<li>Large = 데스크탑 환경</li>
+<li>Small = 모바일 환경</li>
+<li>Reset = 초기화</li>
+</ol>
+<h4 id="실제-프로젝트-진행-순서"><a href="#실제-프로젝트-진행-순서" class="headerlink" title="실제 프로젝트 진행 순서"></a>실제 프로젝트 진행 순서</h4><ol>
+<li>일요일 (7월 2일)<ol>
+<li>가장 복잡한 헤더영영 네비게이션 메뉴 마크업 및 배치 구상</li>
+</ol>
+</li>
+<li>월요일 (7월 3일)<ol>
+<li>전체적인 마크업 구상도 작성<ol>
+<li><img src="https://user-images.githubusercontent.com/68043654/89967543-afbaab80-dc8c-11ea-8a36-cefad1050802.jpg" alt="스타벅스 마크업1-8"></li>
+<li>헤더영역 마크업 작성 및 로고, 유저메뉴, 네비게이션 배치 </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>화요일 (7월 4일)<ol>
+<li>문제점 해결 및 헤더영역 완료</li>
+</ol>
+</li>
+<li>수요일 (7월 5일)<ol>
+<li>메인영역 시즌음료부분 다같이 해보고 뒤에 중복되는 메인 콘텐츠 나눠서 진행</li>
+<li>푸터영역 다같이 의논해서 진행</li>
+</ol>
+</li>
+<li>목요일 (7월 6일)<ol>
+<li>오전 - 미흡한 점 체크 및 접근성,보이스오버가 이상없는지 확인</li>
+<li>오후 - 프로젝트 ppt 작성</li>
+</ol>
+</li>
+</ol>
+<h4 id="프로젝트-진행-시-문제점-및-개선-사항"><a href="#프로젝트-진행-시-문제점-및-개선-사항" class="headerlink" title="프로젝트 진행 시 문제점 및 개선 사항"></a>프로젝트 진행 시 문제점 및 개선 사항</h4><ol>
+<li><p>jpg 파일이 너무 남용되서 svg 파일로 변환해서 반응형 작업 시 이미지가 깨지지 않도록 하고 상대적으로 용량이 적은 이유 때문에 선택하려고 했으나 고해상도의 이미지라 svg로 변환이 되지 않음</p>
+</li>
+<li><p>헤더의 로고 이미지 배치 시 서브메뉴 배경에 준 psition:absolute가 헤더의 fixed를 기준으로 배치가 되서 100%를 차지해야 하는데 로고이미지에 absolute를 주게 될 경우 로고 이미지를 기준으로 배치가 되면서 100%를 차지 할 수 없는 현상이 생겨서 float으로 변경</p>
+</li>
+<li><p>메인 영역</p>
+<ol>
+<li><p>시즌음료</p>
+<ol>
+<li>기존에 모든 텍스트가 이미지로 처리되어 있어서 성능 향상을 위해 텍스트로 입력하였으나 텍스트의 인라인 특성 때문에 반응형 작업 시 레이아웃이 깨지는 문제가 생겨서 stay chill stay playful 영역만 텍스트로 준후 이미지로 대체 했다</li>
+<li>메인 시즌음료 영역에 음료이미지 3개와 음료설명 이미지 3개를 transform에 translator로 위치를 잡아주려고 했으나 6개의 이미지에 하나하나 좌표값을 줘야하고, 또 translator는 자기자신이 원래 있던 위치에 영역을 차지하고 이미지만 옮겨지는 것이기 때문에 문제가 생길 수 있다고 판단 하여 훨씬 공수가 적은 position을 사용하고 이미지와 설명을 하나로 랩핑한 후 배치했다 </li>
+</ol>
+</li>
+<li><p>공지사항 / 프로모션</p>
+<ol>
+<li>공지사항에 리스트를 javascript를 사용하지 않고 css animation 효과로만 배치하려고 했으나 리스트를 끝내고 첫번째 리스트로 다시 돌아 올 때 딜레이가 생김, 추후에 javascript를 배우고 기능구현 할 예정</li>
+</ol>
+</li>
+<li><p>리워드</p>
+<ol>
+<li>성능 향상을 위해 이미지를 텍스트로 대체 하려고 했으나 기존에 백그라운드 이미지를 배치하는 과정에서 텍스트가 있으면 서로 밀어내면서 배치가 되지 않는 현상이 발생해서 이미지로 대체 했다.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>다른 팀들과 다르게 반응형을 목표로 하다보니 조급함이 느껴져서 처음엔 영역을 나눠서 진행을 했는데 생각해보니까 이번 프로젝트의 목표는 프로젝트를 끝내는 것 보단 공부를 하는게 주 목적이라는 생각이 들어서 헤더영역부터 하나하나 서로 토론해가고 공부해가면서 만들 다 보니 좀 더 나은 방향으로 개선도 되고 커뮤니케이션의 중요성을 느낄 수 있었다.</p>
+</li>
+</ol>
+<h4 id="프로젝트-결과물"><a href="#프로젝트-결과물" class="headerlink" title="프로젝트 결과물"></a>프로젝트 결과물</h4><img width="1440" alt="스크린샷 2020-08-12 오전 10 35 38" src="https://user-images.githubusercontent.com/68043654/89965678-505a9c80-dc88-11ea-87bb-e7e6f3b30a48.png">
+<img width="1440" alt="스크린샷 2020-08-12 오전 10 36 51" src="https://user-images.githubusercontent.com/68043654/89965689-5781aa80-dc88-11ea-86d2-21ff16fdb0d8.png">
+<img width="1440" alt="스크린샷 2020-08-12 오전 10 37 12" src="https://user-images.githubusercontent.com/68043654/89965693-594b6e00-dc88-11ea-9e50-093b1e21c839.png">
+<img width="1440" alt="스크린샷 2020-08-12 오전 10 37 21" src="https://user-images.githubusercontent.com/68043654/89965696-5b153180-dc88-11ea-84d2-038909b88bea.png">
+<img width="1440" alt="스크린샷 2020-08-12 오전 10 37 30" src="https://user-images.githubusercontent.com/68043654/89965701-5cdef500-dc88-11ea-8c4e-4cd0b2ef7951.png">
+<img width="1440" alt="스크린샷 2020-08-12 오전 10 37 41" src="https://user-images.githubusercontent.com/68043654/89965705-5e102200-dc88-11ea-9d0d-6f38f280f2b2.png">
+<img width="504" alt="스크린샷 2020-08-12 오전 10 37 56" src="https://user-images.githubusercontent.com/68043654/89965709-60727c00-dc88-11ea-918f-865c48ba2c14.png">
+<img width="538" alt="스크린샷 2020-08-12 오전 10 38 11" src="https://user-images.githubusercontent.com/68043654/89965713-61a3a900-dc88-11ea-95a4-0913d1f9548f.png">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/11/HTML5-CSS3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,7 +393,7 @@
 <p>–&gt; Git을 이용해서 효율적으로 버젼관리</p>
 <h3 id="Git-명령어"><a href="#Git-명령어" class="headerlink" title="Git 명령어"></a>Git 명령어</h3><h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><ul>
 <li>사용자 이름 등록 : git config –global user.name “John Doe”</li>
-<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#x6a;&#111;&#x68;&#x6e;&#100;&#x6f;&#x65;&#64;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#x63;&#111;&#109;">&#x6a;&#111;&#x68;&#x6e;&#100;&#x6f;&#x65;&#64;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#x63;&#111;&#109;</a></li>
+<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#x6a;&#111;&#104;&#x6e;&#100;&#111;&#x65;&#x40;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#x65;&#x2e;&#99;&#111;&#109;">&#x6a;&#111;&#104;&#x6e;&#100;&#111;&#x65;&#x40;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#x65;&#x2e;&#99;&#111;&#109;</a></li>
 <li>Git의 설정 정보 조회 : git config –list</li>
 <li>–global 옵션을 주면 전역 속성을 적용시킨다</li>
 </ul>
@@ -1651,7 +1843,7 @@ align-items: center;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
