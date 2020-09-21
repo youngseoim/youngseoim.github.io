@@ -20,24 +20,19 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1번 과제 (선형 검색)      2번 과제 (이진 검색)">
+  <meta name="description" content="1번 과제 1 ~ 10,000의 숫자 중 8이 등장하는 횟수 구하기 (Google)1부터 10,000까지 8이라는 숫자가 총 몇번 나오는가? 이를 구하는 함수를 완성하라.단, 8이 포함되어 있는 숫자의 갯수를 카운팅 하는 것이 아니라 8이라는 숫자를 모두 카운팅 해야 한다. 예를 들어 8808은 3, 8888은 4로 카운팅 해야 한다.(hint) 문자열 중">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Date Structure and Algorithm (linear search &#x2F; binary search)">
-<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/index.html">
+<meta property="og:title" content="Algorithm">
+<meta property="og:url" content="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/index.html">
 <meta property="og:site_name" content="Youngseo&#39;s blog">
-<meta property="og:description" content="1번 과제 (선형 검색)      2번 과제 (이진 검색)">
+<meta property="og:description" content="1번 과제 1 ~ 10,000의 숫자 중 8이 등장하는 횟수 구하기 (Google)1부터 10,000까지 8이라는 숫자가 총 몇번 나오는가? 이를 구하는 함수를 완성하라.단, 8이 포함되어 있는 숫자의 갯수를 카운팅 하는 것이 아니라 8이라는 숫자를 모두 카운팅 해야 한다. 예를 들어 8808은 3, 8888은 4로 카운팅 해야 한다.(hint) 문자열 중">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93465398-b096cb00-f925-11ea-86fa-672411d78f88.png">
-<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93465486-d45a1100-f925-11ea-90a5-2d738c636eb7.png">
-<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93465580-f81d5700-f925-11ea-9b00-e8ea521b8263.png">
-<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93486630-63275780-f93f-11ea-962c-e8949ad9d69d.png">
-<meta property="article:published_time" content="2020-09-17T14:30:59.000Z">
-<meta property="article:modified_time" content="2020-09-17T14:51:14.741Z">
+<meta property="article:published_time" content="2020-09-21T03:00:59.000Z">
+<meta property="article:modified_time" content="2020-09-21T04:15:53.403Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/93465398-b096cb00-f925-11ea-86fa-672411d78f88.png">
 
-<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/">
+<link rel="canonical" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/">
 
 
 <script id="page-configurations">
@@ -50,7 +45,7 @@
   };
 </script>
 
-  <title>Date Structure and Algorithm (linear search / binary search) | Youngseo's blog</title>
+  <title>Algorithm | Youngseo's blog</title>
   
 
 
@@ -156,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +164,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Date Structure and Algorithm (linear search / binary search)
+          Algorithm
         </h1>
 
         <div class="post-meta">
@@ -180,7 +175,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-09-17 23:30:59 / Updated at: 23:51:14" itemprop="dateCreated datePublished" datetime="2020-09-17T23:30:59+09:00">2020-09-17</time>
+              <time title="Post created: 2020-09-21 12:00:59 / Updated at: 13:15:53" itemprop="dateCreated datePublished" datetime="2020-09-21T12:00:59+09:00">2020-09-21</time>
             </span>
 
           
@@ -194,15 +189,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1번-과제-선형-검색"><a href="#1번-과제-선형-검색" class="headerlink" title="1번 과제 (선형 검색)"></a>1번 과제 (선형 검색)</h2><ol>
-<li><img width="1056" alt="스크린샷 2020-09-17 오후 8 35 07" src="https://user-images.githubusercontent.com/68043654/93465398-b096cb00-f925-11ea-86fa-672411d78f88.png"></li>
-<li><img width="492" alt="스크린샷 2020-09-17 오후 8 36 05" src="https://user-images.githubusercontent.com/68043654/93465486-d45a1100-f925-11ea-90a5-2d738c636eb7.png">
-
+        <h2 id="1번-과제"><a href="#1번-과제" class="headerlink" title="1번 과제"></a>1번 과제</h2><ol>
+<li><p>1 ~ 10,000의 숫자 중 8이 등장하는 횟수 구하기 (Google)<br>1부터 10,000까지 8이라는 숫자가 총 몇번 나오는가? 이를 구하는 함수를 완성하라.<br>단, 8이 포함되어 있는 숫자의 갯수를 카운팅 하는 것이 아니라 8이라는 숫자를 모두 카운팅 해야 한다. 예를 들어 8808은 3, 8888은 4로 카운팅 해야 한다.<br>(hint) 문자열 중 n번째에 있는 문자 : str.charAt(n) or str[n]</p>
 </li>
-</ol>
-<h2 id="2번-과제-이진-검색"><a href="#2번-과제-이진-검색" class="headerlink" title="2번 과제 (이진 검색)"></a>2번 과제 (이진 검색)</h2><ol>
-<li><img width="1082" alt="스크린샷 2020-09-17 오후 8 37 08" src="https://user-images.githubusercontent.com/68043654/93465580-f81d5700-f925-11ea-9b00-e8ea521b8263.png"></li>
-<li><img width="497" alt="스크린샷 2020-09-17 오후 11 39 04" src="https://user-images.githubusercontent.com/68043654/93486630-63275780-f93f-11ea-962c-e8949ad9d69d.png"></li>
+<li><pre><code class="javascript">function getCount8 () &#123;
+&#125;
+console.log(getCount8()); // 4000
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;lt;img width&amp;#x3D;&amp;quot;404&amp;quot; alt&amp;#x3D;&amp;quot;스크린샷 2020-09-20 오후 8 27 35&amp;quot; src&amp;#x3D;&amp;quot;https:&amp;#x2F;&amp;#x2F;user-images.githubusercontent.com&amp;#x2F;68043654&amp;#x2F;93710253-24ccab00-fb80-11ea-992f-d05ced40d124.png&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 2번 과제&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 이상한 문자 만들기&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   toWeirdCase함수는 문자열을 인수로 전달받는다. 문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로 바꾼 문자열을 리턴하도록 함수를 완성하라.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   예를 들어 s가 ‘hello world’라면 첫 번째 단어는 ‘HeLlO’, 두 번째 단어는 ‘WoRlD’로 바꿔 ‘HeLlO WoRlD’를 리턴한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   주의) 문자열 전체의 짝&amp;#x2F;홀수 인덱스가 아니라 단어(공백을 기준)별로 짝&amp;#x2F;홀수 인덱스를 판단한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   function toWeirdCase(s) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(toWeirdCase(&amp;#39;hello world&amp;#39;));    &amp;#x2F;&amp;#x2F; &amp;#39;HeLlO WoRlD&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(toWeirdCase(&amp;#39;my name is lee&amp;#39;)); &amp;#x2F;&amp;#x2F; &amp;#39;My NaMe Is LeE&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><pre><code class="javascript">
+function toWeirdCase(s) &#123;  
+  var str = &#39;&#39;;
+  var space = s.split(&#39; &#39;);
+    for(var i = 0; i &lt; s.length; i++)&#123;
+      if(i === &#39; &#39;) &#123;
+
+      &#125;
+      var j = x % 2 === 0 ? str += s[i].toUpperCase() : s[i].toLowerCase();
+  &#125;
+  return str;
+&#125;
+console.log(toWeirdCase(&#39;hello world&#39;));    // &#39;HeLlO WoRlD&#39;
+console.log(toWeirdCase(&#39;my name is lee&#39;)); // &#39;My NaMe Is LeE&#39;</code></pre>
+</li>
+<li></li>
 </ol>
 
     </div>
@@ -219,12 +229,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/17/Javascript%20TIL%2020200917%2016%E1%84%80%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A5%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%84%87%E1%85%B2%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%A5%E1%84%90%E1%85%B5/" rel="prev" title="Javascript TIL (Property Attribute)">
-      <i class="fa fa-chevron-left"></i> Javascript TIL (Property Attribute)
+    <a href="/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/" rel="prev" title="Date Structure and Algorithm (linear search / binary search)">
+      <i class="fa fa-chevron-left"></i> Date Structure and Algorithm (linear search / binary search)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/" rel="next" title="Algorithm">
-      Algorithm <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/21/Javascript%20TIL%2020200921%2017%E1%84%80%E1%85%A1%E1%86%BC(%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A6%20%E1%84%8B%E1%85%B4%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20)/" rel="next" title="Javascript TIL (Object creation by constructor function)">
+      Javascript TIL (Object creation by constructor function) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -284,7 +294,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EB%B2%88-%EA%B3%BC%EC%A0%9C-%EC%84%A0%ED%98%95-%EA%B2%80%EC%83%89"><span class="nav-number">1.</span> <span class="nav-text">1번 과제 (선형 검색)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EB%B2%88-%EA%B3%BC%EC%A0%9C-%EC%9D%B4%EC%A7%84-%EA%B2%80%EC%83%89"><span class="nav-number">2.</span> <span class="nav-text">2번 과제 (이진 검색)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EB%B2%88-%EA%B3%BC%EC%A0%9C"><span class="nav-number">1.</span> <span class="nav-text">1번 과제</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

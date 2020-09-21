@@ -148,6 +148,240 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/16/Javascript%20TIL%20200816%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/16/Javascript%20TIL%20200816%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE)/" class="post-title-link" itemprop="url">Javascript TIL (variable)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-08-16 19:00:59" itemprop="dateCreated datePublished" datetime="2020-08-16T19:00:59+09:00">2020-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-09-14 22:45:31" itemprop="dateModified" datetime="2020-09-14T22:45:31+09:00">2020-09-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Javascript-TIL-20-08-16"><a href="#Javascript-TIL-20-08-16" class="headerlink" title="Javascript TIL 20 08 16"></a>Javascript TIL 20 08 16</h1><p>출처:link:<a target="_blank" rel="noopener" href="https://poiemaweb.com/">https://poiemaweb.com</a></p>
+<h3 id="변수란"><a href="#변수란" class="headerlink" title="변수란 ?"></a>변수란 ?</h3><ol>
+<li><p>아무리 복잡한 애플리케이션이라 해도 데이터를 입력(input )받아 처리하고 그 결과를 출력(output)하는것이 전부다, 변수는 데이터를 관리하기 위한 핵심 개념이다.</p>
+</li>
+<li><p>10 + 20이라는 식의 의미를 자바스크립트 엔진이 해석하면 +연산을 수행하기 위해 먼저 +연산자의 좌변,우변의 값, 즉 피연산자(operand)를 기억한다 그 후에 CPU를 사용해 연산하고, 메모리를 사용해 데이터를 기억한다 .</p>
+</li>
+<li><p>메모리(memory)는 데이터를 저장할 수 있는 메모리 셀(memory cell)의 집합체이다. 메모리 셀 하나의 크기는 1바이트(8비트)이며, 컴퓨터는 메모리 셀의 크기, 즉 1바이트 단위로 데이터를 저장하거나 읽어 들인다.</p>
+</li>
+<li><p>각 셀은 고유의 메모리 주소를 갖는다, 이 주소는 공간의 위치를 나타내며, 0부터 시작해서 메모리의 크기만큼 정수로 표현된다</p>
+</li>
+<li><p>위 예제의 숫자 값 10과 20은 메모리상의 임의의 위치(메모리 주소)에 기억되고 CPU는 이 값을  읽어 들여 연산을 수행한다. 연산 결과로 생성된 숫자 30도 메모리로 저장되고 저장되는 모든 값은 2진수로 저장된다 </p>
+</li>
+<li><p>10 + 20이라는 연산을 했다는 것은 그 연산 결과가 필요하고 이를 사용해 무언가를 하겠다는 의도가 있었을 것이다, 연산 결과 30을 재사용 하고 싶다면 메모리 주소에 직접 접근하는 것 외에는 방법이 없다</p>
+<ol>
+<li>하지만 <strong><em>메모리 주소를 통해 값에 직접 접근하는 것</em></strong> 은 치명적 오류를 발생시킬 가능성이 높은 <strong><em>매우  위험한 일이다</em></strong> </li>
+<li>만약 실수로 운영체제가 사용하고 있는 값을 변경하면 시스템을 멈추게 하는 치명적인 오류가 발생할 수도 있다. 때문에 <strong><em>자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다</em></strong>.                                                                                                                                                                                                                                                                                                                                                          </li>
+<li>만약 자바스크립트가 개발자의 직접적인 메모리 제어를 허용 하더라도, 값이 저장될 메모리 주소는 코드가 실행될 때마다 값이 변경된다, 따라서 메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다 . </li>
+</ol>
+</li>
+<li><p><strong><em>변수(variable)은 하나의 값을 저장하기 위해 확보한 메모리 공간 자체 또는 그 메모리 공간을 식별하기 위해 붙인 이름을 말한다.</em></strong></p>
+<ol>
+<li>프로그래밍 언어에서 값을 저장하고 참조하는 매커니즘으로, <strong><em>값의 위치를 가르키는 상징적인 이름</em></strong>이다.</li>
+<li>변수는 프로그래밍 언어의 컴파일러 또는 인터프리터에 의해 값이 저장된 메모리 공간의 주소로 치환되어 실행된다. 따라서 개발자가 직접 메모리 주소를 통해 값을 저장하고 참조할 필요가 없고 변수를 통해 안전하게 값에 접근할 수 있다 .<ol>
+<li>컴파일러(compiler)란? = 특정 프로그래밍 언어로 쓰여있는 문서를 다른 프로그래밍 언어로 옮기는 프로그램.</li>
+<li>인터프리터(interpreter)란? = 프로그래밍 언어의 소스 코드를 바로 실행하는 컴퓨터 프로그램 또는 환경.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><pre><code class="javascript">// 변수는 하나의 값을 저장하기 위한 수단
+var userId = 1;
+var userName = &#39;Lee&#39;;
+
+// 객체나 배열 같은 자료구조를 사용하면 여러개의 값을 하나로 그룹화해서 하나의 값처럼 사용할 수 있다.
+var user = &#123;id:1, name: &#39;Lee&#39;&#125;;
+
+var users = &#123;
+  &#123;id:1, name: &#39;Lee&#39;&#125;
+    &#123;id:2, name: &#39;Kim&#39;&#125;
+&#125;</code></pre>
+<ol>
+<li>객체(object)란? = 키(key)와 값(value)로 구성된 프로퍼티(property)들의 집합이다.<ol>
+<li>프로퍼티의 값으로 자바스크립트에서 사용할 수 있는 모든 값을 사용할 수 있다.</li>
+<li>자바스크립트의 함수는 일급 객체이므로 값으로 취급할 수 있다, 따라서 프로퍼티 값으로 함수가 사용 가능하며 <strong><em>함수일 경우</em></strong> 일반 함수와 구분하기 위해 <strong><em>메소드</em></strong>라고 부른다</li>
+<li>이와 같이 객체는 데이터를 의미하는 프로퍼티(property)와 데이터를 참조하고 조작할 수 있는 동작(bejavior)을 의미하는 메소드(method)로 구성된 집합 이다, 객체는 데이터(프로퍼티)와 그 데이터에 관려되는 동작(메소드)를 모두 포함할 수 있기 때문에 데이터와 동작을 하나의 단위로 구조화 할 수있어 유용하다.</li>
+</ol>
+</li>
+<li>자료구조란? = 컴퓨터 과학에서 효율적인 접근 및 수정을 가능케 하는 자료의 조직, 관리,저장을 의미한다.<ol>
+<li>데이터 값의 모임, 데이터 간의 관계, 데이터에 적용할 수 있는 함수나 명령을 의미</li>
+<li>효과적으로 설계된 자료구조는 실행시간 혹은 메모리 용량과 같은 자원을 최소한으로 사용하면서 연산을 수행하도록 해준다.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>변수에 값을 저장하는 것을 <strong><em>할당(assignment,대입,저장)</em></strong>이라고 하고, 변수에 저장된 값을 읽어들이는 것을 <strong><em>참조(reference)</em></strong>라고 한다.</p>
+</li>
+</ol>
+<h3 id="식별자"><a href="#식별자" class="headerlink" title="식별자"></a>식별자</h3><ol>
+<li>변수 이름을 식별자(Identifier)라고도 한다.<strong><em>식별자란 어떤 값을 구별해서 식별할 수 있는 고유한 이름</em></strong> 을 말한다.</li>
+<li><strong><em>식별자는 값이 아니라 메모리 주소를 기억하고 있다</em></strong>.</li>
+<li>메모리 상에 존재하는 어떤 값을 식별할 수 있는 이름은 모두 식별자 라고 부른다.</li>
+<li>변수,함수, 클래스 등의 이름과 같은 식별자는 네이밍규칙을 준수해야하며 , <strong><em>선언(declaration)</em></strong>에 의해 자바스크립트 엔진에 식별자의 존재를 알린다.</li>
+</ol>
+<h3 id="변수-선언"><a href="#변수-선언" class="headerlink" title="변수 선언"></a>변수 선언</h3><ol>
+<li>변수 선언(variable declaration)이란 변수를 생성하는 것을 말한다.</li>
+<li>값을 저장하기 위한 메모리 공간을 확보(allocate)하고 변수 이름과 확보된 메모리 공간의 주소를 연결(name binding)해서 값을 저장할 수 있게 준비하는 것이다.</li>
+<li>변수 선언에 의해 확보된 메모리 공간은 확보가 해제(release)되기 전까지는 누구도 확보된 메모리 공간을 사용할 수 없도록 보호된다.</li>
+<li>변수를 선언 할 땐 <strong><em>var, let, const</em></strong> 키워드를 사용한다<ol>
+<li>var의 단점중 가장 대표적인 것이 블록 레벨 스코프를 지원하지 않고 함수 레벨 스코프를 지원한다는 것이다.</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/13/8%E1%84%8B%E1%85%AF%E1%86%AF%2013%E1%84%8B%E1%85%B5%E1%86%AF%20TIL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/13/8%E1%84%8B%E1%85%AF%E1%86%AF%2013%E1%84%8B%E1%85%B5%E1%86%AF%20TIL/" class="post-title-link" itemprop="url">8월 13일 TIL</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-08-13 21:49:59" itemprop="dateCreated datePublished" datetime="2020-08-13T21:49:59+09:00">2020-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-08-14 21:52:59" itemprop="dateModified" datetime="2020-08-14T21:52:59+09:00">2020-08-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Git을-통한-버전관리-및-협업"><a href="#Git을-통한-버전관리-및-협업" class="headerlink" title="Git을 통한 버전관리 및 협업"></a>Git을 통한 버전관리 및 협업</h2><ol>
+<li>Gitgub url( <a href="https://github.com/youngseoim/volvo.git">https://github.com/youngseoim/volvo.git</a> )</li>
+<li>결과물 <ol>
+<li><img width="1438" alt="스크린샷 2020-08-14 오전 11 20 16" src="https://user-images.githubusercontent.com/68043654/90207116-7024c880-de20-11ea-87b4-686c2e162cc0.png">
+<img width="1438" alt="스크린샷 2020-08-14 오전 11 20 27" src="https://user-images.githubusercontent.com/68043654/90207119-7155f580-de20-11ea-8108-e1cc5ef40c97.png">
+
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="그동안-틀린-문제-오답노트"><a href="#그동안-틀린-문제-오답노트" class="headerlink" title="그동안 틀린 문제 오답노트"></a>그동안 틀린 문제 오답노트</h3><ol>
+<li><p>Calc 함수</p>
+<ol>
+<li>더하기와 빼기를 할 땐 calc(100% - 15px) 과 같이 한칸씩 띄어쓰기를 해야한다</li>
+<li>나누기 곱하기는 공백이 없어도 가능하지만 가독성을 위해 앞뒤에 공백 사용을 권장한다.</li>
+</ol>
+</li>
+<li><p>확장 가능한 마크업 언어 XML(eXtensible Markup Language) </p>
+<ol>
+<li><p>출처 : <a target="_blank" rel="noopener" href="https://m.blog.naver.com/PostView.nhn?blogId=web4click&amp;logNo=110158049950&amp;proxyReferer=https://www.google.com/">https://m.blog.naver.com/PostView.nhn?blogId=web4click&amp;logNo=110158049950&amp;proxyReferer=https:%2F%2Fwww.google.com%2F</a></p>
+</li>
+<li><p><strong>1998년 XML(eXtensible Markup Language, 확장 가능 마크업 언어)</strong> W3C에서 다른 특수 목적의 마크업 언어를 정의하기 위한 언어. 마크업정보를 정의하기 위한 또 다른 마크업언어인 SGML은 매우 복잡한 구조로 웹상에서 데이터 교환에 이용되지 못하고 사용하기 쉬운 HTML을 사용하게 되어 성공을 거두었지만 HTML은 콘텐츠를 화면상에 보여줄 것에만 안내를 해 줄 뿐 정보를 제공를 제공하지 못하는 문제가 있어 XML 이 등장하였고 또한 XML은 연결된 시스템끼리 데이터를 쉽게 주고 받을 수 있게 해 주었었습니다.<br>하이퍼 텍스트를 통해 표현하는 HTML과 달리 마크업 언어를 만들 수 있도록 규칙을 정의하는 SGML과 SML은 메타 언어라고 부르기도 합니다.</p>
+<p>2000년 XHTML 1.0(Extensible Hypertext Markup Language, 확장 가능 하이퍼텍스트 마크업 언어) W3C의 권고안<br>HTML과 동등한 표현 능력을 지닌 마크업 언어로, HTML보다 엄격한 문법을 가진 언어입니다. HTML과는 별개의 분리된 표준으로 XML의 응용이다. XHTML 문서는 하나의 XML 문서로서 문법적으로 정확해야 하기 때문에, HTML과 달리 표준 XML 라이브러리를 이용한 자동화된 처리가 가능하합니다.</p>
+</li>
+</ol>
+</li>
+<li><p>문제 = position : absolute의 기준을 말하고, 기준이 없다면 어떻게되는지 설명하시오 (설명 부족으로 반만 정답으로 인정)</p>
+<ol>
+<li>내가 쓴 답 = offset 값이 있을 경우 부모요소로 부터 배치된다, 부모요소 중에 static이 아닌 요소를 찾아가고 offset값이 없을 경우 가장 가까운 부모요소 아래로 배치된다</li>
+<li>빠진 내용 = offset 값이 없을 경우 원래 있어야할 <strong>nomal flow</strong>에 따른 위치에 있게 된다 </li>
+</ol>
+</li>
+<li></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/13/WORKSOUT%20clone%20(200710%20~%20200715)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -497,7 +731,7 @@
 <p>–&gt; Git을 이용해서 효율적으로 버젼관리</p>
 <h3 id="Git-명령어"><a href="#Git-명령어" class="headerlink" title="Git 명령어"></a>Git 명령어</h3><h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><ul>
 <li>사용자 이름 등록 : git config –global user.name “John Doe”</li>
-<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#106;&#111;&#x68;&#110;&#x64;&#111;&#x65;&#64;&#x65;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;">&#106;&#111;&#x68;&#110;&#x64;&#111;&#x65;&#64;&#x65;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;</a></li>
+<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#x6a;&#111;&#x68;&#110;&#100;&#111;&#101;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#x6f;&#109;">&#x6a;&#111;&#x68;&#110;&#100;&#111;&#101;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#x6f;&#109;</a></li>
 <li>Git의 설정 정보 조회 : git config –list</li>
 <li>–global 옵션을 주면 전역 속성을 적용시킨다</li>
 </ul>
@@ -1947,7 +2181,7 @@ align-items: center;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
