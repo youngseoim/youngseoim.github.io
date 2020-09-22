@@ -148,6 +148,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/28/Unicode%20and%20Aski%20code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/28/Unicode%20and%20Aski%20code/" class="post-title-link" itemprop="url">Unicode and Aski code</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-28 16:40:13 / Updated at: 17:57:58" itemprop="dateCreated datePublished" datetime="2020-08-28T16:40:13+09:00">2020-08-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="아스키-코드"><a href="#아스키-코드" class="headerlink" title="아스키 코드"></a>아스키 코드</h2><img width="720" alt="스크린샷 2020-08-28 오후 5 49 25" src="https://user-images.githubusercontent.com/68043654/91541328-25926880-e957-11ea-9d1c-dbcaa3d44f29.png">
+
+
+
+<ol>
+<li>아스키 코드는 미국 <a target="_blank" rel="noopener" href="https://namu.wiki/w/ANSI">ANSI</a>에서 표준화한 정보교환용 7비트 부호체계이다. 000(0x00)부터 127(0x7F)까지 총 128개의 부호가 사용된다. 이는 영문 키보드로 입력할 수 있는 모든 기호들이 할당되어 있는 부호 체계이며, 매우 단순하고 간단하기 때문에 어느 시스템에서도 적용가능하다는 장점이 있으나, 2바이트 이상의 코드를 표현할 수 없기 때문에 국제표준의 위상은 <a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C">유니코드</a>에게 넘어갔다. text only 형태의 게시판에서는 [아스키 아트](<a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4">https://namu.wiki/w/아스키</a> 아트)라는 이름으로 자주 사용된다.</li>
+<li>1바이트를 구성하는 8비트 중에서 7비트만 쓰도록 제정된 이유는, 나머지 1비트를 통신 에러 검출을 위해 사용하기 때문이었다. Parity Bit라고 해서, 7개의 비트 중 1의 개수가 홀수면 1, 짝수면 0으로 하는 식의 패리티 비트를 붙여서, 전송 도중 신호가 변질된 것을 수신측에서 검출해낼 확률을 높인 것. 원시적인 CRC 체크섬이라고 할 수 있지만 당연히 이런 체크에 검출되지 않는 신호 에러도 얼마든지 생길 수 있고 현재는 더 이상 쓰이지 않는다. 현재는 8비트 문자 인코딩에서는 그냥 맨 앞 비트에 0을 붙이고 이어서 7비트가 이어지는 식의 인코딩이 일반적이다.</li>
+<li><img width="353" alt="스크린샷 2020-08-28 오후 5 50 49" src="https://user-images.githubusercontent.com/68043654/91541441-57a3ca80-e957-11ea-95d2-df1dd1cb11dd.png"></li>
+<li>위의 표는 아스키 코드 중 제어 문자와 확장 아스키 코드를 제외한 부호(영문 자판에 사용되는 부호)를 정리한 것이다.<ol>
+<li>흔히 이 목록에 있는 문자들을 <a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%98%81%EC%88%AB%EC%9E%90">영숫자</a>라 부른다. 좁은 의미로는 숫자 10개(0<del>9, 0x30 ~ 0x39), 대문자 26개(A</del>Z, 0x41 ~ 0x5A), 소문자 26개(a~z, 0x61 ~ 0x7A) 해서 총 62개의 문자를 영숫자라 부르고, 넓은 의미로는 이 목록의 문자들을 모두 포괄한다.</li>
+<li>한편, 92번은 EUC-KR에서는 ₩, Shift-JIS에서는 ¥로 표시된다</li>
+</ol>
+</li>
+</ol>
+<h2 id="유니-코드와의-호환성"><a href="#유니-코드와의-호환성" class="headerlink" title="유니 코드와의 호환성"></a>유니 코드와의 호환성</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://namu.wiki/w/UTF-8">UTF-8</a>의 경우 ASCII 영역은 그대로 <strong>1바이트를</strong> 사용하기 때문에 호환이 된다. 반대로 말하자면 UTF-8 문서라도 ASCII 영역에 해당하는 문자만 적혀 있고 <a target="_blank" rel="noopener" href="https://namu.wiki/w/BOM">BOM</a>까지 없다면 그냥 ASCII 문서와 다를 게 없다.</p>
+<p>하지만 <a target="_blank" rel="noopener" href="https://namu.wiki/w/UTF-16">UTF-16</a>은 2바이트에서 시작하기 때문에 서로 호환이 되지 않는다. 이 때문에 UTF-16에서 ASCII 문자를 나타낼 때는 앞에 <code>0x00</code>이 붙는다. 예를 들어 A라는 글자를 표현하려면, ASCII나 UTF-8에서는 <code>0x41</code>이라고만 표현하면 되지만, UTF-16에서는 <code>0x0041</code>로 표현해야 한다. 이를 무시하고 1바이트로만 표현하면 앞뒤의 바이트가 묶여서 전혀 다른 문자가 튀어나온다. 반대로 UTF-16으로 작성된 문서를 ASCII로 읽으면 ASCII 영역의 문자열들이 한글자 한글자 띄어쓰기를 해놓은 것처럼 띄엄띄엄 표시되는 것을 알 수 있는데, 이 역시 앞뒤에 붙은 <code>0x00</code>이 따로 해석돼서 발생하는 현상이다.</p>
+<ul>
+<li>예시: ABCD<ul>
+<li>ASCII: <code>41 42 43 44</code></li>
+<li>UTF-16LE: <code>41-00 42-00 43-00 44-00</code></li>
+<li>UTF-16BE: <code>00-41 00-42 00-43 00-44</code></li>
+<li>ASCII→UTF-16LE: <code>42-41 44-43</code> / 䉁䑃</li>
+<li>ASCII→UTF-16BE: <code>41-42 43-44</code> / 䅂䍄</li>
+<li>UTF-16LE→ASCII: <code>41 00 42 00 43 00 44 00</code> / A<code>(null)</code>B<code>(null)</code>C<code>(null)</code>D<code>(null)</code>[[13]](<a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4">https://namu.wiki/w/아스키</a> 코드#fn-13)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>   유니코드의 첫 256글자(U+0000 ~ U+00FF)는 확장 ASCII 코드 중 하나인 ISO/IEC 8859-1을 그대로 차용한 것이다.</p>
+<h2 id="유니코드-란"><a href="#유니코드-란" class="headerlink" title="유니코드 란"></a>유니코드 란</h2><ol>
+<li><p><strong>유니코드</strong>(Unicode)는 전 세계의 모든 문자를 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0">컴퓨터</a>에서 일관되게 표현하고 다룰 수 있도록 설계된 산업 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80">표준</a>이며, 유니코드 협회(Unicode Consortium)가 제정한다. 또한 이 표준에는 ISO 10646 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%A7%91%ED%95%A9">문자 집합</a>, <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%9D%B8%EC%BD%94%EB%94%A9">문자 인코딩</a>, 문자 정보 데이터베이스, 문자들을 다루기 위한 알고리즘 등을 포함하고 있다.</p>
+<p>또한 유니코드의 목적은 현존하는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%9D%B8%EC%BD%94%EB%94%A9">문자 인코딩</a> 방법들을 모두 유니코드로 교체하려는 것이다. 기존의 인코딩들은 그 규모나 범위 면에서 한정되어 있고, 다국어 환경에서는 서로 호환되지 않는 문제점이 있었다. 유니코드가 다양한 문자 집합들을 통합하는 데 성공하면서 유니코드는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4">컴퓨터 소프트웨어</a>의 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EA%B5%AD%EC%A0%9C%ED%99%94%EC%99%80_%EC%A7%80%EC%97%AD%ED%99%94">국제화와 지역화</a>에 널리 사용되게 되었으며, 비교적 최근의 기술인 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/XML">XML</a>, <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_(%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%EC%96%B8%EC%96%B4)">자바</a>, 그리고 최신 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%9A%B4%EC%98%81_%EC%B2%B4%EC%A0%9C">운영 체제</a> 등에서도 지원하고 있다.</p>
+<p>유니코드에서 한국어 발음을 나타날 때는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%98%88%EC%9D%BC_%EB%A1%9C%EB%A7%88%EC%9E%90_%ED%91%9C%EA%B8%B0%EB%B2%95">예일 로마자 표기법</a>의 변형인 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/ISO/TR_11941">ISO/TR 11941</a>을 사용하고 있다.</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/26/Javascript%20TIL%20200826%20(Function)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -828,7 +923,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-14 22:38:28" itemprop="dateModified" datetime="2020-09-14T22:38:28+09:00">2020-09-14</time>
+                <time title="Updated at: 2020-09-22 18:30:49" itemprop="dateModified" datetime="2020-09-22T18:30:49+09:00">2020-09-22</time>
               </span>
 
           
@@ -1829,212 +1924,6 @@ console.log(isNaN(1 + undefined)); // true
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/17/Javascript%20TIL%20200817%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE,%20%E1%84%91%E1%85%AD%E1%84%92%E1%85%A7%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8%E1%84%80%E1%85%AA%20%E1%84%86%E1%85%AE%E1%86%AB)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/17/Javascript%20TIL%20200817%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE,%20%E1%84%91%E1%85%AD%E1%84%92%E1%85%A7%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8%E1%84%80%E1%85%AA%20%E1%84%86%E1%85%AE%E1%86%AB)/" class="post-title-link" itemprop="url">Javascript TIL (variable, expression and statement)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-08-17 20:51:59" itemprop="dateCreated datePublished" datetime="2020-08-17T20:51:59+09:00">2020-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-14 22:45:06" itemprop="dateModified" datetime="2020-09-14T22:45:06+09:00">2020-09-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Javascript-TIL-20-08-17"><a href="#Javascript-TIL-20-08-17" class="headerlink" title="Javascript TIL 20 08 17"></a>Javascript TIL 20 08 17</h1><p>출처:link:<a target="_blank" rel="noopener" href="https://poiemaweb.com/">https://poiemaweb.com</a></p>
-<h3 id="복습"><a href="#복습" class="headerlink" title="복습"></a>복습</h3><p><img src="https://user-images.githubusercontent.com/68043654/90360266-4379e680-e096-11ea-9616-b7be3f844a40.jpg" alt="자바스크립트-2"></p>
-<h3 id="키워드-keyword"><a href="#키워드-keyword" class="headerlink" title="키워드(keyword)"></a>키워드(keyword)</h3><ol>
-<li>키워드는 자바스크립트 코드를 해석하고 실행하는 자바스크립트 엔진이 수행할 동작을 규정한 <strong><em>일종의 명령어</em></strong>다. 자바스크립트 엔진은 <strong><em>키워드를 만나면 자신이 수행해야 할 약속된 동작을 수행한다</em></strong>, 예를 들어, var 키워드를 만나면 자바스크립트 엔진은 뒤에 오는 변수 이름으로 새로운 변수를 선언한다 .</li>
-<li>변수를 선언한 후 <strong><em>변수에 값을 할당하지 않을 경우</em></strong> 빈 공간으로 생각할 수 있으나 자바스크립트 엔진에 의해 <strong><em>undefined</em></strong>라는 값이 암묵적으로 할당되어 <strong><em>초기화</em></strong> 된다 . </li>
-<li>변수 이름을 비롯한 모든 식별자는 실행 컨텍스트에 등록된다, <ol>
-<li>실행 컨텍스트는 자바스크립트 엔진이 소스코드를 평가하고 실행하기 위해 필요한 환경을 제공하고 코드의 실행 결과를 실제로 관리하는 영역이다</li>
-<li>자바스크립트 엔진은 실행 컨텍스트를 통해 식별자와 스코프를 관리한다.</li>
-</ol>
-</li>
-<li><strong><em>var</em></strong> 키워드를 사용한 변수 선언은 <strong><em>선언,초기화 단계가 동시</em></strong>에 진행된다. <ol>
-<li>일반적으로 초기화(initialization)란 변수가 선언된 이후 최초로 값을 할당하는 것을 말한다 . </li>
-<li>var 키워드로 선언한 변수는 undefined로 암묵적인 초기화가 자동수행 된다.</li>
-</ol>
-</li>
-<li>만약 초기화 단계를 거치지 않으면 확보된 메모리 공간에는 이전에 다른 애플리케이션이 사용했던 값이 남아 있을 수 있다. 이러한 값을 쓰레기 값(garbage value)이라고 한다</li>
-<li>따라서 메모리 공간을 확보한 다음 값을 할당하지 않은 상태에서 곧바로 변수 값을 참조하면 쓰레기 값이 나올 수 있다, 자바스크립트의 var 키워드는 암묵적으로 초기화를 수행하므로 이러한 위험으로부터 안전하다.<ol>
-<li>var의 경우 선언과 초기화 단계가 동시에 진행되지만 let은 선언단계와 초기화 단계가 분리되어 진행된다</li>
-<li>const의 경우는 재할당이 금지되기 때문에 선언함과 동시에 값이 할당되어야 한다 그렇기 때문에 초기화가 진행되지 않는다.</li>
-</ol>
-</li>
-</ol>
-<h3 id="변수-선언의-실행-시점과-변수-호이스팅"><a href="#변수-선언의-실행-시점과-변수-호이스팅" class="headerlink" title="변수 선언의 실행 시점과 변수 호이스팅"></a>변수 선언의 실행 시점과 변수 호이스팅</h3><ol>
-<li><img width="471" alt="스크린샷 2020-08-25 오후 7 11 32" src="https://user-images.githubusercontent.com/68043654/91162491-19b06780-e707-11ea-9017-8d7aefec2c75.png">
-</li>
-<li><p>위 예제는 변수 선언문보다 변수를 참조하는 코드가 앞에 있다,자바스크립트는 인터프리터 언어로써 한 줄씩 순차적으로 실행되므로 위의 예제와 같이 실행될경우 선언되기 이전에 코드를 실행했기 때문에 ReferenceError가 발생할 것 처럼 보이지만 실제론 undefined가 출력된다.</p>
-</li>
-<li><p>그 이유는 변수 선언이 소스코드가 한 줄씩 순차적으로 실행되는 시점이 아니라 그 이전 단계에서 먼저 실행되기 때문이다.</p>
-</li>
-<li><p>자바스크립트 엔진은 소스코드를 한 줄씩 순차적으로 실행하기 전에 소스코드의 평가 과정을 거치면서 실행하기 위한 준비를한다</p>
-</li>
-<li><p>이때 자바스크립트 엔진은 변수 선언을 포함한 <strong><em>모든 선언문 (변수 선언문,함수 선언문 등)을 소스 코드에서 찾아내 먼저 실행</em></strong>한다.</p>
-</li>
-<li><p>즉 변수 선언은 어디에 있든 상관 없이 다른 코드보다 먼저 실행한다 </p>
-</li>
-<li><p>이처럼 <strong><em>변수 선언문이 코드의 선두로 끌어 올려진 것처럼 동작하는 자바스크립트 고유의 특징을 변수 호이스팅(Variable hoisting)</em></strong> 이라고 한다.</p>
-</li>
-<li><p>*<strong>사실 호이스팅은 변수 선언 뿐만이 아니라 var, let, const, function, function*, class 키워드를 사용해서 선언하는 모든 식별자(변수, 함수, 클래스 등)는 호이스팅된다. 모든 선언문은 런타임 이전 단계에서 먼저 실행되기 때문이다.*</strong></p>
-</li>
-</ol>
-<h3 id="값의-재할당"><a href="#값의-재할당" class="headerlink" title="값의 재할당"></a>값의 재할당</h3><ol>
-<li><img width="471" alt="스크린샷 2020-08-25 오후 7 12 21" src="https://user-images.githubusercontent.com/68043654/91162559-35b40900-e707-11ea-83f9-c199da27259b.png">
-</li>
-<li><p>재할당은 변수에 저장된 값을 다른 값으로 변경한다, 만약 값을 재할당 할 수 없어서 <strong><em>변수에 저장된 값을 변경할 수 없다면</em></strong> 변수가 아니라 <strong><em>상수(constant)</em></strong>라고 한다</p>
-<ol>
-<li>Const 키워드<ol>
-<li>ES6에서 도입된 const키워드를 사용해 선언한 변수는 재할당이 급지된다, 하지만 const키워드는 반드시 상수만을 위해 사용하지는 않는다.</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>변수에 값을 재할당 하게 되면 이전값이 저장되어 있던 메모리 공간을 지우고 그 메모리 공간에 재할당 된 값을 저장하는것이 아니라 새로운 메모리 공간을 확보하고 그 메모리 공간에 숫자 값을 저장한다.</p>
-<ol>
-<li><img width="673" alt="스크린샷 2020-08-17 오후 4 36 40" src="https://user-images.githubusercontent.com/68043654/90370247-17fff780-e0a8-11ea-9225-6408dbd1bf1d.png"></li>
-<li>현재 score변수의 값은 90이다, 변수의 이전 값인 undefined와 80은 어떤 변수도 값으로 갖고 있지 않고 어떤 식별자와도 연결되어 있지 않기 때문에 더이상 필요하지 않은 값이란 의미다, <strong><em>이러한 불필요한 값들은 가비지 콜렉터에 의해서 자동으로 해제</em></strong> 된다, 단 <strong><em>메모리에서 언제 해제될지는 예측할 수 없다.</em></strong></li>
-<li>가비지 콜렉터(garbage collector)<ol>
-<li>가비지 콜렉터는 애플리케이션이 할당한 메모리 공간을 주기적으로 검사하여 더이상 사용되고 있지 않은 메모리를 해제(relwase)하는 기능을 말한다.</li>
-<li>자바스크립트는 가비지 콜렉터를 내장하고 있는 매니지드 언어로서 가비지 콜렉터를 통해 메모리 누수(memory leak)를 방지한다.</li>
-<li>언매니지드 언어와 매니지드 언어<ol>
-<li>C 언어 같은 언매니지드 언어는 개발자가 명시적으로 메모리를 할당하고 해제하기 위해 malloc()과 free() 같은 저수준(low-level) 메모리 제어 기능을 제공한다. 언매니지드 언어는 메모리 제어를 개발자가 주도할 수 있으므로 개발자의 역량에 따라 최적의 성능을 확보할 수 있지만 그 반대의 경우 치명적 오류를 생산할 가능성도 있다.</li>
-<li>자바스크립트 같은 매니지드 언어는 메모리의 할당 및 해제를 위한 메모리 관리 기능을 언어 차원에서 담당하고 개발자의 직접적인 메모리 제어를 허용하지 않는다. 즉, 개발자가 명시적으로 메모리를 할당하고 해제할 수 없다. 더 이상 사용하지 않는 메모리의 해제는 가비지 콜렉터가 수행하며, 이 또한 개발자가 관여할 수 없다. 매니지드 언어는 개발자의 역량에 의존하는 부분이 상대적으로 작아져 어느 정도 일정한 생산성을 확보할 수 있다는 장점이 있지만 성능 면에서 어느 정도의 손실은 감수할 수밖에 없다.</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="식별자의-네이밍-규칙"><a href="#식별자의-네이밍-규칙" class="headerlink" title="식별자의 네이밍 규칙"></a>식별자의 네이밍 규칙</h3><ol>
-<li><p>특수문자를 제외한 문자, 숫자, 언더스코어(_), 달러 기호($)를 포함할 수 있다.</p>
-</li>
-<li><p>단, 식별자는 특수문자를 제외한 문자, 언더스코어(_), 달러 기호($)로 시작해야 한다, 숫자로 시작할 수 없다.</p>
-</li>
-<li><p>예약어는 식별자로 사용할 수 없다</p>
-<ol>
-<li>예약어(reserved word) = 프로그래밍 언어에서 사용되고 있거나 사용될 예정인 단어를 말한다.<ol>
-<li>await break case catch class const continue debugger default delete do else enum export extends false finally for function if implements* import in Instanceof interface* let* new null package* private* protected* public* return super static* switch this throw true try typeof var void while with yield*</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>네이밍 컨벤션은 하나 이상의 영어 단어로 구성된 식별자를 만들 때 가독성 좋게 단어를 한눈에 구분하기 위해 규정한 명명규칙이다</p>
-<ol>
-<li><img width="438" alt="스크린샷 2020-08-25 오후 7 12 57" src="https://user-images.githubusercontent.com/68043654/91162624-4a909c80-e707-11ea-9608-16175926500d.png">
-</li>
-<li><p>가장 일반적인 방식은 <strong><em>변수나 함수의 이름에는 카멜케이스</em></strong>를 사용하고 <strong><em>생성자 함수, 클래스의 이름에는 파스칼 케이스</em></strong>를 사용하는 것이다.</p>
-</li>
-<li><p>자바스크립트에서는 일반적으로 <strong><em>변수나 함수의 이름에는 카멜 케이스를 사용하고. 생성자 함수, 클래스의 이름에는 파스칼 케이스를 사용한다.</em></strong></p>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="표현식과-문"><a href="#표현식과-문" class="headerlink" title="표현식과 문"></a>표현식과 문</h2><ol>
-<li><p>값</p>
-<ol>
-<li><strong><em>값(value)은 식(표현식,expression)이 평가(evaluate)되어 생성된 결과를 말한다.</em></strong> 평가란 식을 해석해서 값을 생성하거나 참조하는 것을 의미한다</li>
-<li>var sum = 10 + 20;<ol>
-<li>위 변수에 할당되는 것은 10+20이 아니라 10+20이 평가된 결과인 숫자 값 30이다.</li>
-</ol>
-</li>
-<li>값은 다양한 방법으로 생성할 수 있다, 가장 기본적인 방법은 <strong><em>리터럴</em></strong>을 사용하는 것이다.</li>
-</ol>
-</li>
-<li><p>리터럴</p>
-<ol>
-<li><p><strong><em>리터럴(literal)은 사람이 이해할 수 있는 문자 또는 약속된 기호를 사용해 값을 생성하는 표기 방식 (notaion)을</em></strong> 말한다.</p>
-</li>
-<li><p>숫자 리터럴 3은 단순한 아라비아 숫자가 아니라 숫자 리터럴이다, 사람이 이해할 수 있는 <strong><em>아라비아 숫자를 사용해 숫자 리터럴3을 코드에 기술하면</em></strong> 자바스크립트 엔진은 이를 <strong><em>평가</em></strong>해 <strong><em>숫자 값 3을 생성</em></strong>한다.</p>
-</li>
-<li><img width="545" alt="스크린샷 2020-08-17 오후 5 57 52" src="https://user-images.githubusercontent.com/68043654/90377772-6f579500-e0b3-11ea-97dc-e80b12c0889b.png">
-</li>
-<li><p>이처럼 리터럴은 사람이 이해할 수 있는 문자(아라비아 숫자, 알파벳, 한글 등) 또는 미리 약속된 기호로 표기한 <strong><em>코드다</em></strong> </p>
-</li>
-<li><p>자바스크립트 엔진은 코드가 실행되는 시점인 런타임에 리터럴을 평가해 값을 생성한다 즉, <strong><em>리터럴은 값을 생성하기 위해 미리 약속한 표기법</em></strong>이라고 할 수 있다.</p>
-</li>
-<li><p>리터럴을 사용하면 다음과 같이 다양한 종류(data type)의 값을 생성할 수 있다.</p>
-<ol>
-<li><img width="707" alt="스크린샷 2020-08-25 오후 7 14 03" src="https://user-images.githubusercontent.com/68043654/91162734-72800000-e707-11ea-840f-0b59052bf9b2.png">
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>표현식 </p>
-<ol>
-<li><strong><em>표현식(expression)은 값으로 평가될 수 있는 문(statement)이다 즉, 표현식이 평가되면 새로운 값을 생성하거나 기존 값을 참조한다.</em></strong></li>
-<li>리터럴은 값으로 평가, <strong><em>리터럴 = 표현식</em></strong></li>
-<li>이처럼 표현식은 리터럴, 식별자(변수, 함수 등의 이름), 연산자, 함수 호출 등의 조합으로 이뤄질 수 있다. 다음과 같이 다양한 표현식이 있지만 값으로 평가된다는 점에서 모두 동일하다. 즉, <strong><em>값으로 평가되는 문은 모두 표현식이다.</em></strong></li>
-<li>표현식은 값으로 평가된다,  이때 표현식과 표현식이 평가된 값은 동등한 관계(동치equivalent)이다, 1+2 = 3에서 1+2와 3은 동치이다 따라서**<em>표현식은 값처럼 사용할 수 있다**</em></li>
-</ol>
-</li>
-<li><p>문(statement)</p>
-<ol>
-<li><strong><em>프로그램을 구성하는 기본 단위이자 최소 실행 단위</em></strong></li>
-<li>문의 집합이 바로 프로그램이고, 문을 작성하고 순서에 맞게 나열하는 것이 프로그래밍이다  .</li>
-<li>문은 여러 토큰으로 구성된다. <strong>토큰(token)이란 문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소를 의미한다.</strong> 예를 들어, 키워드, 식별자, 연산자, 리터럴, 세미콜론(;)이나 마침표(.) 등의 특수 기호는 문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소이므로 모두 토큰이다.<ol>
-<li><img src="https://poiemaweb.com/assets/fs-images/5-2.png" alt="img"></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2104,7 +1993,7 @@ console.log(isNaN(1 + undefined)); // true
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

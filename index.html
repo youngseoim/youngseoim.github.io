@@ -148,6 +148,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/" class="post-title-link" itemprop="url">Javascript TIL (Function and first-class object)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-22 18:30:59 / Updated at: 18:31:46" itemprop="dateCreated datePublished" datetime="2020-09-22T18:30:59+09:00">2020-09-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="일급-객체"><a href="#일급-객체" class="headerlink" title="일급 객체"></a>일급 객체</h2><ol>
+<li>무명의 리터럴로 생성할 수 있다 즉, 런타임에 생성이 가능하다.</li>
+<li>변수나 자료구조(객체, 배열 등)에 저장할 수 있다.</li>
+<li>함수의 매개변수에게 전달할 수 있다.</li>
+<li>함수의 반환값으로 사용할 수 있다.</li>
+<li>위와 같은 조건을 만족하는 객체를 <strong>일급 객체</strong>라고 하고 자바스크립트의 함수는 위의 조건을 모두 만족하므로 일급 객체이다.</li>
+<li><img width="478" alt="스크린샷 2020-09-22 오후 4 56 44" src="https://user-images.githubusercontent.com/68043654/93857108-09cf7780-fcf5-11ea-845b-f1bd1ce58f0c.png"></li>
+<li>함수가 일급 객체라는 것은 함수를 객체와 동일하게 사용할 수 있다는 의미다. 객체는 값이므로 함수는 값과 동일하게 취급할 수 있다. 따라서 함수는 값을 사용할 수 있는 곳(변수 할당문, 객체의 프로퍼티 값, 배열의 요소, 함수 호출의 인수, 함수 반환문)이라면 어디서든지 리터럴로 정의할 수 있으며 런타임(runtime)에 함수 객체로 평가된다.</li>
+<li>일급 객체로서 함수가 가지는 가장 큰 특징은 일반 객체와 같이 함수의 매개변수에 전달할 수 있으며, 함수의 반환값으로 사용할 수도 있다는 것이다. 이는 함수형 프로그래밍을 가능케하는 자바스크립트의 장점 중에 하나이다.</li>
+<li>함수는 객체이지만 일반 객체와는 차이가 있다 일반 객체는 호출할 수 없지만 함수 객체는 호출할 수 있다 그리고 함수 객체는 일반 객체에는 없는 함수 고유 프로퍼티를 소유한다.</li>
+</ol>
+<h2 id="함수-객체의-프로퍼티"><a href="#함수-객체의-프로퍼티" class="headerlink" title="함수 객체의 프로퍼티"></a>함수 객체의 프로퍼티</h2><ol>
+<li>함수는 객체이다 . 따라서 함수도 프로퍼티를 가질 수 있다. 브라우저 콘솔에서 console.dir 메서드를 사용하여 함수 객체의 내부를 들여다 보자.</li>
+<li><img width="237" alt="스크린샷 2020-09-22 오후 5 02 57" src="https://user-images.githubusercontent.com/68043654/93857659-e6f19300-fcf5-11ea-8e8d-25c91cd05819.png"></li>
+<li>square 함수의 모든 프로퍼티의 프로퍼티 어트리뷰트를 Object.getOwnPropertyDescriptors 메서드로 확인해보면 다음과 같다 </li>
+<li><img width="654" alt="스크린샷 2020-09-22 오후 5 07 43" src="https://user-images.githubusercontent.com/68043654/93858088-92024c80-fcf6-11ea-850b-68826d08cab8.png"></li>
+<li>이처럼 arguments, caller, length, prototype 프로퍼티는 모두 함수 객체의 데이터 프로퍼티다</li>
+<li>이들 프로퍼티는 일반 객체에는 없는 함수 객체 고유의 프로퍼티다. 하지만 __ proto __ 는 접근자 프로퍼티이며, 함수 객체 고유의 프로퍼티가 아니라 Object.prototype 객체의 프로퍼티를 상속받은 것을 알 수 있다.</li>
+<li>Object.prototype 객체의 프로퍼티는 모든 객체가 상속받아 사용할 수 있다. 즉 Object.prototype 객체의 __ proto __ 접근자 프로퍼티는 모든 객체가 사용할 수 있다.</li>
+</ol>
+<h3 id="함수-객체의-프로퍼티-1"><a href="#함수-객체의-프로퍼티-1" class="headerlink" title="함수 객체의 프로퍼티"></a>함수 객체의 프로퍼티</h3><ol>
+<li><h4 id="arguments-프로퍼티"><a href="#arguments-프로퍼티" class="headerlink" title="arguments 프로퍼티"></a>arguments 프로퍼티</h4><ol>
+<li><p>함수 객체의 arguments 프로퍼티 값은 arguments 객체다 </p>
+</li>
+<li><p>Arguments 객체는 함수 호출 시 전달된 인수(arguments)들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체이며, 함수 내부에서 지역 변수처럼 사용된다. 즉 , 함수 외부에서는 참조할 수 없다 .</p>
+</li>
+<li><p>함수 객체의 arguments 프로퍼티는 현재 일부 브라우저에서 지원하고 있지만 ES3부터 표준에서 폐지되었다. 따라서 function.arguments와 같은 사용법은 권장되지 않으며 함수 내부에서 지역 변수처럼 사용할 수 있는 arguments 객체를 참조하도록 한다 .</p>
+</li>
+<li><p>자바스크립트는 함수의 매개변수와 인수의 개수가 일치하는지 확인하지 않는다 따라서 함수 호출 시 매개변수 개수만큼 인수를 전달하지 않아도 에러가 발생하지 않는다 .</p>
+</li>
+<li><p>함수를 정의할 때 선언한 매개변수는 함수 몸체 내부에서 변수와 동일하게 취급된다 즉, 함수가 호출되면 함수 몸체 내에서 암묵적으로 매개변수가 선언되고 undefined로 초기화된 이후 인수 가 할당된다.</p>
+</li>
+<li><p>선언된 매개변수의 개수보다 인수를 적게 전달했을 경우 인수가 전달되지 않은 매개변수는 undefined로 초기화된 상태를 유지한다. </p>
+</li>
+<li><p>매개변수의 개수보다 인수를 더 많이 전달한 경우 초과된 인수는 무시된다.</p>
+</li>
+<li><p>초과된 인수는 그냥 버려지는 것이아니고 모든 인수는 암묵적으로 arguments 객체의 프로퍼티로 보관된다 .</p>
+</li>
+<li><img width="404" alt="스크린샷 2020-09-22 오후 5 32 20" src="https://user-images.githubusercontent.com/68043654/93860771-84e75c80-fcfa-11ea-8e1a-ddd8ec81e7f9.png">
+</li>
+<li><p>arguments 객체는 인수를 프로퍼티 값으로 소유하며 프로퍼티 키는 인수의 순서를 나타낸다 arguments 객체의 callee 프로퍼티는 호출되어 arguments 객체를 생성한 함수 즉, 함수 자신을 가리키고 argumetns 객체의 length 프로퍼티는 인수의 개수를 가리킨다.</p>
+</li>
+<li><p>arguments 객체의 Symbol(Symbol.iterator) 프로퍼티</p>
+<p>arguments 객체의 Symbol(Symbol.iterator) 프로퍼티는 arguments 객체를 순회 가능한 자료구조인 이터러블(iterable)로 만들기 위한 프로퍼티다. Symbol.iterator를 프로퍼티 키로 사용한 메서드를 구현하는 것에 의해 이터러블이 된다</p>
+</li>
+<li><p>선언된 매개 변수의 개수와 함수를 호출할 때 전달하는 인수의 개수를 확인하지 않는 자바스크립트의 특성 때문에 함수가 호출되면 인수 개수를 확인하고 이에 따라 함수의 동작을 달리 정의할 필요가 있을 수 있다 이때 유용하게 사용되는 것이 arguments 객체다.</p>
+</li>
+<li><p>argumetns 객체는 매개변수 개수를 확정할 수 없는 <strong>가변 인자 함수</strong>를 구현할 때 유용하다.</p>
+</li>
+<li><img width="616" alt="스크린샷 2020-09-22 오후 6 04 38" src="https://user-images.githubusercontent.com/68043654/93863498-8581f200-fcfe-11ea-9cad-981670fc35d9.png">
+</li>
+<li><p>Arguments 객체는 배열 형태로 인자 정보를 담고 있지만 실제 배열이 아닌 유사 배열 객체(array-like object)다.</p>
+</li>
+<li><p>유사 배열 객체란 length 프로퍼티를 가진 객체로 for 문으로 순회할 수 있는 객체를 말한다.</p>
+</li>
+<li><p>유사배열 객체와 이터러블</p>
+<ol>
+<li>ES6에서 도입된 [이터레이션 프로토콜]을 준수하면 순회 가능한 자료구조인 이터러블이 된다. 이터러블의 개념이 없었던 ES5에서 arguments 객체는 유사 배열 객체로 구분되었다. 하지만 이터러블이 도입된 ES6부터 arguments 객체는 유사 배열 객체이면서 동시에 이터러블이다.</li>
+</ol>
+</li>
+<li><p>유사 배열 객체는 배열이 아니므로 배열 메서드를 사용할 경우 에러가 발생한다 따라서 배열 메서드를 사용하려면 Function.prototype.call, Function.prototype.apply를 사용해 간접 호출해야 하는 번거로움이 있다.</p>
+</li>
+<li><img width="500" alt="스크린샷 2020-09-22 오후 6 11 38" src="https://user-images.githubusercontent.com/68043654/93864210-7fd8dc00-fcff-11ea-9ddc-29480560f3c0.png">
+</li>
+<li><p>이러한 번거로움을 해결하기 위해 ES6에서는 Rest 파라미터를 도입했다</p>
+</li>
+<li><img width="500" alt="스크린샷 2020-09-22 오후 6 13 55" src="https://user-images.githubusercontent.com/68043654/93864408-d1816680-fcff-11ea-8cef-ee9a79db560f.png">
+</li>
+<li><p>ES6 Rest 파라미터의 도입으로 모던 자바스크립트에서는 arguments 객체의 중요성이 이전 같지는 않지만 언제나 ES6만 사용하지는 않을 수 있기 때문에 알아둘 필요가 있다.</p>
+</li>
+</ol>
+</li>
+<li><h3 id="Length-프로퍼티"><a href="#Length-프로퍼티" class="headerlink" title="Length 프로퍼티"></a>Length 프로퍼티</h3><ol>
+<li>함수 객체의 length 프로퍼티는 함수를 정의할 때 선언한 매개변수의 개수를 가리킨다.</li>
+<li><img width="253" alt="스크린샷 2020-09-22 오후 6 18 29" src="https://user-images.githubusercontent.com/68043654/93864858-74d27b80-fd00-11ea-8ec0-4c3d59566dc4.png"></li>
+<li>arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티의 값은 다를 수 있으므로 주의해야 한다. arguments 객체의 length 프로퍼티는 인자 (arguments)의 개수를 가리키고 함수 객체의 length 프로퍼티는 매개변수(parameter)의 개수를 가리킨다.</li>
+</ol>
+</li>
+<li><h3 id="name-프로퍼티"><a href="#name-프로퍼티" class="headerlink" title="name 프로퍼티"></a>name 프로퍼티</h3><ol>
+<li>함수 객체의 name 프로퍼티는 함수 이름을 나타낸다 . name 프로퍼티는 ES6 이전까지는 비표준이었다가 ES6에서 정식 표준이 되었다</li>
+<li>name 프로퍼티는 ES5 와 ES6에서 동작을 달리하므로 주의해야한다 <ol>
+<li>익명 함수 표현식의 경우 ES5에서 name 프로퍼티는 빈 문자열을 값으로 갖는다 하지만 ES6에서는 함수 객체를 가리키는 식별자를 값으로 갖는다 .</li>
+<li><img width="415" alt="스크린샷 2020-09-22 오후 6 23 07" src="https://user-images.githubusercontent.com/68043654/93865320-1a85ea80-fd01-11ea-85b9-c6d5a520e5ec.png"></li>
+<li>함수 이름과 함수 객체를 가리키는 식별자는 의미가 다르다는 것을 잊지 말아야 한다 함수를 호출할 때는 함수 이름이 아닌 함수 객체를 가리키는 식별자로 호출한다 .</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="__ proto __ 접근자 프로퍼티"></a>__ proto __ 접근자 프로퍼티</h3><ol>
+<li>모든 객체는 [[prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다.</li>
+<li>__ proto __ 프로퍼티는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다 내부 슬롯에는 직접 접근할 수 없고 간접적인 방법을 제공하는 경우에 한하여 접근할 수 있다. [[prototype]] 내부 슬롯에도 직접 접근할 수 없으며 __ proto __ 접근자 프로퍼티를 통해 간접적으로 프로토타입 객체에 접근할 수 있다.</li>
+<li><img width="565" alt="스크린샷 2020-09-22 오후 6 26 25" src="https://user-images.githubusercontent.com/68043654/93865650-9122e800-fd01-11ea-8539-a909009b5c94.png"></li>
+<li>hasOwnProperty 메서드는 이름에서 알 수 있듯이 인수로 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.</li>
+</ol>
+</li>
+<li><h3 id="prototype-프로퍼티"><a href="#prototype-프로퍼티" class="headerlink" title="prototype 프로퍼티"></a>prototype 프로퍼티</h3><ol>
+<li>Prototype 프로퍼티는 생성자 함수로 호출할 수 있는 함수 객체, 즉 constructor만이 소유하는 프로퍼티다 일반 객체와 생성자 함수로 호출할 수 없는 non-constructor에는 prototype 프로퍼티가 없다.</li>
+<li><img width="420" alt="스크린샷 2020-09-22 오후 6 28 40" src="https://user-images.githubusercontent.com/68043654/93865873-e19a4580-fd01-11ea-8523-f177e5094f57.png"></li>
+<li>prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 호출될 때 생성자 함수가 생성할 인스턴스의 프로토타입 객체를 가리킨다.</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%2020200921%2017%E1%84%80%E1%85%A1%E1%86%BC(%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A6%20%E1%84%8B%E1%85%B4%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1792,101 +1952,6 @@ console.log(person); // &#123;name: &quot;Lee&quot;, address: &#123;city: &quot;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/28/Unicode%20and%20Aski%20code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/28/Unicode%20and%20Aski%20code/" class="post-title-link" itemprop="url">Unicode and Aski code</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-28 16:40:13 / Updated at: 17:57:58" itemprop="dateCreated datePublished" datetime="2020-08-28T16:40:13+09:00">2020-08-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="아스키-코드"><a href="#아스키-코드" class="headerlink" title="아스키 코드"></a>아스키 코드</h2><img width="720" alt="스크린샷 2020-08-28 오후 5 49 25" src="https://user-images.githubusercontent.com/68043654/91541328-25926880-e957-11ea-9d1c-dbcaa3d44f29.png">
-
-
-
-<ol>
-<li>아스키 코드는 미국 <a target="_blank" rel="noopener" href="https://namu.wiki/w/ANSI">ANSI</a>에서 표준화한 정보교환용 7비트 부호체계이다. 000(0x00)부터 127(0x7F)까지 총 128개의 부호가 사용된다. 이는 영문 키보드로 입력할 수 있는 모든 기호들이 할당되어 있는 부호 체계이며, 매우 단순하고 간단하기 때문에 어느 시스템에서도 적용가능하다는 장점이 있으나, 2바이트 이상의 코드를 표현할 수 없기 때문에 국제표준의 위상은 <a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C">유니코드</a>에게 넘어갔다. text only 형태의 게시판에서는 [아스키 아트](<a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4">https://namu.wiki/w/아스키</a> 아트)라는 이름으로 자주 사용된다.</li>
-<li>1바이트를 구성하는 8비트 중에서 7비트만 쓰도록 제정된 이유는, 나머지 1비트를 통신 에러 검출을 위해 사용하기 때문이었다. Parity Bit라고 해서, 7개의 비트 중 1의 개수가 홀수면 1, 짝수면 0으로 하는 식의 패리티 비트를 붙여서, 전송 도중 신호가 변질된 것을 수신측에서 검출해낼 확률을 높인 것. 원시적인 CRC 체크섬이라고 할 수 있지만 당연히 이런 체크에 검출되지 않는 신호 에러도 얼마든지 생길 수 있고 현재는 더 이상 쓰이지 않는다. 현재는 8비트 문자 인코딩에서는 그냥 맨 앞 비트에 0을 붙이고 이어서 7비트가 이어지는 식의 인코딩이 일반적이다.</li>
-<li><img width="353" alt="스크린샷 2020-08-28 오후 5 50 49" src="https://user-images.githubusercontent.com/68043654/91541441-57a3ca80-e957-11ea-95d2-df1dd1cb11dd.png"></li>
-<li>위의 표는 아스키 코드 중 제어 문자와 확장 아스키 코드를 제외한 부호(영문 자판에 사용되는 부호)를 정리한 것이다.<ol>
-<li>흔히 이 목록에 있는 문자들을 <a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%98%81%EC%88%AB%EC%9E%90">영숫자</a>라 부른다. 좁은 의미로는 숫자 10개(0<del>9, 0x30 ~ 0x39), 대문자 26개(A</del>Z, 0x41 ~ 0x5A), 소문자 26개(a~z, 0x61 ~ 0x7A) 해서 총 62개의 문자를 영숫자라 부르고, 넓은 의미로는 이 목록의 문자들을 모두 포괄한다.</li>
-<li>한편, 92번은 EUC-KR에서는 ₩, Shift-JIS에서는 ¥로 표시된다</li>
-</ol>
-</li>
-</ol>
-<h2 id="유니-코드와의-호환성"><a href="#유니-코드와의-호환성" class="headerlink" title="유니 코드와의 호환성"></a>유니 코드와의 호환성</h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://namu.wiki/w/UTF-8">UTF-8</a>의 경우 ASCII 영역은 그대로 <strong>1바이트를</strong> 사용하기 때문에 호환이 된다. 반대로 말하자면 UTF-8 문서라도 ASCII 영역에 해당하는 문자만 적혀 있고 <a target="_blank" rel="noopener" href="https://namu.wiki/w/BOM">BOM</a>까지 없다면 그냥 ASCII 문서와 다를 게 없다.</p>
-<p>하지만 <a target="_blank" rel="noopener" href="https://namu.wiki/w/UTF-16">UTF-16</a>은 2바이트에서 시작하기 때문에 서로 호환이 되지 않는다. 이 때문에 UTF-16에서 ASCII 문자를 나타낼 때는 앞에 <code>0x00</code>이 붙는다. 예를 들어 A라는 글자를 표현하려면, ASCII나 UTF-8에서는 <code>0x41</code>이라고만 표현하면 되지만, UTF-16에서는 <code>0x0041</code>로 표현해야 한다. 이를 무시하고 1바이트로만 표현하면 앞뒤의 바이트가 묶여서 전혀 다른 문자가 튀어나온다. 반대로 UTF-16으로 작성된 문서를 ASCII로 읽으면 ASCII 영역의 문자열들이 한글자 한글자 띄어쓰기를 해놓은 것처럼 띄엄띄엄 표시되는 것을 알 수 있는데, 이 역시 앞뒤에 붙은 <code>0x00</code>이 따로 해석돼서 발생하는 현상이다.</p>
-<ul>
-<li>예시: ABCD<ul>
-<li>ASCII: <code>41 42 43 44</code></li>
-<li>UTF-16LE: <code>41-00 42-00 43-00 44-00</code></li>
-<li>UTF-16BE: <code>00-41 00-42 00-43 00-44</code></li>
-<li>ASCII→UTF-16LE: <code>42-41 44-43</code> / 䉁䑃</li>
-<li>ASCII→UTF-16BE: <code>41-42 43-44</code> / 䅂䍄</li>
-<li>UTF-16LE→ASCII: <code>41 00 42 00 43 00 44 00</code> / A<code>(null)</code>B<code>(null)</code>C<code>(null)</code>D<code>(null)</code>[[13]](<a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4">https://namu.wiki/w/아스키</a> 코드#fn-13)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>   유니코드의 첫 256글자(U+0000 ~ U+00FF)는 확장 ASCII 코드 중 하나인 ISO/IEC 8859-1을 그대로 차용한 것이다.</p>
-<h2 id="유니코드-란"><a href="#유니코드-란" class="headerlink" title="유니코드 란"></a>유니코드 란</h2><ol>
-<li><p><strong>유니코드</strong>(Unicode)는 전 세계의 모든 문자를 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0">컴퓨터</a>에서 일관되게 표현하고 다룰 수 있도록 설계된 산업 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80">표준</a>이며, 유니코드 협회(Unicode Consortium)가 제정한다. 또한 이 표준에는 ISO 10646 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%A7%91%ED%95%A9">문자 집합</a>, <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%9D%B8%EC%BD%94%EB%94%A9">문자 인코딩</a>, 문자 정보 데이터베이스, 문자들을 다루기 위한 알고리즘 등을 포함하고 있다.</p>
-<p>또한 유니코드의 목적은 현존하는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%9D%B8%EC%BD%94%EB%94%A9">문자 인코딩</a> 방법들을 모두 유니코드로 교체하려는 것이다. 기존의 인코딩들은 그 규모나 범위 면에서 한정되어 있고, 다국어 환경에서는 서로 호환되지 않는 문제점이 있었다. 유니코드가 다양한 문자 집합들을 통합하는 데 성공하면서 유니코드는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4">컴퓨터 소프트웨어</a>의 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EA%B5%AD%EC%A0%9C%ED%99%94%EC%99%80_%EC%A7%80%EC%97%AD%ED%99%94">국제화와 지역화</a>에 널리 사용되게 되었으며, 비교적 최근의 기술인 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/XML">XML</a>, <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_(%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%EC%96%B8%EC%96%B4)">자바</a>, 그리고 최신 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%9A%B4%EC%98%81_%EC%B2%B4%EC%A0%9C">운영 체제</a> 등에서도 지원하고 있다.</p>
-<p>유니코드에서 한국어 발음을 나타날 때는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%98%88%EC%9D%BC_%EB%A1%9C%EB%A7%88%EC%9E%90_%ED%91%9C%EA%B8%B0%EB%B2%95">예일 로마자 표기법</a>의 변형인 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/ISO/TR_11941">ISO/TR 11941</a>을 사용하고 있다.</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1956,7 +2021,7 @@ console.log(person); // &#123;name: &quot;Lee&quot;, address: &#123;city: &quot;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
