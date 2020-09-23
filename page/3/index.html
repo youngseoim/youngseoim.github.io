@@ -148,6 +148,158 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/18/Javascript%20TIL%20200818%20(javascript%20%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A5%E1%86%B8%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A6%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/18/Javascript%20TIL%20200818%20(javascript%20%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A5%E1%86%B8%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A6%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB)/" class="post-title-link" itemprop="url">Javascript TIL (variable, Javascript)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-08-18 21:56:59" itemprop="dateCreated datePublished" datetime="2020-08-18T21:56:59+09:00">2020-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-09-14 22:44:05" itemprop="dateModified" datetime="2020-09-14T22:44:05+09:00">2020-09-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Javascript-TIL-20-08-18"><a href="#Javascript-TIL-20-08-18" class="headerlink" title="Javascript TIL 20 08 18"></a>Javascript TIL 20 08 18</h1><p>출처:link:<a target="_blank" rel="noopener" href="https://poiemaweb.com/block-level-scope">https://poiemaweb.com/block-level-scope</a></p>
+<h3 id="복습"><a href="#복습" class="headerlink" title="복습"></a>복습</h3><h3 id="변수에-선언과-초기화-undefined가-할당되는-시점"><a href="#변수에-선언과-초기화-undefined가-할당되는-시점" class="headerlink" title="변수에 선언과 초기화, undefined가 할당되는 시점"></a>변수에 선언과 초기화, undefined가 할당되는 시점</h3><ol>
+<li>어제 공부한내용은 변수의 선언을 함과 동시에 초기화가 진행되면서 undefined값이 할당된다고 나와있지만 사실은 변수를 선언하고 그 할당된 값을 참조하는 순간에 undefined가 할당된다 , 처음부터 이렇게 설명하면 초보자가 접근하기에 어려울 수 있기 때문에 많은 책에 이부분이 빠져있다.</li>
+</ol>
+<h3 id="키워드-keyword"><a href="#키워드-keyword" class="headerlink" title="키워드 ( keyword)"></a>키워드 ( keyword)</h3><ol>
+<li>자바스크립트 엔진의 명령어를 의미한다</li>
+<li>변수나 식별자는 실행컨텍스트에서 등록된다 <ol>
+<li>실행컨텍스트란 자바스크립트 엔진이 소스코드를 평가하고 실행하는 환경과 그 결과를 관리하는 영역이다</li>
+<li>실행컨텍스트를 통해서 자바스크립트 엔진은 식별자와 스코프를 관리한다 .</li>
+</ol>
+</li>
+</ol>
+<h3 id="var-let-const-초기화를-진행하는-이유와-키워드의-선언-초기화-순서"><a href="#var-let-const-초기화를-진행하는-이유와-키워드의-선언-초기화-순서" class="headerlink" title="var,let,const 초기화를 진행하는 이유와 키워드의 선언,초기화 순서"></a>var,let,const 초기화를 진행하는 이유와 키워드의 선언,초기화 순서</h3><ol>
+<li>이전 애플리케이션의 메모리 값이 존재할 수 있기 때문에 초기화를 진행해준다 .</li>
+<li>var키워드의 경우 런타임이전에 선언과 동시에 초기화를 진행하고 값에 접근하는 순간 undefined가 할당된다 </li>
+<li>Let의 경우 런타임 이전에 선언단계가 시작하고 이후에 초기화가 진행되면서 스코프의 시작지점부 초기화 단계 시작지점 까지 일시적 사각지대가 생겨난다 <ol>
+<li><img src="https://poiemaweb.com/assets/fs-images/15-3.png" alt="img"></li>
+<li>위와 같은 구조이기 때문에 var와 다르게 런타임 이전에 변수를 참조할 경우에 ReferenceError가 뜨면서 호이스팅 현상이 발생하지 않는 것처럼 보인다 </li>
+</ol>
+</li>
+<li>const의 경우 변경할수 없는 값인 상수로 변수의 선언과 동시에 값의 할당이 이루어지기 때문에 초기화단계가 필요없다.</li>
+</ol>
+<h3 id="값을-재할당-할-시-메모리의-변화"><a href="#값을-재할당-할-시-메모리의-변화" class="headerlink" title="값을 재할당 할 시 메모리의 변화"></a>값을 재할당 할 시 메모리의 변화</h3><ol>
+<li>변수 선언 시 초기화를 진행하면서 존재하던 undefined에 새로운 값을 넣어주었을 때</li>
+<li>undefined가 있던 메모리셀이 초기화되면서 새로운 값이 들어가지 않고</li>
+<li>새로운 메모리 셀에 새로운 값이 추가되고 변수는 새로운 값이 추가된 메모리셀의 공간의 주소를 기억한다</li>
+<li>그리고 이전에 존재했던 undefined는 추적하는 변수가 존재하지 않기 때문에 가비지 콜렉터에 의해 메모리가 해제된다<ol>
+<li>단 해제되는 시점은 알 수 없다 그렇기 때문에 초기화가 진행되야하고 초기화를 하지 않을 경우 해제되지 않은 메모리에 접근할 수 있게된다 </li>
+</ol>
+</li>
+</ol>
+<h3 id="가비지-콜렉터-Garbage-collector"><a href="#가비지-콜렉터-Garbage-collector" class="headerlink" title="가비지 콜렉터 (Garbage collector)"></a>가비지 콜렉터 (Garbage collector)</h3><ol>
+<li>가비지 콜렉터란 사용되지 않는 메모리를 주기적으로 검사하여 해제 시켜주는 기능이다.</li>
+</ol>
+<h4 id="언매니지드-언어와-매니지드-언어"><a href="#언매니지드-언어와-매니지드-언어" class="headerlink" title="언매니지드 언어와 매니지드 언어"></a>언매니지드 언어와 매니지드 언어</h4><ol>
+<li>C같은 언어는 메모리를 직접적으로 관리 할 수 있기 때문에 언매니지드 언어로써 가비지 콜렉터가 존재하지 않는다.<ol>
+<li>개발자의 역량에 따라 최고의 효율을 낼 수 있지만 반대의 경우 치명적인 오류가 생길 수 있다.</li>
+</ol>
+</li>
+<li>우리가 사용하는 javascript언어는 메모리를 직접적으로 관리 할 수 없기 때문에 매니지드 언어로써 가비지 콜렉터가 존재한다.<ol>
+<li>성능면에서 언매니지드 언어보다 불편하지만 메모리를 직접 관리하지 않는다는 점에서 편리하다.</li>
+</ol>
+</li>
+</ol>
+<h3 id="표현식-Experession"><a href="#표현식-Experession" class="headerlink" title="표현식 (Experession)"></a>표현식 (Experession)</h3><ol>
+<li>표현식은 값으로 평가될 수 있는 문(statement)이다, 표현식이 평가되면 새로운 값을 생성하거나 기존값을 참조한다 . </li>
+<li>리터럴은 값으로 평가, 리터럴 = 표현식</li>
+<li>값으로 평가되는 모든 문 = 표현식</li>
+</ol>
+<h4 id="문"><a href="#문" class="headerlink" title="문"></a>문</h4><ol>
+<li>프로그램을 구성하는 가장 기본단위이며 최소 실행단위</li>
+<li>문법적으로 더이상 쪼개질게 없는 코드의 기본 요소</li>
+</ol>
+<h3 id="자바스크립트"><a href="#자바스크립트" class="headerlink" title="자바스크립트"></a>자바스크립트</h3><ol>
+<li>자바스크립트는 본래 html,css를 동적으로 움직이게 하는 <strong>보조적인 역할</strong>로서 개발자의 사용을 고려하지 않고 만들었기 때문에 사용하기 쉽게 만들기 위해서 <strong>간단하게</strong> 만들다 보니 다른언어들과는 <strong>태생적인 차이</strong>가 있다<ol>
+<li>다른 언어는 프로그래머가 시킨 일만 동작 하지만 <strong>자바스크립트 엔진</strong>은 <strong>스스로 판단하여 동작</strong>하는 일이 있다<ol>
+<li>예를 들어 1+’2’를 하게 될 경우 다른 언어는 스트링과 넘버로 구분하여 타입이 맞지않아 오류를 발생시키지만 자바스크립트 엔진은 사용자가 실수한 걸로 판단해서 숫자열을 문자열로 바꿔 ‘12’로 출력시킨다 .</li>
+<li>이렇듯 <strong>자바스크립트 엔진</strong>은 타 언어에 비해 <strong>느슨</strong>하게 만들어 졌기 때문에 엔진이 <strong>암묵적으로 하는 행동</strong>들을 알아야한다 </li>
+<li>그런 문제를 인지하지 못한다면 남이 작성한 코드의 의미를 파악할 수 없고 그로인해 잘못된 코드를 작성하여 버그가 발생하는 상황이 생길 수 있다.</li>
+<li>변수의 <strong>호이스팅</strong>현상이 <strong>의도적으로 만들어진 이유</strong>는 개발자가 아닌 사용자가 자바스크립트 언어를 쓸 때 <strong>오류가나서 프로그램이 멈추는것</strong>을 고려해서 <strong>변수 선언을 호이스팅시켜서 멈추지 않도록 의도</strong>했다 .</li>
+<li><strong>호이스팅</strong> 현상이 일어나는 것은 <strong>변수의 선언문을 포함한 모든 선언문</strong>이고</li>
+<li>이후에 추가된 <strong>let과 const</strong>역시 <strong>호이스팅</strong>이 일어나지만 <strong>일어나지 않는 것 처럼</strong> 작동한다 .<ol>
+<li>그 이유는 <strong>let</strong>의 경우 변수의 <strong>선언과 초기화의 단계가 나눠져</strong>있기 때문이고</li>
+<li><strong>const</strong>의 경우는 변수를 <strong>선언함과 동시에 값이 할당</strong> 되어야 하기 때문에 초기화 단계를 거치지 않아서 이다 .</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="SPA-single-page-application"><a href="#SPA-single-page-application" class="headerlink" title="SPA(single page application)"></a>SPA(single page application)</h3><ol>
+<li><p>CBD (component based development) 방법론을 기반으로하는 spa가 대중화되면서 angular, react, vue.js ,svelte 등 다양한 spa 프레임워크 라이브러리 또한 많은 사용층을 확보하고 있다</p>
+</li>
+<li><p>single page application이란 단일페이지로 기존의 변경사항이 있을 시 모든 페이지를 새로고침 하는 방식에서 필요한 데이터만 서버로 부터 받게하여 트래픽의 총량을 줄이고, 새로고침 시 화면이 깜빡거리는 등의 개선된 사용자의 경험을 제공</p>
+</li>
+</ol>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><ol>
+<li>기존에 브라우저에만 존재했던 자바스크립트 엔진을 분리해서 서버사이드 애플리케이션 개발에 사용할 수 있게 됐다</li>
+<li>alert같은 코드는 브라우저의 경고창을 출력해주는 코드이기 때문에 브라우저가 존재하지 않는 node.js에서는 동작하지 않는다</li>
+<li>이처럼 node.js에서만 동작하고 브라우저환경에서만 동작하는 javascript code가 존재한다</li>
+<li>ECMA script는 node.js와 브라우저환경에서 둘다 작동하는 코드만 가지고 있다 </li>
+</ol>
+<h3 id="Javascript에서-파일을-생성하거나-지우는-code"><a href="#Javascript에서-파일을-생성하거나-지우는-code" class="headerlink" title="Javascript에서 파일을 생성하거나 지우는 code"></a>Javascript에서 파일을 생성하거나 지우는 code</h3><ol>
+<li>브라우저 환경에서의 자바스크립트에는 파일을 생성하거나 지우는 기능이 없다, 만약 있다면 개발자는 사용자의 컴퓨터에 접근을 할 수 있게 되기 때문에 브라우저 환경에서는 파일을 생성하거나 지우는 코드가 존재하지 않는다.</li>
+<li>node.js 환경에서는 브라우저가 존재하지 않기 때문에 파일을 생성하거나 지우는 코드가 존재한다</li>
+<li>자바스크립트 엔진은 인터프리터 언어이기 때문에 컴파일을 하지 않아도 됐었지만 v8엔진 이후 속도 개선을 하면서 일부 많이사용되는 코드를 컴파일 한다 .</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/17/Javascript%20TIL%20200817%20(%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE,%20%E1%84%91%E1%85%AD%E1%84%92%E1%85%A7%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8%E1%84%80%E1%85%AA%20%E1%84%86%E1%85%AE%E1%86%AB)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -937,7 +1089,7 @@ var users = &#123;
 <p>–&gt; Git을 이용해서 효율적으로 버젼관리</p>
 <h3 id="Git-명령어"><a href="#Git-명령어" class="headerlink" title="Git 명령어"></a>Git 명령어</h3><h4 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h4><ul>
 <li>사용자 이름 등록 : git config –global user.name “John Doe”</li>
-<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#x6a;&#x6f;&#x68;&#x6e;&#100;&#x6f;&#x65;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;">&#x6a;&#x6f;&#x68;&#x6e;&#100;&#x6f;&#x65;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;</a></li>
+<li>사용자 이메일 등록: git config –global user.email <a href="mailto:&#106;&#111;&#104;&#110;&#100;&#111;&#x65;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#106;&#111;&#104;&#110;&#100;&#111;&#x65;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a></li>
 <li>Git의 설정 정보 조회 : git config –list</li>
 <li>–global 옵션을 주면 전역 속성을 적용시킨다</li>
 </ul>
@@ -2387,7 +2539,7 @@ align-items: center;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
