@@ -34,8 +34,14 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/93993557-dad70580-fdc9-11ea-81a5-40a5cd64ab49.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94226906-c151cd00-ff33-11ea-9567-d62d0887e357.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94227245-d9761c00-ff34-11ea-8532-2c8115c4fc78.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94388204-497be080-0187-11eb-8934-308a19ccc58b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94388445-066e3d00-0188-11eb-8502-6d3aef78ee81.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94388786-03278100-0189-11eb-8019-9f2236c9092b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94389475-edb35680-018a-11eb-9003-980d50192654.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94389938-2d2e7280-018c-11eb-9555-8e505d72fc13.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/68043654/94390097-9ca46200-018c-11eb-8e01-23472aa9d515.png">
 <meta property="article:published_time" content="2020-09-23T11:30:59.000Z">
-<meta property="article:modified_time" content="2020-09-25T05:04:34.539Z">
+<meta property="article:modified_time" content="2020-09-30T10:46:29.069Z">
 <meta property="article:author" content="youngseoim">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/68043654/93989478-eb38b180-fdc4-11ea-82d6-b9a0690e5f4c.png">
@@ -189,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-25 14:04:34" itemprop="dateModified" datetime="2020-09-25T14:04:34+09:00">2020-09-25</time>
+                <time title="Updated at: 2020-09-30 19:46:29" itemprop="dateModified" datetime="2020-09-30T19:46:29+09:00">2020-09-30</time>
               </span>
 
           
@@ -279,9 +285,69 @@
 </ol>
 </li>
 <li><strong>__ proto __ 접근자 프로퍼티를 코드 내에서 직접 사용하는 것은 권장하지 않는다.</strong><ol>
-<li></li>
+<li>__ proto __ 접근자 프로퍼티는 ES5까지 ECMAScript 사양에 포함되지 않은 비표준이었다 하지만 일부 브라우저에서 __ proto __ 를 지원하고 있었기 때문에 브라우저 호환성을 고려하여 ES6에서 __ proto __ 를 표준으로 채택했다. 현재 대부분의 브라우자가 __ proto __ 를 지원한다.</li>
+<li>하지만 코드 내에서 __ proto __ 접근자 프로퍼티를 직접 사용하는 것은 권장하지 않는다. 모든 객체가 __ proto __ 접근자 프로퍼티를 사용할 수 있는 것은 아니기 때문이다. 나중에 살펴보겠지만 직접 상속을 통해 다음과 같이 Object.prototype을 상속받지 않는 객체를 생성할 수도 있기 때문에 __ proto __ 접근자 프로퍼티를 사용할 수 없는 경우가 있다 .</li>
+<li><img width="542" alt="스크린샷 2020-09-28 오후 12 33 30" src="https://user-images.githubusercontent.com/68043654/94388204-497be080-0187-11eb-8934-308a19ccc58b.png"></li>
+<li>따라서 __ proto __ 접근자 프로퍼티 대신 프로토타입의 참조를 취득하고 싶은 경우에는 Object.getPrototypeOf 메서드를 사용하고</li>
+<li>프로토타입을 교체하고 싶은 경우에는 Object.setPrototypeOf메서드를 사용할 것을 권장한다 .</li>
+<li><img width="542" alt="스크린샷 2020-09-28 오후 12 38 47" src="https://user-images.githubusercontent.com/68043654/94388445-066e3d00-0188-11eb-8502-6d3aef78ee81.png"></li>
+<li>Object.getPrototypeOf  ===  get Object.prototype.__ proto __ ( ES5에서 도입 IE9 이상 지원)</li>
+<li>Object.setPrototypeOf === get Object.prototype.__ proto __ (ES6에서 도입 IE11 이상 지원)</li>
 </ol>
 </li>
+</ol>
+<h3 id="함수-객체의-prototype-프로퍼티"><a href="#함수-객체의-prototype-프로퍼티" class="headerlink" title="함수 객체의 prototype 프로퍼티"></a>함수 객체의 prototype 프로퍼티</h3><ol>
+<li><p><strong>함수 객체만이 소유하는 prototype property는 생성자 함수가 생성할 인스턴스의 프로토타입을 가리킨다.</strong></p>
+</li>
+<li><img width="413" alt="스크린샷 2020-09-28 오후 12 45 53" src="https://user-images.githubusercontent.com/68043654/94388786-03278100-0189-11eb-8019-9f2236c9092b.png">
+</li>
+<li><p>prototype property는 생성자 함수가 생성할 객체(인스턴스)의 프로토타입을 가리킨다. 따라서 생성자 함수로서 호출할 수 없는 함수, 즉 non-constructor인 화살표 함수와 ES6 메서드 축약 표현으로 정의한 메서드는 prototype 프로퍼티를 소유하지 않으며 프로토타입도 생성하지 않는다 . </p>
+</li>
+<li><img width="526" alt="스크린샷 2020-09-28 오후 12 59 36" src="https://user-images.githubusercontent.com/68043654/94389475-edb35680-018a-11eb-9003-980d50192654.png">
+</li>
+<li><p>생성자 함수로 호출하기 위해 정의하지 않은 일반 함수 ( 함수선언문, 함수 표현식 ) 도 prototype 프로퍼티를 소유하지만 객체를 생성하지 않는 일반 함수의 prototype 프로퍼티는 아무런 의미가 없다.</p>
+</li>
+<li><p><strong>모든 객체가 가지고 있는(엄밀히 말하면 Object.prototype으로부터 상속받은) __ proto __ 접근자 프로퍼티와 함수 객체만이 가지고 있는 prototype 프로퍼티는 결국 동일한 프로토타입을 가리킨다.</strong></p>
+</li>
+<li><p>하지만 이들 프로퍼티를 사용하는 주체가 다르다.</p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th align="left">구분</th>
+<th align="left">소유</th>
+<th align="left">값</th>
+<th align="left">사용 주체</th>
+<th align="left">사용 목적</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">__ proto __ 접근자 프로퍼티</td>
+<td align="left">모든 객체</td>
+<td align="left">프로토타입의 참조</td>
+<td align="left">모든 객체</td>
+<td align="left">객체가 자신의 프로토타입에 접근 또는 교체하기 위해 사용</td>
+</tr>
+<tr>
+<td align="left">prototype 프로퍼티</td>
+<td align="left">constructor</td>
+<td align="left">프로토타입의 참조</td>
+<td align="left">생성자 함수</td>
+<td align="left">생성자 함수가 자신이 생성할 객체(인스턴스)의 프로토타입을 할당하기 위해 사용</td>
+</tr>
+</tbody></table>
+<p>예를 들어, 생성자 함수로 객체를 생성한 후 __ proto __ 접근자 프로퍼티와 prototype 프로퍼티로 프로토타입 객체에 접근해보자.</p>
+</li>
+<li><img width="865" alt="스크린샷 2020-09-28 오후 1 08 31" src="https://user-images.githubusercontent.com/68043654/94389938-2d2e7280-018c-11eb-9555-8e505d72fc13.png">
+
+
+
+</li>
+</ol>
+<h3 id="프로토타입의-constructor-프로퍼티와-생성자-함수"><a href="#프로토타입의-constructor-프로퍼티와-생성자-함수" class="headerlink" title="프로토타입의 constructor 프로퍼티와 생성자 함수"></a>프로토타입의 constructor 프로퍼티와 생성자 함수</h3><ol>
+<li>모든 프로토타입은 consturctor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 prototype 프로퍼티로 자신을 참조하고 있는 생성자 함수를 가리킨다. 이 연결은 생성자 함수가 생성될 때 즉, 함수 객체가 생성될 때 이뤄진다. 다음 예제를 살펴보자.</li>
+<li><img width="865" alt="스크린샷 2020-09-28 오후 1 11 39" src="https://user-images.githubusercontent.com/68043654/94390097-9ca46200-018c-11eb-8e01-23472aa9d515.png"></li>
+<li>위 예제에서 Person 생성자 함수는 me 객체를 생성했다 이때 me 객체는 프로토타입의 constructor 프로퍼티를 통해 생성자 함수와 연결된다. me 객체에는 constructor 프로퍼티가 없지만 me 객체의 프로토타입인 Person.prototype에는 constructor 프로퍼티가 있다. 따라서 me 객체는 프로토타입인 Person.prototype의 constructor 프로퍼티를 상속받아 사용할 수 있다.</li>
 </ol>
 
     </div>
@@ -301,7 +367,10 @@
     <a href="/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/" rel="prev" title="Javascript TIL (Function and first-class object)">
       <i class="fa fa-chevron-left"></i> Javascript TIL (Function and first-class object)
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/30/Javascript%20TIL%2020200930%20Strict%20mode/" rel="next" title="Javascript TIL (Strict mode)">
+      Javascript TIL (Strict mode) <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -360,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%86%A0-%ED%83%80%EC%9E%85"><span class="nav-number">1.</span> <span class="nav-text">프로토 타입</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D"><span class="nav-number">1.1.</span> <span class="nav-text">객체지향 프로그래밍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%83%81%EC%86%8D%EA%B3%BC-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85"><span class="nav-number">1.2.</span> <span class="nav-text">상속과 프로토타입</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EA%B0%9D%EC%B2%B4"><span class="nav-number">1.3.</span> <span class="nav-text">프로토타입 객체</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proto-%EC%A0%91%EA%B7%BC%EC%9E%90-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0"><span class="nav-number">1.4.</span> <span class="nav-text">__ proto __ 접근자 프로퍼티</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%86%A0-%ED%83%80%EC%9E%85"><span class="nav-number">1.</span> <span class="nav-text">프로토 타입</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D"><span class="nav-number">1.1.</span> <span class="nav-text">객체지향 프로그래밍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%83%81%EC%86%8D%EA%B3%BC-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85"><span class="nav-number">1.2.</span> <span class="nav-text">상속과 프로토타입</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EA%B0%9D%EC%B2%B4"><span class="nav-number">1.3.</span> <span class="nav-text">프로토타입 객체</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proto-%EC%A0%91%EA%B7%BC%EC%9E%90-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0"><span class="nav-number">1.4.</span> <span class="nav-text">__ proto __ 접근자 프로퍼티</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EA%B0%9D%EC%B2%B4%EC%9D%98-prototype-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0"><span class="nav-number">1.5.</span> <span class="nav-text">함수 객체의 prototype 프로퍼티</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%98-constructor-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0%EC%99%80-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98"><span class="nav-number">1.6.</span> <span class="nav-text">프로토타입의 constructor 프로퍼티와 생성자 함수</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -374,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
