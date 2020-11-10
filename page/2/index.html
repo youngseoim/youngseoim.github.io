@@ -148,6 +148,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/" class="post-title-link" itemprop="url">Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-09-21 12:00:59" itemprop="dateCreated datePublished" datetime="2020-09-21T12:00:59+09:00">2020-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-10-11 18:38:15" itemprop="dateModified" datetime="2020-10-11T18:38:15+09:00">2020-10-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="200921-과제"><a href="#200921-과제" class="headerlink" title="200921 과제"></a>200921 과제</h1><h2 id="1번-과제"><a href="#1번-과제" class="headerlink" title="1번 과제"></a>1번 과제</h2><ol>
+<li><p>1 ~ 10,000의 숫자 중 8이 등장하는 횟수 구하기 (Google)<br>1부터 10,000까지 8이라는 숫자가 총 몇번 나오는가? 이를 구하는 함수를 완성하라.<br>단, 8이 포함되어 있는 숫자의 갯수를 카운팅 하는 것이 아니라 8이라는 숫자를 모두 카운팅 해야 한다. 예를 들어 8808은 3, 8888은 4로 카운팅 해야 한다.<br>(hint) 문자열 중 n번째에 있는 문자 : str.charAt(n) or str[n]</p>
+</li>
+<li><pre><code class="javascript">function getCount8 () &#123;
+&#125;
+console.log(getCount8()); // 4000
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;lt;img width&amp;#x3D;&amp;quot;404&amp;quot; alt&amp;#x3D;&amp;quot;스크린샷 2020-09-20 오후 8 27 35&amp;quot; src&amp;#x3D;&amp;quot;https:&amp;#x2F;&amp;#x2F;user-images.githubusercontent.com&amp;#x2F;68043654&amp;#x2F;93710253-24ccab00-fb80-11ea-992f-d05ced40d124.png&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 2번 과제&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 이상한 문자 만들기&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   toWeirdCase함수는 문자열을 인수로 전달받는다. 문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로 바꾼 문자열을 리턴하도록 함수를 완성하라.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   예를 들어 s가 ‘hello world’라면 첫 번째 단어는 ‘HeLlO’, 두 번째 단어는 ‘WoRlD’로 바꿔 ‘HeLlO WoRlD’를 리턴한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   주의) 문자열 전체의 짝&amp;#x2F;홀수 인덱스가 아니라 단어(공백을 기준)별로 짝&amp;#x2F;홀수 인덱스를 판단한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   function toWeirdCase(s) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(toWeirdCase(&amp;#39;hello world&amp;#39;));    &amp;#x2F;&amp;#x2F; &amp;#39;HeLlO WoRlD&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(toWeirdCase(&amp;#39;my name is lee&amp;#39;)); &amp;#x2F;&amp;#x2F; &amp;#39;My NaMe Is LeE&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><pre><code class="javascript">
+function toWeirdCase(s) &#123;  
+  var str = &#39;&#39;;
+  var space = s.split(&#39; &#39;);
+    for(var i = 0; i &lt; s.length; i++)&#123;
+      if(i === &#39; &#39;) &#123;
+
+      &#125;
+      var j = x % 2 === 0 ? str += s[i].toUpperCase() : s[i].toLowerCase();
+  &#125;
+  return str;
+&#125;
+console.log(toWeirdCase(&#39;hello world&#39;));    // &#39;HeLlO WoRlD&#39;
+console.log(toWeirdCase(&#39;my name is lee&#39;)); // &#39;My NaMe Is LeE&#39;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 200928 자료구조와 알고리즘 - 정렬확인, 버블정렬&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 2. 정렬&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 2.1 정렬 확인 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1. 주어진 배열(array)이 정렬되어 있다면 true, 그렇지 않다면 false를 반환하는 함수를 구현하라. 단, 어떠한 빌트인 함수도 사용하지 않고 for 문을 사용하여 구현하여야 한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function isSorted(array) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isSorted([1, 2, 3, 4, 5])); &amp;#x2F;&amp;#x2F; true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isSorted([2, 3, 4, 1, 5])); &amp;#x2F;&amp;#x2F; false&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+</code></pre>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSorted</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i + <span class="number">1</span>] - array[i] === <span class="number">1</span>) &#123;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(isSorted([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isSorted([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>])); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-버블-정렬"><a href="#2-2-버블-정렬" class="headerlink" title="2.2 버블 정렬"></a>2.2 버블 정렬</h3><ol>
+<li>버블 정렬(buble sort)은 순차적으로 배열을 순회하면서 인접한 두 요소를 비교하여 작은 요소를 왼쪽으로, 큰 요소를 오른쪽으로 교환한다.<br>버블 정렬은 가장 간단하지만 가장 느린 정렬 알고리즘이다.<br>시간 복잡도: O(n2)버블 정렬버블 정렬을 통해 주어진 배열(array)을 정렬하는 함수를 구현하라. 단, 어떠한 빌트인 함수도 사용하지 않고 for 문을 사용하여 구현하여야 한다. </li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));     <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]));  <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">4</span>, <span class="number">2</span>])); <span class="comment">// [-1, 0, 1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> getValue;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length + <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= array.length + <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[j] &gt; array[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        getValue = array[j];</span><br><span class="line">        array[j] = array[j+<span class="number">1</span>];</span><br><span class="line">        array[j+<span class="number">1</span>] = getValue;</span><br><span class="line">      &#125; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">-2</span>, <span class="number">-1</span>]));</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-3-선택-정렬"><a href="#2-3-선택-정렬" class="headerlink" title="2.3. 선택 정렬"></a>2.3. 선택 정렬</h2><ul>
+<li>선택 정렬(selection sort)은 배열의 최소값을 검색하여 배열의 왼쪽부터 순차적으로 정렬을 반복하는 정렬 알고리즘이다.</li>
+<li>배열이 미정렬 상태이므로 최소값 검색에는 이진 검색이 아닌 선형 검색 알고리즘을 사용한다.</li>
+<li>선택 정렬은 버블 정렬보다 빠르다.</li>
+<li>시간 복잡도: O(n2)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">4</span>, <span class="number">2</span>])); <span class="comment">// [-1, 0, 1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));     <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]));  <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[i] &gt; array[j]) &#123;</span><br><span class="line">        [array[i], array[j]] = [array[j], array[i]];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">4</span>, <span class="number">2</span>])); <span class="comment">// [-1, 0, 1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));     <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]));  <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/17/Date%20Structure%20and%20Algorithm%20(linear%20search%20:%20binary%20search)%2020200917%20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2048,134 +2159,6 @@ console.log(person); // &#123;name: &quot;Lee&quot;, address: &#123;city: &quot;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/25/Javascript%20TIL%20200825%20(%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%B9%E1%84%80%E1%85%AA%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4%20%E1%84%87%E1%85%B5%E1%84%80%E1%85%AD)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/25/Javascript%20TIL%20200825%20(%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%B9%E1%84%80%E1%85%AA%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4%20%E1%84%87%E1%85%B5%E1%84%80%E1%85%AD)/" class="post-title-link" itemprop="url">Javascript TIL (comparison of primitive value to object)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-08-25 17:30:59" itemprop="dateCreated datePublished" datetime="2020-08-25T17:30:59+09:00">2020-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-14 22:38:33" itemprop="dateModified" datetime="2020-09-14T22:38:33+09:00">2020-09-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Javascript-TIL-200825"><a href="#Javascript-TIL-200825" class="headerlink" title="Javascript TIL 200825"></a>Javascript TIL 200825</h1><h2 id="원시값과-객체의-비교"><a href="#원시값과-객체의-비교" class="headerlink" title="원시값과 객체의 비교"></a>원시값과 객체의 비교</h2><h3 id="변경-불가능한-값"><a href="#변경-불가능한-값" class="headerlink" title="변경 불가능한 값"></a>변경 불가능한 값</h3><ol>
-<li>“원시값은 변경 불가능하다”는 말은 원시값 자체를 변경할 수 없다는 것이지 변수 값을 변경할 수 없다는 것이 아니다, 변수는 언제든지 재할당을 통해 변수 값을 변경할 수 있다, 그렇기 때문에 변수라고 부른다</li>
-<li>변수의 반대개념인 상수는 재할당이 금지된 변수를 말한다 .</li>
-<li>const 키워드를 사용해 선언한 변수는 재할당이 금지된다</li>
-<li>하지만 const 키워드를 사용해 선언한 변수에 할당한 객체는 변경할 수 있다.</li>
-<li>원시값은 변경 불가능한 값, 즉 읽기 전용 값이다 원시값은 어떤일이 있어도 불변한다 이러한 원시값의 특성은 데이터에 신뢰성을 보장한다</li>
-<li>변수에 원시값을 재할당 하려면 이전의 원시값을 변경하는 것이 아니라 새로운 메모리 공간을 확보하고 재활당한 원시값을 저장한 후 변수는 새롭게 재할당한 원시값을 가리키고 변수가 참조하던 메모리 공간의 주소가 바뀐다</li>
-<li>원시값의 이러한 특성을 <strong>불변성(immutability)이라고 한다.</strong></li>
-<li><strong>불변성을 갖는 원시값을 할당한 변수는 재할당 이외에 변수 값을 변경할 수 있는 방법이 없다.</strong></li>
-</ol>
-<h3 id="값에-의한-전달"><a href="#값에-의한-전달" class="headerlink" title="값에 의한 전달"></a>값에 의한 전달</h3><ol>
-<li><img width="428" alt="스크린샷 2020-08-25 오후 12 00 31" src="https://user-images.githubusercontent.com/68043654/91117964-e18b3380-e6ca-11ea-8900-5421edb55bd2.png"></li>
-<li>변수에 변수를 할당 하면 할당받는 변수(copy)에는 할당되는 변수(score)의 원시값이 복사되어 전달된다 , <strong>이를 값에 의한 전달</strong>이라고한다.</li>
-<li>이때 score의 변수와 copy 변수는 숫자 값 80을 갖는다는 점에서는 동일하다 하지만 <strong>score 변수와 copy 변수의 값 80은 다른 메모리 공간에 저장된 별개의 값이다.</strong></li>
-<li><img width="415" alt="스크린샷 2020-08-25 오후 12 22 39" src="https://user-images.githubusercontent.com/68043654/91119375-f917eb80-e6cd-11ea-9605-77a56a165c0f.png"></li>
-<li>이때 score의 값을 재할당해도 copy는 다른 메모리 공간에 저장된 별개의 값이기 때문에 어떠한 영향도 받지 않는다.</li>
-<li>참고로 “값에 의한 전달”이라는 용어는 자바스크립트를 위한 용어가 아니므로 오해가 있을 수 있다, <strong>엄격하게 표현하면 변수에는 값이 전달되는 것이 아니라 메모리 주소가 전달되기 때문이다, 이는 변수와 같은 식별자는 값이 아니라 메모리 주소를 기억하고 있기 때문이다.</strong></li>
-<li>var copy = score</li>
-<li>이 예제의 경우 score는 식별자 표현식으로서 숫자 값 80으로 평가된다, 이때 두 가지 평가 방식이 가능하다.<ol>
-<li>새로운 80을 생성(복사)해서 메모리 주소를 전달하는 방식 이 방식은 <strong>두 변수가 기억하는 메모리 주소가 다르다</strong></li>
-<li>score의 변수값 80의 메모리 주소를 그대로 전달하는 방식 , 이방식은 <strong>할당 시점에 두 변수가 기억하는 메모리 주소가 같다</strong> </li>
-</ol>
-</li>
-</ol>
-<h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2><ol>
-<li>객체는 프로퍼티의 개수가 정해져 있지 않으며, 동적으로 추가되고 삭제할 수 있다 또한 프로퍼티의 값에도 제약이 없다, 따라서 객체는 원시값과 같이 확보해야 할 메모리 공간의 크기를 사전에 정해 둘 수 없다.</li>
-<li>객체는 복합적인 자료구조 이므로 객체를 관리하는 방식이 원시값과 비교해서 복잡하고 구현 방식도 브라우저 제조사마다 다를 수 있다. 원시값은 상대적으로 적은 메모리를 소비하지만 객체는 경우에 따라 매우 클 수 도 있다, </li>
-<li>객체를 생성하고 프로퍼티에 접근하는 것도 원시값과 비교할 때 비용이 많이 드는 일이다</li>
-<li>따라서 객체는 원시값과는 다른 방식으로 동작하도록 설계되어 있다,</li>
-</ol>
-<h3 id="자바스크립트-객체의-관리-방식"><a href="#자바스크립트-객체의-관리-방식" class="headerlink" title="자바스크립트 객체의 관리 방식"></a>자바스크립트 객체의 관리 방식</h3><ol>
-<li>자바스크립트 객체는 프로퍼티 키를 인덱스로 사용하는 해시테이블(hashtable)이라고 생각할 수 있다 대부분의 자바스크립트 엔진은 해시 테이블과 유사하지만 높은 성능을 위해 일반적인 해시 테이블보다 나은 방법으로 객체를 구현한다.</li>
-<li>자바스크립트는 클래스 기반 객체지향 언어와 다르게 클래스 없이 객체를 생성할 수 있으며, 객체가 생성된 이후라도 동적으로 프로퍼티와 메서드를 추가할 수 있다</li>
-<li>이는 사용하기엔 매우 편리하지만 성능면에서는 이론적으로 클래스 기반 언어보다 생성과 프로퍼티 접근에 비용이 더 많이드는 비효율 적인 방식이다</li>
-<li>따라서 v8자바스크립트 엔진에서는 프로퍼티에 접근하기 위해 동적 탐색(dynamic lookup)대신 **히든 클래스(hidden class)**라는 방식을 사용해C++객체의 프로퍼티에 접근하는 정도의 성능을 보장한다 </li>
-<li>히든 클래스는 자바와 같이 고정된 객체 레이아웃(클래스)와 유사하게 동작한다</li>
-</ol>
-<h3 id="변경-가능한-값"><a href="#변경-가능한-값" class="headerlink" title="변경 가능한 값"></a>변경 가능한 값</h3><ol>
-<li>객체(참조)타입의 값, 즉 객체는 <strong>변경 가능한 값(mutable value)이다</strong></li>
-<li>원시값을 할당한 변수로는 “원시값” 자체에 접근가능</li>
-<li>객체타입을 할당한 변수로는 “참조값”에 접근가능 </li>
-<li>원시값 : 객체가 아니면서 메서드도 가지지 않는 데이터 </li>
-<li>참조값 : 할당하려는 값이 들어가 있는 메모리셀의 주소가 들어가 있는 메모리셀</li>
-<li><img width="417" alt="스크린샷 2020-08-25 오후 4 47 15" src="https://user-images.githubusercontent.com/68043654/91147231-f11e7280-e6f2-11ea-9481-59e23c170791.png"></li>
-<li>위 그림을 보면 객체를 할당한 변수에는 생성된 객체가 실제로 저장된 메모리 공간의 주소가 저장되어 있다, 이 값을 참조값이라고 한다. 변수는 이 참조값을 통해 객체에 접근할 수 있다.</li>
-<li>원시값을 할당한 변수를 참조하면 메모리에 저장되어 있는 원시값에 접근한다, 하지만 객체를 할당한 변수를 참조하면 메모리에 저장되어 있는 참조값을 통해 실제 객체에 접근한다 .</li>
-<li><img width="495" alt="스크린샷 2020-08-25 오후 4 23 19" src="https://user-images.githubusercontent.com/68043654/91144887-9899a600-e6ef-11ea-923a-c5769352296d.png"></li>
-<li><strong>원시값은 변경 불가능한 값이므로 원시값을 갖는 변수의 값을 변경하려면 재할당 외에는 방법이 없다, 하지만 객체는 변경 가능한 값이다, 따라서 객체를 할당한 변수는 재할당 없이 객체를 직접 변경할 수 있다 즉, 재할당 없이 프로퍼티를 동적으로 추가할 수 있고 프로퍼티 값을 갱신할 수도 있으며 프로퍼티 자체를 삭제할 수 도 있다.</strong> </li>
-<li><img width="382" alt="스크린샷 2020-08-25 오후 5 00 52" src="https://user-images.githubusercontent.com/68043654/91148597-d77e2a80-e6f4-11ea-8ca4-df32c69dc0cd.png"></li>
-<li>객체는 변경 가능한 값이므로 메모리에 저장된 객체를 직접 수정할 수 있다 이때 객체를 할당한 변수에 재할당을 하지 않았으므로 객체를 할당한 변수의 참조값은 변경되지 않는다 .</li>
-<li><img width="442" alt="스크린샷 2020-08-25 오후 5 03 19" src="https://user-images.githubusercontent.com/68043654/91148787-2fb52c80-e6f5-11ea-9ac4-be3bb16ab983.png"></li>
-<li>앞에서 언급했듯이 객체를 생성하고 관리하는 방식은 매우 복잡하며 비용이 많이 드는 일이다 <strong>객체를 변경할 때마다 원시값처럼 이전 값을 복사해서 새롭게 생성한다면</strong> 명확하고 신뢰성이 확보되겠지만 객체는 크기가 매우 클 수도 있고, 원시값처럼 크기가 일정하지도 않으며 , 프로퍼티 값이 객체일 수도 있어서 복사(deep copy)해서 생성하는 비용이 많이 든다, 다시 말해 <strong>메모리의 효율적 소비가 어렵고 성능이 나빠진다 .</strong></li>
-<li>따라서 메모리를 효율적으로 사용하기 위해, 그리고 객체를 복사해 생성하는 비용을 절약하여 성능을 향상시키기 위해 객체는 변경 가능한 값으로 설계되어 있다 메모리 사용의 효율성과 성능을 위해 어느정도 구조적인 단점을 감안한 설계라고 할 수 있다.</li>
-<li>객체는 이러한 구조적 단점에 따른 부작용이 있다 그것은 원시값과는 다르게 <strong>여러개의 식별자가 하나의 객체를 공유할 수 있다는</strong>것이다.</li>
-<li>얕은 복사 (shallow copy)와 깊은 복사(deep copy)<ol>
-<li>객체를 프로퍼티 값으로 갖는 객체의 경우 얕은 복사는 한 단계까지만 복사하는 것을 말하고 깊은 복사는 객체에 중첩되어 있는 객체까지 모두 복사하는 것을 말한다.</li>
-</ol>
-</li>
-</ol>
-<h3 id="참조에-의한-전달"><a href="#참조에-의한-전달" class="headerlink" title="참조에 의한 전달"></a>참조에 의한 전달</h3><ol>
-<li>여러 개의 식별자가 하나의 객체를 공유할 수 있다는 것, 그에 대한 부작용 </li>
-<li><img src="https://user-images.githubusercontent.com/68043654/91152425-e6b3a700-e6f9-11ea-80c2-7f3585de0c53.jpeg" alt="IMG_A8C458545824-1"></li>
-<li><img width="452" alt="스크린샷 2020-08-25 오후 5 41 51" src="https://user-images.githubusercontent.com/68043654/91152954-912bca00-e6fa-11ea-81ec-ac1d8c885e70.png"></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2245,7 +2228,7 @@ console.log(person); // &#123;name: &quot;Lee&quot;, address: &#123;city: &quot;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

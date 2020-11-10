@@ -148,6 +148,196 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/11/10/todos-v4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/10/todos-v4/" class="post-title-link" itemprop="url">todos-4 prctive</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-10 09:45:59 / Updated at: 09:49:15" itemprop="dateCreated datePublished" datetime="2020-11-10T09:45:59+09:00">2020-11-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>App.js</p>
+<ol>
+<li><pre><code class="javascript">// States
+let todos = [];
+let navState = &#39;all&#39;;
+const $nav = document.querySelector(&#39;.nav&#39;);
+const $inputTodo = document.querySelector(&#39;.input-todo&#39;);
+const $todos = document.querySelector(&#39;.todos&#39;);
+const $completedTodos = document.querySelector(&#39;.completed-todos&#39;);
+const $activeTodos = document.querySelector(&#39;.active-todos&#39;);
+const $completedAll = document.querySelector(&#39;#ck-complete-all&#39;);
+const $clearCompleted = document.querySelector(&#39;.clear-completed&#39;);
+
+// 새로 들어온 아이디에 원래 있던 아이디의 +1해주는 함수
+const generateNextid = () =&gt; (todos.length ? Math.max(...todos.map(todo =&gt; todo.id)) + 1 : 1);
+
+// html 에 뿌려주는 함수
+const render = () =&gt; &#123;
+  let html = &#39;&#39;;
+  const _todos = todos.filter(todo =&gt; (navState === &#39;completed&#39; ? todo.completed : navState === &#39;active&#39; ? !todo.completed : true));
+  _todos.forEach((&#123; id, content, completed &#125;) =&gt; &#123;
+    html += `&lt;li id=&quot;$&#123;id&#125;&quot; class=&quot;todo-item&quot;&gt;
+      &lt;input id=&quot;ck-$&#123;id&#125;&quot; class=&quot;checkbox&quot; type=&quot;checkbox&quot; $&#123;completed ? &#39;checked&#39; : &#39;&#39;&#125;&gt;
+      &lt;label for=&quot;ck-$&#123;id&#125;&quot;&gt;$&#123;content&#125;&lt;/label&gt;
+      &lt;i class=&quot;remove-todo far fa-times-circle&quot;&gt;&lt;/i&gt;
+    &lt;/li&gt;`;
+  &#125;);
+  $todos.innerHTML = html;
+  $completedTodos.textContent = todos.filter(todo =&gt; todo.completed).length;
+  $activeTodos.textContent = todos.filter(todo =&gt; !todo.completed).length;
+&#125;;
+
+// 데이터를 서버에서 받아와 랜더링 시켜줄 함수
+const fetchTodos = () =&gt; &#123;
+  fetch(&#39;/todos&#39;)
+    // parse
+    .then(res =&gt; res.json())
+    // resolve의 response인 _todos를 빈 객체인 todos에 할당해준다.
+    .then(_todos =&gt; &#123; todos = _todos; &#125;)
+    // todos를 받아왔으니 render해준다.
+    .then(render)
+    // 에러 처리
+    .catch(console.error);
+&#125;;
+
+// 돔 + 리소스가 업데이트 될때마다 호출
+window.onload = fetchTodos();
+
+// input에 keyup이벤트 발생시 새로운 todo 추가
+$inputTodo.onkeyup = e =&gt; &#123;
+  if (e.key !== &#39;Enter&#39;) return;
+  console.log(e.target);
+  const newTodo = &#123; id: generateNextid(), content: e.target.value, completed: false &#125;;
+  fetch(&#39;/todos&#39;, &#123;
+    method: &#39;POST&#39;,
+    headers: &#123; &#39;Content-Type&#39;: &#39;application/json&#39; &#125;,
+    body: JSON.stringify(newTodo)
+  &#125;)
+    .then(res =&gt; res.json())
+    .then(_todos =&gt; &#123; todos = _todos; &#125;)
+    .then(render)
+    .catch(console.error);
+&#125;;
+
+// todos에 remove-todo 버튼 클릭 시 선택한 요소 제거
+$todos.onclick = (&#123; target &#125;) =&gt; &#123;
+  if (!target.matches(&#39;.todos .remove-todo&#39;)) return;
+  const &#123; id &#125; = target.parentNode;
+  fetch(`/todos/$&#123;id&#125;`, &#123;
+    method: &#39;DELETE&#39;
+  &#125;)
+    .then(res =&gt; res.json())
+    .then(_todos =&gt; &#123; todos = _todos; &#125;)
+    .then(render)
+    .catch(console.error);
+&#125;;
+
+// 체크 박스 실시간 반영
+$todos.onchange = (&#123; target &#125;) =&gt; &#123;
+  const &#123; id &#125; = target.parentNode;
+  fetch(`/todos/$&#123;id&#125;`, &#123;
+    method: &#39;PATCH&#39;,
+    headers: &#123; &#39;Content-Type&#39;: &#39;application/json&#39; &#125;,
+    body: JSON.stringify(&#123; completed: target.checked &#125;)
+  &#125;)
+    .then(res =&gt; res.json())
+    .then(_todos =&gt; &#123; todos = _todos; &#125;)
+    .then(render)
+    .catch(console.error);
+&#125;;
+
+// 모든 할일의 completed를 일괄 변경
+$completedAll.onchange = (&#123; target &#125;) =&gt; &#123;
+  fetch(&#39;/todos/completed&#39;, &#123;
+    method: &#39;PATCH&#39;,
+    headers: &#123; &#39;Content-Type&#39;: &#39;application/json&#39; &#125;,
+    body: JSON.stringify(&#123; completed: target.checked &#125;)
+  &#125;)
+    .then(res =&gt; res.json())
+    .then(_todos =&gt; &#123; todos = _todos; &#125;)
+    .then(render)
+    .catch(console.error);
+&#125;;
+
+// clear completd 버튼 누를 시 completed가 true인 요소 삭제
+$clearCompleted.onclick = () =&gt; &#123;
+  fetch(&#39;/todos/completed&#39;, &#123;
+    method: &#39;DELETE&#39;
+  &#125;)
+    .then(res =&gt; res.json())
+    .then(_todos =&gt; &#123; todos = _todos; &#125;)
+    .then(render)
+    .catch(console.error);
+&#125;;
+
+// nav &gt; li 누를 시 눌러진 요소는 active 클래스 추가, 안눌려진 요소는 active 클래스 제거 
+$nav.onclick = (&#123; target &#125;) =&gt; &#123;
+  if (!target.matches(&#39;.nav &gt; li&#39;)) return;
+  // 모든 요소에 active를 뗀다음
+  document.querySelector(&#39;.active&#39;).classList.remove(&#39;active&#39;);
+  // 선택된 요소만 붙인다 
+  target.classList.add(&#39;active&#39;);
+  navState = target.id;
+  render();
+&#125;;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. server.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const express &amp;#x3D; require(&amp;#39;express&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const cors &amp;#x3D; require(&amp;#39;cors&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; DB에서 가지고 온걸 받아준다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      let &amp;#123; todos &amp;#125; &amp;#x3D; require(&amp;#39;.&amp;#x2F;data&amp;#x2F;todos&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; express를 호출하면 객체를 하나 담아온다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const app &amp;#x3D; express();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.use(cors());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; root 폴더가 public이라는걸 알려준다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.use(express.static(&amp;#39;public&amp;#39;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; post 데이터를 받는다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.use(express.json()); &amp;#x2F;&amp;#x2F; for parsing application&amp;#x2F;json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.get(&amp;#39;&amp;#x2F;todos&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.get(&amp;#39;&amp;#x2F;todos&amp;#x2F;:id&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos.filter(todo &amp;#x3D;&amp;gt; todo.id &amp;#x3D;&amp;#x3D;&amp;#x3D; +req.params.id));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.post(&amp;#39;&amp;#x2F;todos&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        const newTodo &amp;#x3D; req.body;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (!Object.keys(newTodo).length) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          return res.send(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            error: true,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            reason: &amp;#39;페이로드가 없습니다. 새롭게 생성할 할일 데이터를 전달해 주세요.&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (todos.map(todo &amp;#x3D;&amp;gt; todo.id).includes(newTodo.id)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          return res.send(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            error: true,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            reason: &amp;#96;$&amp;#123;newTodo.id&amp;#125;는 이미 존재하는 id입니다.&amp;#96;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        todos &amp;#x3D; [newTodo, ...todos];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 모든 할일의 completed를 일괄 변경&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.patch(&amp;#39;&amp;#x2F;todos&amp;#x2F;completed&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        const completed &amp;#x3D; req.body;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        todos &amp;#x3D; todos.map(todo &amp;#x3D;&amp;gt; (&amp;#123; ...todo, ...completed &amp;#125;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.patch(&amp;#39;&amp;#x2F;todos&amp;#x2F;:id&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        const id &amp;#x3D; +req.params.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        const completed &amp;#x3D; req.body;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (!todos.map(todo &amp;#x3D;&amp;gt; todo.id).includes(id)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          return res.send(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            error: true,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            reason: &amp;#96;id가 $&amp;#123;id&amp;#125;인 할일 데이터가 존재하지 않습니다.&amp;#96;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        todos &amp;#x3D; todos.map(todo &amp;#x3D;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          todo.id &amp;#x3D;&amp;#x3D;&amp;#x3D; id ? &amp;#123; ...todo, ...completed &amp;#125; : todo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; completed가 true인 모든 할일 데이터 삭제&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.delete(&amp;#39;&amp;#x2F;todos&amp;#x2F;completed&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        todos &amp;#x3D; todos.filter(todo &amp;#x3D;&amp;gt; !todo.completed);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F; 아래 라우터를 DELETE &amp;#39;&amp;#x2F;todos&amp;#x2F;completed&amp;#39;보다 앞에 위치시키려면 url을 &amp;#39;&amp;#x2F;todos&amp;#x2F;:id([0-9]+)&amp;#39;로 변경한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.delete(&amp;#39;&amp;#x2F;todos&amp;#x2F;:id&amp;#39;, (req, res) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        const id &amp;#x3D; +req.params.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (!todos.map(todo &amp;#x3D;&amp;gt; todo.id).includes(id)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          return res.send(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            error: true,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            reason: &amp;#96;id가 $&amp;#123;id&amp;#125;인 할일 데이터가 존재하지 않습니다.&amp;#96;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        todos &amp;#x3D; todos.filter(todo &amp;#x3D;&amp;gt; todo.id !&amp;#x3D;&amp;#x3D; id);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        res.send(todos);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      app.listen(&amp;#39;7000&amp;#39;, () &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        console.log(&amp;#39;Server is listening on http:&amp;#x2F;&amp;#x2F;localhost:7000&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/10/22/array%20hof%20practice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1965,117 +2155,6 @@ console.log(x); // ?
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/" class="post-title-link" itemprop="url">Algorithm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-09-21 12:00:59" itemprop="dateCreated datePublished" datetime="2020-09-21T12:00:59+09:00">2020-09-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-10-11 18:38:15" itemprop="dateModified" datetime="2020-10-11T18:38:15+09:00">2020-10-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="200921-과제"><a href="#200921-과제" class="headerlink" title="200921 과제"></a>200921 과제</h1><h2 id="1번-과제"><a href="#1번-과제" class="headerlink" title="1번 과제"></a>1번 과제</h2><ol>
-<li><p>1 ~ 10,000의 숫자 중 8이 등장하는 횟수 구하기 (Google)<br>1부터 10,000까지 8이라는 숫자가 총 몇번 나오는가? 이를 구하는 함수를 완성하라.<br>단, 8이 포함되어 있는 숫자의 갯수를 카운팅 하는 것이 아니라 8이라는 숫자를 모두 카운팅 해야 한다. 예를 들어 8808은 3, 8888은 4로 카운팅 해야 한다.<br>(hint) 문자열 중 n번째에 있는 문자 : str.charAt(n) or str[n]</p>
-</li>
-<li><pre><code class="javascript">function getCount8 () &#123;
-&#125;
-console.log(getCount8()); // 4000
-&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;lt;img width&amp;#x3D;&amp;quot;404&amp;quot; alt&amp;#x3D;&amp;quot;스크린샷 2020-09-20 오후 8 27 35&amp;quot; src&amp;#x3D;&amp;quot;https:&amp;#x2F;&amp;#x2F;user-images.githubusercontent.com&amp;#x2F;68043654&amp;#x2F;93710253-24ccab00-fb80-11ea-992f-d05ced40d124.png&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 2번 과제&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 이상한 문자 만들기&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   toWeirdCase함수는 문자열을 인수로 전달받는다. 문자열 s에 각 단어의 짝수번째 인덱스 문자는 대문자로, 홀수번째 인덱스 문자는 소문자로 바꾼 문자열을 리턴하도록 함수를 완성하라.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   예를 들어 s가 ‘hello world’라면 첫 번째 단어는 ‘HeLlO’, 두 번째 단어는 ‘WoRlD’로 바꿔 ‘HeLlO WoRlD’를 리턴한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   주의) 문자열 전체의 짝&amp;#x2F;홀수 인덱스가 아니라 단어(공백을 기준)별로 짝&amp;#x2F;홀수 인덱스를 판단한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   function toWeirdCase(s) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(toWeirdCase(&amp;#39;hello world&amp;#39;));    &amp;#x2F;&amp;#x2F; &amp;#39;HeLlO WoRlD&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   console.log(toWeirdCase(&amp;#39;my name is lee&amp;#39;)); &amp;#x2F;&amp;#x2F; &amp;#39;My NaMe Is LeE&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
-</li>
-<li><pre><code class="javascript">
-function toWeirdCase(s) &#123;  
-  var str = &#39;&#39;;
-  var space = s.split(&#39; &#39;);
-    for(var i = 0; i &lt; s.length; i++)&#123;
-      if(i === &#39; &#39;) &#123;
-
-      &#125;
-      var j = x % 2 === 0 ? str += s[i].toUpperCase() : s[i].toLowerCase();
-  &#125;
-  return str;
-&#125;
-console.log(toWeirdCase(&#39;hello world&#39;));    // &#39;HeLlO WoRlD&#39;
-console.log(toWeirdCase(&#39;my name is lee&#39;)); // &#39;My NaMe Is LeE&#39;
-&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 200928 자료구조와 알고리즘 - 정렬확인, 버블정렬&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 2. 정렬&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 2.1 정렬 확인 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1. 주어진 배열(array)이 정렬되어 있다면 true, 그렇지 않다면 false를 반환하는 함수를 구현하라. 단, 어떠한 빌트인 함수도 사용하지 않고 for 문을 사용하여 구현하여야 한다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function isSorted(array) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isSorted([1, 2, 3, 4, 5])); &amp;#x2F;&amp;#x2F; true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(isSorted([2, 3, 4, 1, 5])); &amp;#x2F;&amp;#x2F; false&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
-</code></pre>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSorted</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i + <span class="number">1</span>] - array[i] === <span class="number">1</span>) &#123;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(isSorted([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isSorted([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>])); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-버블-정렬"><a href="#2-2-버블-정렬" class="headerlink" title="2.2 버블 정렬"></a>2.2 버블 정렬</h3><ol>
-<li>버블 정렬(buble sort)은 순차적으로 배열을 순회하면서 인접한 두 요소를 비교하여 작은 요소를 왼쪽으로, 큰 요소를 오른쪽으로 교환한다.<br>버블 정렬은 가장 간단하지만 가장 느린 정렬 알고리즘이다.<br>시간 복잡도: O(n2)버블 정렬버블 정렬을 통해 주어진 배열(array)을 정렬하는 함수를 구현하라. 단, 어떠한 빌트인 함수도 사용하지 않고 for 문을 사용하여 구현하여야 한다. </li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));     <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]));  <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">4</span>, <span class="number">2</span>])); <span class="comment">// [-1, 0, 1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> getValue;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length + <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= array.length + <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[j] &gt; array[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        getValue = array[j];</span><br><span class="line">        array[j] = array[j+<span class="number">1</span>];</span><br><span class="line">        array[j+<span class="number">1</span>] = getValue;</span><br><span class="line">      &#125; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>]));</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">-2</span>, <span class="number">-1</span>]));</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-3-선택-정렬"><a href="#2-3-선택-정렬" class="headerlink" title="2.3. 선택 정렬"></a>2.3. 선택 정렬</h2><ul>
-<li>선택 정렬(selection sort)은 배열의 최소값을 검색하여 배열의 왼쪽부터 순차적으로 정렬을 반복하는 정렬 알고리즘이다.</li>
-<li>배열이 미정렬 상태이므로 최소값 검색에는 이진 검색이 아닌 선형 검색 알고리즘을 사용한다.</li>
-<li>선택 정렬은 버블 정렬보다 빠르다.</li>
-<li>시간 복잡도: O(n2)</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">4</span>, <span class="number">2</span>])); <span class="comment">// [-1, 0, 1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));     <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]));  <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; array.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array[i] &gt; array[j]) &#123;</span><br><span class="line">        [array[i], array[j]] = [array[j], array[i]];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">4</span>, <span class="number">2</span>])); <span class="comment">// [-1, 0, 1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]));     <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="built_in">console</span>.log(selectionSort([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]));  <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2145,7 +2224,7 @@ console.log(toWeirdCase(&#39;my name is lee&#39;)); // &#39;My NaMe Is LeE&#39;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
