@@ -148,6 +148,385 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/" class="post-title-link" itemprop="url">Javascript TIL (Function and first-class object)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-09-22 18:30:59" itemprop="dateCreated datePublished" datetime="2020-09-22T18:30:59+09:00">2020-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-09-23 20:42:56" itemprop="dateModified" datetime="2020-09-23T20:42:56+09:00">2020-09-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="일급-객체"><a href="#일급-객체" class="headerlink" title="일급 객체"></a>일급 객체</h2><ol>
+<li>무명의 리터럴로 생성할 수 있다 즉, 런타임에 생성이 가능하다.</li>
+<li>변수나 자료구조(객체, 배열 등)에 저장할 수 있다.</li>
+<li>함수의 매개변수에게 전달할 수 있다.</li>
+<li>함수의 반환값으로 사용할 수 있다.</li>
+<li>위와 같은 조건을 만족하는 객체를 <strong>일급 객체</strong>라고 하고 자바스크립트의 함수는 위의 조건을 모두 만족하므로 일급 객체이다.</li>
+<li><img width="478" alt="스크린샷 2020-09-22 오후 4 56 44" src="https://user-images.githubusercontent.com/68043654/93857108-09cf7780-fcf5-11ea-845b-f1bd1ce58f0c.png"></li>
+<li>함수가 일급 객체라는 것은 함수를 객체와 동일하게 사용할 수 있다는 의미다. 객체는 값이므로 함수는 값과 동일하게 취급할 수 있다. 따라서 함수는 값을 사용할 수 있는 곳(변수 할당문, 객체의 프로퍼티 값, 배열의 요소, 함수 호출의 인수, 함수 반환문)이라면 어디서든지 리터럴로 정의할 수 있으며 런타임(runtime)에 함수 객체로 평가된다.</li>
+<li>일급 객체로서 함수가 가지는 가장 큰 특징은 일반 객체와 같이 함수의 매개변수에 전달할 수 있으며, 함수의 반환값으로 사용할 수도 있다는 것이다. 이는 함수형 프로그래밍을 가능케하는 자바스크립트의 장점 중에 하나이다.</li>
+<li>함수는 객체이지만 일반 객체와는 차이가 있다 일반 객체는 호출할 수 없지만 함수 객체는 호출할 수 있다 그리고 함수 객체는 일반 객체에는 없는 함수 고유 프로퍼티를 소유한다.</li>
+</ol>
+<h2 id="함수-객체의-프로퍼티"><a href="#함수-객체의-프로퍼티" class="headerlink" title="함수 객체의 프로퍼티"></a>함수 객체의 프로퍼티</h2><ol>
+<li>함수는 객체이다 . 따라서 함수도 프로퍼티를 가질 수 있다. 브라우저 콘솔에서 console.dir 메서드를 사용하여 함수 객체의 내부를 들여다 보자.</li>
+<li><img width="237" alt="스크린샷 2020-09-22 오후 5 02 57" src="https://user-images.githubusercontent.com/68043654/93857659-e6f19300-fcf5-11ea-8e8d-25c91cd05819.png"></li>
+<li>square 함수의 모든 프로퍼티의 프로퍼티 어트리뷰트를 Object.getOwnPropertyDescriptors 메서드로 확인해보면 다음과 같다 </li>
+<li><img width="654" alt="스크린샷 2020-09-22 오후 5 07 43" src="https://user-images.githubusercontent.com/68043654/93858088-92024c80-fcf6-11ea-850b-68826d08cab8.png"></li>
+<li>이처럼 arguments, caller, length, prototype 프로퍼티는 모두 함수 객체의 데이터 프로퍼티다</li>
+<li>이들 프로퍼티는 일반 객체에는 없는 함수 객체 고유의 프로퍼티다. 하지만 __ proto __ 는 접근자 프로퍼티이며, 함수 객체 고유의 프로퍼티가 아니라 Object.prototype 객체의 프로퍼티를 상속받은 것을 알 수 있다.</li>
+<li>Object.prototype 객체의 프로퍼티는 모든 객체가 상속받아 사용할 수 있다. 즉 Object.prototype 객체의 __ proto __ 접근자 프로퍼티는 모든 객체가 사용할 수 있다.</li>
+</ol>
+<h3 id="함수-객체의-프로퍼티-1"><a href="#함수-객체의-프로퍼티-1" class="headerlink" title="함수 객체의 프로퍼티"></a>함수 객체의 프로퍼티</h3><ol>
+<li><h4 id="arguments-프로퍼티"><a href="#arguments-프로퍼티" class="headerlink" title="arguments 프로퍼티"></a>arguments 프로퍼티</h4><ol>
+<li><p>함수 객체의 arguments 프로퍼티 값은 arguments 객체다 </p>
+</li>
+<li><p>Arguments 객체는 함수 호출 시 전달된 인수(arguments)들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체이며, 함수 내부에서 지역 변수처럼 사용된다. 즉 , 함수 외부에서는 참조할 수 없다 .</p>
+</li>
+<li><p>함수 객체의 arguments 프로퍼티는 현재 일부 브라우저에서 지원하고 있지만 ES3부터 표준에서 폐지되었다. 따라서 function.arguments와 같은 사용법은 권장되지 않으며 함수 내부에서 지역 변수처럼 사용할 수 있는 arguments 객체를 참조하도록 한다 .</p>
+</li>
+<li><p>자바스크립트는 함수의 매개변수와 인수의 개수가 일치하는지 확인하지 않는다 따라서 함수 호출 시 매개변수 개수만큼 인수를 전달하지 않아도 에러가 발생하지 않는다 .</p>
+</li>
+<li><p>함수를 정의할 때 선언한 매개변수는 함수 몸체 내부에서 변수와 동일하게 취급된다 즉, 함수가 호출되면 함수 몸체 내에서 암묵적으로 매개변수가 선언되고 undefined로 초기화된 이후 인수 가 할당된다.</p>
+</li>
+<li><p>선언된 매개변수의 개수보다 인수를 적게 전달했을 경우 인수가 전달되지 않은 매개변수는 undefined로 초기화된 상태를 유지한다. </p>
+</li>
+<li><p>매개변수의 개수보다 인수를 더 많이 전달한 경우 초과된 인수는 무시된다.</p>
+</li>
+<li><p>초과된 인수는 그냥 버려지는 것이아니고 모든 인수는 암묵적으로 arguments 객체의 프로퍼티로 보관된다 .</p>
+</li>
+<li><img width="404" alt="스크린샷 2020-09-22 오후 5 32 20" src="https://user-images.githubusercontent.com/68043654/93860771-84e75c80-fcfa-11ea-8e1a-ddd8ec81e7f9.png">
+</li>
+<li><p>arguments 객체는 인수를 프로퍼티 값으로 소유하며 프로퍼티 키는 인수의 순서를 나타낸다 arguments 객체의 callee 프로퍼티는 호출되어 arguments 객체를 생성한 함수 즉, 함수 자신을 가리키고 argumetns 객체의 length 프로퍼티는 인수의 개수를 가리킨다.</p>
+</li>
+<li><p>arguments 객체의 Symbol(Symbol.iterator) 프로퍼티</p>
+<p>arguments 객체의 Symbol(Symbol.iterator) 프로퍼티는 arguments 객체를 순회 가능한 자료구조인 이터러블(iterable)로 만들기 위한 프로퍼티다. Symbol.iterator를 프로퍼티 키로 사용한 메서드를 구현하는 것에 의해 이터러블이 된다</p>
+</li>
+<li><p>선언된 매개 변수의 개수와 함수를 호출할 때 전달하는 인수의 개수를 확인하지 않는 자바스크립트의 특성 때문에 함수가 호출되면 인수 개수를 확인하고 이에 따라 함수의 동작을 달리 정의할 필요가 있을 수 있다 이때 유용하게 사용되는 것이 arguments 객체다.</p>
+</li>
+<li><p>argumetns 객체는 매개변수 개수를 확정할 수 없는 <strong>가변 인자 함수</strong>를 구현할 때 유용하다.</p>
+</li>
+<li><img width="616" alt="스크린샷 2020-09-22 오후 6 04 38" src="https://user-images.githubusercontent.com/68043654/93863498-8581f200-fcfe-11ea-9cad-981670fc35d9.png">
+</li>
+<li><p>Arguments 객체는 배열 형태로 인자 정보를 담고 있지만 실제 배열이 아닌 유사 배열 객체(array-like object)다.</p>
+</li>
+<li><p>유사 배열 객체란 length 프로퍼티를 가진 객체로 for 문으로 순회할 수 있는 객체를 말한다.</p>
+</li>
+<li><p>유사배열 객체와 이터러블</p>
+<ol>
+<li>ES6에서 도입된 [이터레이션 프로토콜]을 준수하면 순회 가능한 자료구조인 이터러블이 된다. 이터러블의 개념이 없었던 ES5에서 arguments 객체는 유사 배열 객체로 구분되었다. 하지만 이터러블이 도입된 ES6부터 arguments 객체는 유사 배열 객체이면서 동시에 이터러블이다.</li>
+</ol>
+</li>
+<li><p>유사 배열 객체는 배열이 아니므로 배열 메서드를 사용할 경우 에러가 발생한다 따라서 배열 메서드를 사용하려면 Function.prototype.call, Function.prototype.apply를 사용해 간접 호출해야 하는 번거로움이 있다.</p>
+</li>
+<li><img width="500" alt="스크린샷 2020-09-22 오후 6 11 38" src="https://user-images.githubusercontent.com/68043654/93864210-7fd8dc00-fcff-11ea-9ddc-29480560f3c0.png">
+</li>
+<li><p>이러한 번거로움을 해결하기 위해 ES6에서는 Rest 파라미터를 도입했다</p>
+</li>
+<li><img width="500" alt="스크린샷 2020-09-22 오후 6 13 55" src="https://user-images.githubusercontent.com/68043654/93864408-d1816680-fcff-11ea-8cef-ee9a79db560f.png">
+</li>
+<li><p>ES6 Rest 파라미터의 도입으로 모던 자바스크립트에서는 arguments 객체의 중요성이 이전 같지는 않지만 언제나 ES6만 사용하지는 않을 수 있기 때문에 알아둘 필요가 있다.</p>
+</li>
+</ol>
+</li>
+<li><h3 id="Length-프로퍼티"><a href="#Length-프로퍼티" class="headerlink" title="Length 프로퍼티"></a>Length 프로퍼티</h3><ol>
+<li>함수 객체의 length 프로퍼티는 함수를 정의할 때 선언한 매개변수의 개수를 가리킨다.</li>
+<li><img width="253" alt="스크린샷 2020-09-22 오후 6 18 29" src="https://user-images.githubusercontent.com/68043654/93864858-74d27b80-fd00-11ea-8ec0-4c3d59566dc4.png"></li>
+<li>arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티의 값은 다를 수 있으므로 주의해야 한다. arguments 객체의 length 프로퍼티는 인자 (arguments)의 개수를 가리키고 함수 객체의 length 프로퍼티는 매개변수(parameter)의 개수를 가리킨다.</li>
+</ol>
+</li>
+<li><h3 id="name-프로퍼티"><a href="#name-프로퍼티" class="headerlink" title="name 프로퍼티"></a>name 프로퍼티</h3><ol>
+<li>함수 객체의 name 프로퍼티는 함수 이름을 나타낸다 . name 프로퍼티는 ES6 이전까지는 비표준이었다가 ES6에서 정식 표준이 되었다</li>
+<li>name 프로퍼티는 ES5 와 ES6에서 동작을 달리하므로 주의해야한다 <ol>
+<li>익명 함수 표현식의 경우 ES5에서 name 프로퍼티는 빈 문자열을 값으로 갖는다 하지만 ES6에서는 함수 객체를 가리키는 식별자를 값으로 갖는다 .</li>
+<li><img width="415" alt="스크린샷 2020-09-22 오후 6 23 07" src="https://user-images.githubusercontent.com/68043654/93865320-1a85ea80-fd01-11ea-85b9-c6d5a520e5ec.png"></li>
+<li>함수 이름과 함수 객체를 가리키는 식별자는 의미가 다르다는 것을 잊지 말아야 한다 함수를 호출할 때는 함수 이름이 아닌 함수 객체를 가리키는 식별자로 호출한다 .</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="__ proto __ 접근자 프로퍼티"></a>__ proto __ 접근자 프로퍼티</h3><ol>
+<li>모든 객체는 [[prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다.</li>
+<li>__ proto __ 프로퍼티는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다 내부 슬롯에는 직접 접근할 수 없고 간접적인 방법을 제공하는 경우에 한하여 접근할 수 있다. [[prototype]] 내부 슬롯에도 직접 접근할 수 없으며 __ proto __ 접근자 프로퍼티를 통해 간접적으로 프로토타입 객체에 접근할 수 있다.</li>
+<li><img width="565" alt="스크린샷 2020-09-22 오후 6 26 25" src="https://user-images.githubusercontent.com/68043654/93865650-9122e800-fd01-11ea-8539-a909009b5c94.png"></li>
+<li>hasOwnProperty 메서드는 이름에서 알 수 있듯이 인수로 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.</li>
+</ol>
+</li>
+<li><h3 id="prototype-프로퍼티"><a href="#prototype-프로퍼티" class="headerlink" title="prototype 프로퍼티"></a>prototype 프로퍼티</h3><ol>
+<li>Prototype 프로퍼티는 생성자 함수로 호출할 수 있는 함수 객체, 즉 constructor만이 소유하는 프로퍼티다 일반 객체와 생성자 함수로 호출할 수 없는 non-constructor에는 prototype 프로퍼티가 없다.</li>
+<li><img width="420" alt="스크린샷 2020-09-22 오후 6 28 40" src="https://user-images.githubusercontent.com/68043654/93865873-e19a4580-fd01-11ea-8523-f177e5094f57.png"></li>
+<li>prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 호출될 때 생성자 함수가 생성할 인스턴스의 프로토타입 객체를 가리킨다.</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%2020200921%2017%E1%84%80%E1%85%A1%E1%86%BC(%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A6%20%E1%84%8B%E1%85%B4%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/21/Javascript%20TIL%2020200921%2017%E1%84%80%E1%85%A1%E1%86%BC(%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A6%20%E1%84%8B%E1%85%B4%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20)/" class="post-title-link" itemprop="url">Javascript TIL (Object creation by constructor function)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-21 22:25:59 / Updated at: 22:27:58" itemprop="dateCreated datePublished" datetime="2020-09-21T22:25:59+09:00">2020-09-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="생성자-함수에-의한-객체-생성"><a href="#생성자-함수에-의한-객체-생성" class="headerlink" title="생성자 함수에 의한 객체 생성"></a>생성자 함수에 의한 객체 생성</h2><ol>
+<li>다양한 객체 생성 방식 중 생성자 함수를 사용하여 객체를 생성하는 방식을 살펴보자.</li>
+<li>객체 리터럴을 사용하여 객체를 생성하는 방식과의 장단점을 살펴보자.</li>
+</ol>
+<h3 id="Object-생성자-함수"><a href="#Object-생성자-함수" class="headerlink" title="Object 생성자 함수"></a>Object 생성자 함수</h3><ol>
+<li>New 연산자와 함께 Object 생성자 함수를 호출하면 빈 객체를 생성하여 반환한다. 빈 객체를 생성한 이후 프로퍼티 또는 메서드를 추가하여 객체를 완성할 수 있다.</li>
+<li><img width="437" alt="스크린샷 2020-09-21 오후 7 49 19" src="https://user-images.githubusercontent.com/68043654/93758764-f912f900-fc43-11ea-9c6c-47440a333983.png"></li>
+<li>생성자 함수 (constructor)란 new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수를 말한다. 생성자 함수에 의해 생성된 객체를 인스턴스(instance)라고 한다 .</li>
+<li>자바스크립트는 Object 생성자 함수 이외에도 String,Number,Boolean,Function, Array, Date, RegExp,Promise 등의 빌트인 생성자 함수를 제공한다.</li>
+<li><img width="546" alt="스크린샷 2020-09-21 오후 7 54 29" src="https://user-images.githubusercontent.com/68043654/93759187-b1d93800-fc44-11ea-850d-8c2a9bf66154.png">
+<img width="546" alt="스크린샷 2020-09-21 오후 7 54 51" src="https://user-images.githubusercontent.com/68043654/93759207-bdc4fa00-fc44-11ea-81f3-76110ec74d39.png"></li>
+<li>반드시 Object 생성자 함수를 사용해 빈 객체를 생성해야 하는 것은 아니다. 객체를 생성하는 방법은 객체 리터럴을  사용하는 것이 더 간편하다. Object 생성자 함수를 사용해 객체를 생성하는 방식은 특별한 이유가 없다면 그다지 유용해 보이지 않는다,</li>
+</ol>
+<h3 id="생성자-함수"><a href="#생성자-함수" class="headerlink" title="생성자 함수"></a>생성자 함수</h3><h4 id="객체-리터럴에-의한-객체-생성-방식의-문제점"><a href="#객체-리터럴에-의한-객체-생성-방식의-문제점" class="headerlink" title="객체 리터럴에 의한 객체 생성 방식의 문제점"></a>객체 리터럴에 의한 객체 생성 방식의 문제점</h4><ol>
+<li>객체 리터럴에 의한 객체 생성 방식은 직관적이고 간편하다. 하지만 객체 리터럴에 의한 객체 생성 방식은 단 하나의 객체 생성한다. 따라서 동일한 프로퍼티를 갖는 객체를 여러개 생성해야 하는 경우 매번 같은 프로퍼티를 기술해야 하기 때문에 비효율적이다.</li>
+<li><img width="458" alt="스크린샷 2020-09-21 오후 8 07 54" src="https://user-images.githubusercontent.com/68043654/93760228-91aa7880-fc46-11ea-9abb-29a85951d078.png"></li>
+<li>객체는 프로퍼티를 통해 객체 고유의 상태(state)를 표현한다. 그리고 메서드를 통해 상태 데이터인 프로퍼티를 참조하고 조작하는 동작(behavior)을 표현한다. 따라서 프로퍼티는 객체마다 프로퍼티 값이 다를 수 있지만 메서드는 내용이 동일한 경우가 일반적이다.</li>
+<li>원을 표현한 객체인 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일하다, 객체 고유의 상태 데이터인 radius 프로퍼티의 값은 객체마다 다를 수 있지만 getDiameter 메서드는 완전히 동일하다.</li>
+<li>하지만 객체 리터럴에 의해 객체를 생성하는 경우 프로퍼티 구조가 동일함에도 불구하고 매번 같은 프로퍼티와 메서드를 기술해야 한다. 앞의 예제처럼 객체가 한두개라면 넘어갈 수도 있겠지만 만약 수십 개의 객체를 생성해야 한다면 문제가 크다.</li>
+</ol>
+<h4 id="생성자-함수에-의한-객체-생성-방식의-장점"><a href="#생성자-함수에-의한-객체-생성-방식의-장점" class="headerlink" title="생성자 함수에 의한 객체 생성 방식의 장점"></a>생성자 함수에 의한 객체 생성 방식의 장점</h4><ol>
+<li><p>생성자 함수에 의한 객체 생성 방식은 마치 객체(인스턴스)를 생성하기 위한 템플릿(클래스)처럼 생성자 함수를 사용하여 프로퍼티 구조가 동일한 객체 여러 개를 간편하게 생성할 수 있다.</p>
+</li>
+<li><img width="520" alt="스크린샷 2020-09-21 오후 8 21 52" src="https://user-images.githubusercontent.com/68043654/93761290-85271f80-fc48-11ea-8805-5ded4a9fc2dc.png">
+</li>
+<li><p>this는 객체 자신의 프로퍼티나 메서드를 참조하기 위한 자기 참조 변수(self-referencing variable)다. <strong>this가 가리키는 값, 즉 this  바인딩은 함수 호출 방식에 따라 동적으로 결정된다.</strong></p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th align="left">함수 호출 방식</th>
+<th align="left">this가 가리키는 값(this 바인딩)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">일반 함수로서 호출</td>
+<td align="left">전역 객체</td>
+</tr>
+<tr>
+<td align="left">메서드로서 호출</td>
+<td align="left">메서드를 호출한 객체(마침표 앞의 객체)</td>
+</tr>
+<tr>
+<td align="left">생성자 함수로서 호출</td>
+<td align="left">생성자 함수가 (미래에) 생성할 인스턴스</td>
+</tr>
+</tbody></table>
+</li>
+<li><img width="487" alt="스크린샷 2020-09-21 오후 8 31 01" src="https://user-images.githubusercontent.com/68043654/93762028-cc61e000-fc49-11ea-9011-4aeb9da6b873.png">
+</li>
+<li><p>생성자 함수는 이름 그대로 객체(인스턴스)를 생성하는 함수다. 하지만 자바와 같은 클래스 기반 객체지향 언어의 생성자(constructor)와는 다르게 그 형식이 정해져 있는 것이 아니라 일반 함수와 동일한 방법으로 생성자 함수를 정의하고 <strong>new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다.</strong> 만약 new 연산자와 함께 생성자 함수를 호출하지 않으면 생성자 함수가 아니라 일반 함수로 동작한다 .</p>
+</li>
+<li><img width="501" alt="스크린샷 2020-09-21 오후 8 47 31" src="https://user-images.githubusercontent.com/68043654/93763275-1a77e300-fc4c-11ea-9049-d759ca867326.png">
+
+</li>
+</ol>
+<h4 id="생성자-함수의-인스턴스-생성-과정"><a href="#생성자-함수의-인스턴스-생성-과정" class="headerlink" title="생성자 함수의 인스턴스 생성 과정"></a>생성자 함수의 인스턴스 생성 과정</h4><ol>
+<li>먼저 생성자 함수의 함수 몸체에서 수행해야 하는 것이 무엇인지 생각해보자. 생성자 함수의 역할은 프로퍼티 구조가 동일한 인스턴스를 생성하기 위한 템플릿(클래스)으로서 동작하여 <strong>인스턴스를 생성</strong>하는 것과 **생성된 인스턴스를 초기화(인스턴스 프로퍼티 추가 및 초기값 할당)**하는 것이다 </li>
+<li>생성자 함수가 인스턴스를 생성하는 것은 필수이고 생성된 인스턴스를 초기화하는 것은 옵션이다.</li>
+<li><img width="444" alt="스크린샷 2020-09-21 오후 8 53 45" src="https://user-images.githubusercontent.com/68043654/93763770-f8cb2b80-fc4c-11ea-9ff8-7c6dfd323ade.png"></li>
+<li>생성자 함수 내부의 코드를 살펴보면 this에 프로퍼티를 추가하고 필요에 따라 전달된 인수를 프로퍼티의 초기값으로서 할당하여 인스턴스를 초기화한다 하지만 인스턴스를 생성하고 반환하는 코드는 보이지 않는다</li>
+<li>자바스크립트 엔진은 암묵적인 처리를 통해 인스턴스를 생성하고 반환한다. new 연산자와 함께 생성자 함수를 호출하면 자바스크립트 엔진은 다음과 같은 과정을 거쳐 암묵적으로 인스턴스를 생성하고 인스턴스를 초기화한 후 암묵적으로 인스턴스를 반환한다.</li>
+<li><strong>인스턴스 생성과 this 바인딩</strong><ol>
+<li>암묵적으로 빈 객체가 생성된다 . 이 빈 객체가 바로(아직 완성되지는 않았지만) 생성자 함수가 생성한 인스턴스다 그리고 암묵적으로 생성된 빈 객체 즉 인스턴스는 this에 바인딩된다.</li>
+<li>생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유가 바로 이것이다 이 처리는 함수 몸체의 코드가 한 줄씩 실행되는 런타임 이전에 실행된다.</li>
+<li><strong>바인딩(binding)이란</strong><ol>
+<li>식별자와 값을 연결하는 과정을 의미한다 예를 들어 변수 선언은 변수 이름(식별자)과 확보된 메모리 공간의 주소를 바인딩하는 것이다. this 바인딩은 this(키워드로 분류되지만 식별자 역할을 한다)와 가리킬 객체를 바인딩하는 것이다.</li>
+<li><img width="458" alt="스크린샷 2020-09-21 오후 9 19 46" src="https://user-images.githubusercontent.com/68043654/93765911-9bd17480-fc50-11ea-84d7-420a6ac6df8c.png"></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>인스턴스 초기화</strong><ol>
+<li>생성자 함수에 기술되어 있는 코드가 한 줄씩 실행되어 this에 바인딩되어 있는 인스턴스를 초기화한다 즉 ,this에 바인딩되어 있는 인스턴스에 프로퍼티나 메서드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다. 이 처리는 개발자가 기술한다.</li>
+<li><img width="458" alt="스크린샷 2020-09-21 오후 9 29 05" src="https://user-images.githubusercontent.com/68043654/93766781-e99aac80-fc51-11ea-969c-6b0138b2f7d7.png"></li>
+</ol>
+</li>
+<li><strong>인스턴스 반환</strong><ol>
+<li>생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스의 바인딩된 this가 암묵적으로 반환된다.</li>
+<li><img width="420" alt="스크린샷 2020-09-21 오후 9 30 55" src="https://user-images.githubusercontent.com/68043654/93766912-29fa2a80-fc52-11ea-8b4d-6c044b07e659.png"></li>
+<li>만약 this가 아닌 다른 객체를 명시적으로 반환하면 this가 반환되지 못하고 return문에 명시한 객체가 반환된다.</li>
+<li><img width="425" alt="스크린샷 2020-09-21 오후 9 34 40" src="https://user-images.githubusercontent.com/68043654/93767247-af7dda80-fc52-11ea-8cd2-a77049d1a041.png"></li>
+<li>하지만 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다.</li>
+<li><img width="475" alt="스크린샷 2020-09-21 오후 9 39 08" src="https://user-images.githubusercontent.com/68043654/93767700-51052c00-fc53-11ea-915e-159a6b3729cb.png"></li>
+<li>이처럼 생성자 함수 내부에서 명시적으로 this가 아닌 다른 값을 반환하는 것은 생성자 함수의 기본 동작을 훼손한다. 따라서 생성자 함수 내부에서 return 문을 반드시 생략해야 한다 .</li>
+</ol>
+</li>
+</ol>
+<h4 id="내부-메서드-call-과-construct"><a href="#내부-메서드-call-과-construct" class="headerlink" title="내부 메서드 [[call]]과 [[construct]]"></a>내부 메서드 [[call]]과 [[construct]]</h4><ol>
+<li>함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다.</li>
+<li>생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.</li>
+<li>함수는 객체이므로 일반 객체와 동일하게 동작할 수 있다. 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드를 모두 가지고 있기 때문이다 .</li>
+<li><img width="276" alt="스크린샷 2020-09-21 오후 9 48 31" src="https://user-images.githubusercontent.com/68043654/93768617-9f66fa80-fc54-11ea-8af6-b98d7eb5d960.png"></li>
+<li>함수는 객체이지만 일반 객체와는 다르다. <strong>일반 객체는 호출할 수 없지만 함수는 호출할 수 있다.</strong> 따라서 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드는 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[Environment]], [[FormalParameters]]등의 내부 슬롯과 [[Call]], [[Construct]] 같은 내부 메서드를 추가로 가지고 있다.</li>
+<li>함수가 일반 함수로서 호출되면 함수 객체의 내부 메서드[[Call]]이 호출되고 new 연산자와 함께 생성자 함수로서 호출되면 내부 메서드 [[Construct]]가 호출된다.</li>
+<li><img width="322" alt="스크린샷 2020-09-21 오후 9 52 19" src="https://user-images.githubusercontent.com/68043654/93768965-287e3180-fc55-11ea-9414-c6e0fe2fb54f.png"></li>
+<li>내부 메서드 [[Call]]을 갖는 함수 객체를 callable이라 하며,<ol>
+<li>callable은 호출할 수 있는 객체, 즉 함수를 말한다</li>
+</ol>
+</li>
+<li>내부 메서드 [[Construct]]를 갖는 함수 객체를 constructor,<ol>
+<li>constrictor는 생성자 함수로서 호출할 수 있는 함수</li>
+</ol>
+</li>
+<li>[[Constructor]]를 갖지 않는 함수 객체를 non-constructor라고 부른다.<ol>
+<li>non-constructor는 객체를 생성자 함수로서 호출할 수 없는 함수</li>
+</ol>
+</li>
+<li>결론적으로 함수 객체는 constructor이거나 callable이면서 non-constructor다  즉, 모든 함수 객체는 호출할 수 있지만 모든 함수 객체를 생성자 함수로서 호출할 수 있늨 것은 아니다.</li>
+</ol>
+<h4 id="constructor-와-non-contructor의-구분"><a href="#constructor-와-non-contructor의-구분" class="headerlink" title="constructor 와 non-contructor의 구분"></a>constructor 와 non-contructor의 구분</h4><ol>
+<li>자바스크립트 엔진은 함수 정의를 평가하여 함수 객체를 생성할 때 함수 정의 방식에 따라 함수를 contructor와 non-constructor로 구분한다.<ol>
+<li>Constructor = 함수 선언문, 함수 표현식, 클래스(클래스도 함수)</li>
+<li>non-constructor = 메서드(ES6 메서드 축약 표현), 화살표 함수</li>
+</ol>
+</li>
+<li>이때 주의할 것은 ECMAScript 사양에서 메서드로 인정하는 범위가 일반적인 의미의 메서드 보다 좁다는 것이다. 다음 예제를 살펴보자.</li>
+<li><img width="507" alt="스크린샷 2020-09-21 오후 10 03 13" src="https://user-images.githubusercontent.com/68043654/93770075-ad1d7f80-fc56-11ea-9ea3-486f52f992eb.png"></li>
+<li>함수를 프로퍼티 값으로 사용하면 일반적으로 메서드로 통칭한다. 하지만 ECMAScript 사양에서 메서드랑 ES6의 메서드 축약표현 만을 의미한다. 다시 말해 함수가 어디에 할당되어 있는지에 따라 메서드인지를 판단하는 것이 아니라</li>
+<li>함수 정의 방식에 따라 constructor와 non-contructor를 구분한다.</li>
+<li>따라서 위 예제와 같이 일반 함수 , 즉 함수 선언문과 함수 표현식으로 정의된 함수만이 constructor이고 ES6의 화살표 함수와 메서드 축약 표현으로 정의된 함수는 non-constructor다</li>
+<li>함수를 일반 함수로서 호출하면 함수 객체의 내부 메서드[[call]]이 호출되고 new 연산자와 함께 생성자 함수로서 호출하면 내부 메서드 [[Construct]]가 호출된다 non-constructor인 함수 객체는 내부 메서드[[Constructor]]를 갖지 않는다 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.</li>
+<li><img width="507" alt="스크린샷 2020-09-21 오후 10 07 51" src="https://user-images.githubusercontent.com/68043654/93770574-53698500-fc57-11ea-861d-abbe400ccc4e.png"></li>
+<li>주의할 것은 생성자 함수로서 호출될 것을 기대하고 정의하지 않은 일반 함수(callable이면서 construcotr)에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있다는 것이다 .</li>
+</ol>
+<h4 id="new-연산자"><a href="#new-연산자" class="headerlink" title="new 연산자"></a>new 연산자</h4><ol>
+<li>일반 함수와 생성자 함수에 특별한 형식적 차이는 없다. new 연산자와 함께 함수를 호출하면 해당 함수는 생성자 함수로 동작한다 </li>
+<li>다시 말해, 함수 객체의 내부 메서드 [[Call]]이 호출되는 것이 아니라 [[Constructor]]가 호출된다 단 new 연산자와 함께 호출하는 함수는 non-constructor가 아닌 constructor여야 한다.</li>
+<li><img width="507" alt="스크린샷 2020-09-21 오후 10 16 00" src="https://user-images.githubusercontent.com/68043654/93771441-76486900-fc58-11ea-9fe8-35aac45bf33b.png"></li>
+<li>반대로 new 연산자 없이 생성자 함수를 호출하면 일반 함수로 호출된다. 다시 말해, 함수 객체의 내부 메서드[[Constructor]]가 호출되는 것이 아니라 [[Call]]이 호출된다.</li>
+<li><img width="507" alt="스크린샷 2020-09-21 오후 10 17 18" src="https://user-images.githubusercontent.com/68043654/93771562-a55eda80-fc58-11ea-9191-0725c0a4963e.png"></li>
+<li>Circle 함수를 new 연산자와 함께 생성자 함수로서 호출하면 함수 내부의 this 는 Circle 생성자 함수가 생성할 인스턴스를 가리킨다 하지만 Circle 함수를 일반적인 함수로서 호출하면 함수 내부의 this는 전역 객체 window를 가리킨다.</li>
+<li>위 예제의 Circle 함수는 일반 함수로서 호출되었기 때문에 Circle 함수 내부의 this는 전역 객체 window를 가리킨다 따라서 radius 프로퍼티와 getDiameter메서드는 전역 객체의 프로퍼티와 메서드가 된다.</li>
+<li>일반 함수와 생성자 함수에 특별한 형식적 차이는 없다 따라서 생성자 함수는 일반적으로 첫 문자를 대문자로 기술하는 파스칼 케이스로 명명하여 일반 함수와 구별할 수 있도록 노력한다.</li>
+</ol>
+<h4 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a>new.target</h4><ol>
+<li>생성자 함수가 new 연산자 없이 호출되는 것을 방지하기 위해 파스칼 케이스 컨벤션을 사용한다 하더라도 실수는 언제나 발생할 수 있다. 이러한 위험성을 회피하기 위해 ES6에서는 new.target을 지원한다.</li>
+<li>new.target은 this와 유사하게 constructor인 모든 함수 내부에서 암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티라고 부른다. 참고로 IE는 new.target을 지원하지 않으므로 주의하기 바란다.</li>
+<li>함수 내부에서 new.target을 사용하면 new 연산자와 함께 생성자 함수로서 호출되었는지 확인할 수 있다. <strong>new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 함수 자신을 가리킨다. new 연산자 없이 일반 함수로서 호출된 함수 내부의 new.target은 undefined다.</strong></li>
+<li>따라서 함수 내부에서 new.target을 사용하여 new 연산자와 생성자 함수로서 호출했는지 확인하여 그렇지 않은 경우 new 연산자와 함께 재귀 호출을 통해 생성자 함수로서 호출할 수 있다.</li>
+<li><img width="514" alt="스크린샷 2020-09-21 오후 10 23 06" src="https://user-images.githubusercontent.com/68043654/93772155-7432da00-fc59-11ea-9151-2ace04a4077a.png"></li>
+<li>스코프 세이프 생성자 패턴(scope-safe constructor)<ol>
+<li>new.target은 ES6에서 도입된 최신 문법으로 IE에서는 지원하지 않는다. new.target을 사용할 수 없는 상황이라면 스코프 세이프 생성자 패턴을 사용할 수 있다.</li>
+</ol>
+</li>
+<li><img width="514" alt="스크린샷 2020-09-21 오후 10 23 57" src="https://user-images.githubusercontent.com/68043654/93772247-93316c00-fc59-11ea-8ee5-672115aa23d1.png"></li>
+<li>new 연산자와 함께 생성자 함수에 의해 생성된 객체(인스턴스)는 프로토타입에 의해 생성자 함수와 연결된다. 이를 이용해 new 연산자와 함께 호출되었는지 확인할 수 있다.</li>
+<li>참고로 대부분의 빌트인 생성자 함수(Object, String, Number, Boolean, Function, Array, Date, RegExp, Promise 등)는 new 연산자와 함께 호출되었는지를 확인한 후 적절한 값을 반환한다.</li>
+<li>예를 들어, Object와 Function 생성자 함수는 new 연산자 없이 호출해도 new 연산자와 함께 호출했을 때와 동일하게 동작한다.</li>
+<li><img width="381" alt="스크린샷 2020-09-21 오후 10 24 55" src="https://user-images.githubusercontent.com/68043654/93772338-b52aee80-fc59-11ea-9f6e-0b073ee7ea13.png"></li>
+<li>하지만 String, Number, Boolean 생성자 함수는 new 연산자와 함께 호출했을 때 String, Number, Boolean 객체를 생성하여 반환하지만 new 연산자 없이 호출하면 문자열, 숫자, 불리언 값을 반환한다. 이를 통해 데이터 타입을 변환하기도 한다.</li>
+<li><img width="375" alt="스크린샷 2020-09-21 오후 10 25 51" src="https://user-images.githubusercontent.com/68043654/93772489-d68bda80-fc59-11ea-9cb2-00eac7a19e20.png">
+
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%20Algorithm%2020200921/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1607,558 +1986,6 @@ console.log(person); // &#123;name: &quot;Lee&quot;, address: &#123;city: &quot;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/28/Unicode%20and%20Aski%20code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/28/Unicode%20and%20Aski%20code/" class="post-title-link" itemprop="url">Unicode and Aski code</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-28 16:40:13 / Updated at: 17:57:58" itemprop="dateCreated datePublished" datetime="2020-08-28T16:40:13+09:00">2020-08-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="아스키-코드"><a href="#아스키-코드" class="headerlink" title="아스키 코드"></a>아스키 코드</h2><img width="720" alt="스크린샷 2020-08-28 오후 5 49 25" src="https://user-images.githubusercontent.com/68043654/91541328-25926880-e957-11ea-9d1c-dbcaa3d44f29.png">
-
-
-
-<ol>
-<li>아스키 코드는 미국 <a target="_blank" rel="noopener" href="https://namu.wiki/w/ANSI">ANSI</a>에서 표준화한 정보교환용 7비트 부호체계이다. 000(0x00)부터 127(0x7F)까지 총 128개의 부호가 사용된다. 이는 영문 키보드로 입력할 수 있는 모든 기호들이 할당되어 있는 부호 체계이며, 매우 단순하고 간단하기 때문에 어느 시스템에서도 적용가능하다는 장점이 있으나, 2바이트 이상의 코드를 표현할 수 없기 때문에 국제표준의 위상은 <a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C">유니코드</a>에게 넘어갔다. text only 형태의 게시판에서는 [아스키 아트](<a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4">https://namu.wiki/w/아스키</a> 아트)라는 이름으로 자주 사용된다.</li>
-<li>1바이트를 구성하는 8비트 중에서 7비트만 쓰도록 제정된 이유는, 나머지 1비트를 통신 에러 검출을 위해 사용하기 때문이었다. Parity Bit라고 해서, 7개의 비트 중 1의 개수가 홀수면 1, 짝수면 0으로 하는 식의 패리티 비트를 붙여서, 전송 도중 신호가 변질된 것을 수신측에서 검출해낼 확률을 높인 것. 원시적인 CRC 체크섬이라고 할 수 있지만 당연히 이런 체크에 검출되지 않는 신호 에러도 얼마든지 생길 수 있고 현재는 더 이상 쓰이지 않는다. 현재는 8비트 문자 인코딩에서는 그냥 맨 앞 비트에 0을 붙이고 이어서 7비트가 이어지는 식의 인코딩이 일반적이다.</li>
-<li><img width="353" alt="스크린샷 2020-08-28 오후 5 50 49" src="https://user-images.githubusercontent.com/68043654/91541441-57a3ca80-e957-11ea-95d2-df1dd1cb11dd.png"></li>
-<li>위의 표는 아스키 코드 중 제어 문자와 확장 아스키 코드를 제외한 부호(영문 자판에 사용되는 부호)를 정리한 것이다.<ol>
-<li>흔히 이 목록에 있는 문자들을 <a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%98%81%EC%88%AB%EC%9E%90">영숫자</a>라 부른다. 좁은 의미로는 숫자 10개(0<del>9, 0x30 ~ 0x39), 대문자 26개(A</del>Z, 0x41 ~ 0x5A), 소문자 26개(a~z, 0x61 ~ 0x7A) 해서 총 62개의 문자를 영숫자라 부르고, 넓은 의미로는 이 목록의 문자들을 모두 포괄한다.</li>
-<li>한편, 92번은 EUC-KR에서는 ₩, Shift-JIS에서는 ¥로 표시된다</li>
-</ol>
-</li>
-</ol>
-<h2 id="유니-코드와의-호환성"><a href="#유니-코드와의-호환성" class="headerlink" title="유니 코드와의 호환성"></a>유니 코드와의 호환성</h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://namu.wiki/w/UTF-8">UTF-8</a>의 경우 ASCII 영역은 그대로 <strong>1바이트를</strong> 사용하기 때문에 호환이 된다. 반대로 말하자면 UTF-8 문서라도 ASCII 영역에 해당하는 문자만 적혀 있고 <a target="_blank" rel="noopener" href="https://namu.wiki/w/BOM">BOM</a>까지 없다면 그냥 ASCII 문서와 다를 게 없다.</p>
-<p>하지만 <a target="_blank" rel="noopener" href="https://namu.wiki/w/UTF-16">UTF-16</a>은 2바이트에서 시작하기 때문에 서로 호환이 되지 않는다. 이 때문에 UTF-16에서 ASCII 문자를 나타낼 때는 앞에 <code>0x00</code>이 붙는다. 예를 들어 A라는 글자를 표현하려면, ASCII나 UTF-8에서는 <code>0x41</code>이라고만 표현하면 되지만, UTF-16에서는 <code>0x0041</code>로 표현해야 한다. 이를 무시하고 1바이트로만 표현하면 앞뒤의 바이트가 묶여서 전혀 다른 문자가 튀어나온다. 반대로 UTF-16으로 작성된 문서를 ASCII로 읽으면 ASCII 영역의 문자열들이 한글자 한글자 띄어쓰기를 해놓은 것처럼 띄엄띄엄 표시되는 것을 알 수 있는데, 이 역시 앞뒤에 붙은 <code>0x00</code>이 따로 해석돼서 발생하는 현상이다.</p>
-<ul>
-<li>예시: ABCD<ul>
-<li>ASCII: <code>41 42 43 44</code></li>
-<li>UTF-16LE: <code>41-00 42-00 43-00 44-00</code></li>
-<li>UTF-16BE: <code>00-41 00-42 00-43 00-44</code></li>
-<li>ASCII→UTF-16LE: <code>42-41 44-43</code> / 䉁䑃</li>
-<li>ASCII→UTF-16BE: <code>41-42 43-44</code> / 䅂䍄</li>
-<li>UTF-16LE→ASCII: <code>41 00 42 00 43 00 44 00</code> / A<code>(null)</code>B<code>(null)</code>C<code>(null)</code>D<code>(null)</code>[[13]](<a target="_blank" rel="noopener" href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4">https://namu.wiki/w/아스키</a> 코드#fn-13)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>   유니코드의 첫 256글자(U+0000 ~ U+00FF)는 확장 ASCII 코드 중 하나인 ISO/IEC 8859-1을 그대로 차용한 것이다.</p>
-<h2 id="유니코드-란"><a href="#유니코드-란" class="headerlink" title="유니코드 란"></a>유니코드 란</h2><ol>
-<li><p><strong>유니코드</strong>(Unicode)는 전 세계의 모든 문자를 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0">컴퓨터</a>에서 일관되게 표현하고 다룰 수 있도록 설계된 산업 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%ED%91%9C%EC%A4%80">표준</a>이며, 유니코드 협회(Unicode Consortium)가 제정한다. 또한 이 표준에는 ISO 10646 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%A7%91%ED%95%A9">문자 집합</a>, <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%9D%B8%EC%BD%94%EB%94%A9">문자 인코딩</a>, 문자 정보 데이터베이스, 문자들을 다루기 위한 알고리즘 등을 포함하고 있다.</p>
-<p>또한 유니코드의 목적은 현존하는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EB%AC%B8%EC%9E%90_%EC%9D%B8%EC%BD%94%EB%94%A9">문자 인코딩</a> 방법들을 모두 유니코드로 교체하려는 것이다. 기존의 인코딩들은 그 규모나 범위 면에서 한정되어 있고, 다국어 환경에서는 서로 호환되지 않는 문제점이 있었다. 유니코드가 다양한 문자 집합들을 통합하는 데 성공하면서 유니코드는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4">컴퓨터 소프트웨어</a>의 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EA%B5%AD%EC%A0%9C%ED%99%94%EC%99%80_%EC%A7%80%EC%97%AD%ED%99%94">국제화와 지역화</a>에 널리 사용되게 되었으며, 비교적 최근의 기술인 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/XML">XML</a>, <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_(%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%EC%96%B8%EC%96%B4)">자바</a>, 그리고 최신 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%9A%B4%EC%98%81_%EC%B2%B4%EC%A0%9C">운영 체제</a> 등에서도 지원하고 있다.</p>
-<p>유니코드에서 한국어 발음을 나타날 때는 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/%EC%98%88%EC%9D%BC_%EB%A1%9C%EB%A7%88%EC%9E%90_%ED%91%9C%EA%B8%B0%EB%B2%95">예일 로마자 표기법</a>의 변형인 <a target="_blank" rel="noopener" href="https://ko.wikipedia.org/wiki/ISO/TR_11941">ISO/TR 11941</a>을 사용하고 있다.</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/08/26/Javascript%20TIL%20200826%20(Function)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/26/Javascript%20TIL%20200826%20(Function)/" class="post-title-link" itemprop="url">Javascript TIL (Function)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-08-26 17:54:59" itemprop="dateCreated datePublished" datetime="2020-08-26T17:54:59+09:00">2020-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-08-27 22:02:08" itemprop="dateModified" datetime="2020-08-27T22:02:08+09:00">2020-08-27</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Javascript-TIL-200826"><a href="#Javascript-TIL-200826" class="headerlink" title="Javascript TIL 200826"></a>Javascript TIL 200826</h1><h2 id="함수란"><a href="#함수란" class="headerlink" title="함수란?"></a>함수란?</h2><ol>
-<li>함수는 자바스크립트에서 가장 중요한 핵심 개념이다, 또 다른 자바스크립트의 핵심 개념인 스코프, 실행 컨텍스트, 클로저, 생성자 함수에 의한 객체 생성, 메서드, this, 프로토타입, 모듈화 등이 모두 함수와 깊은 관련이 있다</li>
-<li>수학의 함수는 “입력(input)”을 받아 “출력(output)”을 내보내는 일련의 과정을 정의한 것이다</li>
-<li>예를 들어 f(x,y) = x+y라는 함수를 정의하고 이 함수에 두 개의 입력 2,5를 전달하면 함수는 정의된 일련과정 , 즉 x+y를 실행하여 7을 출력한다 .</li>
-<li>프로그래밍 언어의 함수도 수학의 함수와 같은 개념이다 , 함수 f(x,y) = x+y를 자바스크립트로의 함수로 표현하면 다음과 같다.</li>
-<li><img width="175" alt="스크린샷 2020-08-26 오후 1 05 10" src="https://user-images.githubusercontent.com/68043654/91254339-17005180-e79d-11ea-8cb2-d56fbc1add4f.png"></li>
-<li>프로그래밍 언어의 <strong>함수는 일련의 과정을 문(statement)으로 구현하고 코드 블록으로 감싸서 하나의 실행 단위로 정의한 것이다.</strong></li>
-<li>프로그래밍 언어의 함수도 입력을 받아서 출력을 내보낸다. 이때 함수 내부로 입력을 전달받는 변수를 <strong>매개변수(parameter)</strong> 입력을 <strong>인수(argument)</strong>, 출력을 **반환값(return value)**이라고 한다. 또한 함수는 값이며 여러 개 존재할 수 있으므로 특정 함수를 구별하기 위해 식별자인 함수 이름을 사용할 수 있다.</li>
-<li><img width="595" alt="스크린샷 2020-08-26 오후 1 11 30" src="https://user-images.githubusercontent.com/68043654/91254680-fa184e00-e79d-11ea-8aca-a6197363b832.png"></li>
-<li>함수는 **함수 정의(function definition)**를 통해 생성한다 자바스크립트의 함수는 다양한 방법으로 정의할 수 있다.</li>
-<li>함수 정의만으로 함수가 실행되는 것은 아니다 , 수학의 함수처럼 미리 정의된 일련의 과정을 실행하기 위해 필요한 입력, 즉 인수 (argument)를 매개변수를 통해 함수에 전달하면서 함수의 실행을 명시적으로 지시해야 한다. 이를 **함수 호출(function call / invoke)**이라고 한다. 함수를 호출하면 코드 블록에 담긴 문들이 일괄적으로 실행되고, 실행 결과, 즉 반환값을 반환한다.</li>
-<li><img width="214" alt="스크린샷 2020-08-26 오후 1 46 35" src="https://user-images.githubusercontent.com/68043654/91256656-defc0d00-e7a2-11ea-8276-e58e47479c6a.png"></li>
-<li>함수 호출, 함수 add에 인수 2,5를 전달하면서 호출하면 반환값 7을 반환한다,</li>
-</ol>
-<h3 id="함수의-사용-이유-코드의-재사용"><a href="#함수의-사용-이유-코드의-재사용" class="headerlink" title="함수의 사용 이유 (코드의 재사용)"></a>함수의 사용 이유 (코드의 재사용)</h3><ol>
-<li>함수는 필요할 때 여러 번 호출할 수 있다 즉, 실행 시점을 개발자가 결정할 수 있고 몇 번이든 재사용이 가능하다</li>
-<li>동일한 작업을 반복적으로 수행해야한다면 미리 정의된 함수를 재사용하는 것이 효율적이다.</li>
-<li><img width="678" alt="스크린샷 2020-08-26 오후 1 49 22" src="https://user-images.githubusercontent.com/68043654/91256807-43b76780-e7a3-11ea-8d28-29ecd576d973.png"></li>
-<li>코드의 중복을 억제하고 재사용성을 높이는 <strong>함수는 유지보수의 편의성을 높이고 실수를 줄여 코드의 신뢰성을 높이는 효과가 있다.</strong></li>
-<li>함수는 객체 타입의 값이다 따라서 이름(식별자)를 붙일 수 있다 적절한 함수 이름은 코드를 이해하지 않고도 역할을 파악할 수 있게 돕는다 이는 <strong>코드의 가독성</strong>을 향상시킨다.</li>
-</ol>
-<h3 id="함수-리터럴"><a href="#함수-리터럴" class="headerlink" title="함수 리터럴"></a>함수 리터럴</h3><ol>
-<li>자바스크립트의 함수는 객체 타입의 값이다 따라서 숫자 값을 숫자 리터럴로 생성하고 객체를 객체 리터럴로 생성하는 것처럼 함수도 함수 리터럴로 생성할 수 있다</li>
-<li>함수 리터럴은 function 키워드, 함수 이름, 매개변수 목록, 함수 몸체로 구성된다.</li>
-<li>함수 리터럴의 구성 요소는 다음과 같다<ol>
-<li>함수 이름<ol>
-<li>함수 이름은 식별자다, 따라서 식별자 네이밍 규칙을 준수해야 한다.</li>
-<li>함수 이름은 함수 몸체 내에서만 참조할 수 있는 식별자다.</li>
-<li>함수 이름은 생략할 수 있다. 이름이 있는 함수를 기명함수(named function), 이름이 없는 함수를 무명/익명 함수(anonymous function)라고 한다.</li>
-</ol>
-</li>
-<li>매개변수 목록<ol>
-<li>0개 이상의 매개변수를 소괄호로 감싸고 쉼표로 구분한다.</li>
-<li>각 매개변수에는 함수를 호출할 때 지정한 인수가 순서대로 할당된다. 즉, 매개변수 목록은 순서에 의미가 있다</li>
-<li>매개변수는 함수 몸체 내에서 변수와 동일하게 취급된다, 따라서 매개변수도 변수와 마찬가지로 식별자 네이밍 규칙을 준수해야 한다.</li>
-</ol>
-</li>
-<li>함수 몸체<ol>
-<li>함수가 호출되었을 때 일괄적으로 실행될 문들을 하나의 실행 단위로 정의한 코드 블록이다</li>
-<li>함수 몸체는 함수 호출에 의해 실행된다 .</li>
-</ol>
-</li>
-<li><img width="202" alt="스크린샷 2020-08-26 오후 2 14 55" src="https://user-images.githubusercontent.com/68043654/91258225-d60d3a80-e7a6-11ea-9610-dc367ae28ee0.png"></li>
-<li>위 예제는 함수 리터럴을 변수에 할당하고 있다 , 리터럴은 사람이 이해할 수 있는 문자 또는 약속된 기호를 사용해 값을 생성하는 표기 방식을 말한다</li>
-<li>즉 리터럴은 값을 생성하기 위한 표기법이다, 따라서 함수 리터럴도 평가되어 값을 생성하며, 이 값은 객체다</li>
-<li>즉, <strong>함수는 객체다</strong></li>
-<li><strong>일반 객체는 호출할 수 없지만 함수는 호출할 수 있다</strong>, 그리고 일반 객체에는 없는 함수 객체만의 고유한 프로퍼티를 갖는다.</li>
-</ol>
-</li>
-</ol>
-<h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><ol>
-<li><p>함수 정의란 함수를 호출하기 이전에 인수를 전달받을 매개변수와 실행할 문들, 그리고 반환할 값을 지정하는 것을 말한다</p>
-</li>
-<li><p>정의된 함수는 자바스크립트 엔진에 의해 평가되어 함수 객체가 된다,</p>
-</li>
-<li><p>함수를 정의하는 방법에는 4가지가 있다</p>
-<ol>
-<li><h4 id="함수-선언문-function-declaration-function-statement"><a href="#함수-선언문-function-declaration-function-statement" class="headerlink" title="함수 선언문(function declaration / function statement)"></a>함수 선언문(function declaration / function statement)</h4><ol>
-<li>브라우저환경 <img width="232" alt="스크린샷 2020-08-26 오후 2 43 39" src="https://user-images.githubusercontent.com/68043654/91261779-d8719380-e7aa-11ea-8d16-56b91838e906.png"></li>
-<li>vscode(Node.js 환경)<img width="485" alt="스크린샷 2020-08-26 오후 2 44 45" src="https://user-images.githubusercontent.com/68043654/91262365-ffc86080-e7aa-11ea-91be-462630338c21.png"></li>
-<li>vscode는 node환경이기 때문에 function:add 라고 반환, 인수 2,5를 console.dir에 넣어줄 경우 console.log와 같은 결과가 출력된다 </li>
-<li>함수 선언문은 함수 리터럴과 형태가 동일하다 단, 함수 리터럴은 함수 이름을 생략할 수 있으나 <strong>함수 선언문은 함수 이름을 생략할 수 없다.</strong></li>
-<li><strong>함수 선언문은 표현식이 아닌 문이다.</strong><ol>
-<li>함수 선언문을 실행하면 완료값 undefined가 출력된다 만약 표현식인 문이라면 undefined 대신 표현식이 평가되어 생성된 함수가 출력되어야 한다 .</li>
-<li><strong>표현식이 아닌 문은 변수에 할당할 수 없다. 함수 선언문도 표현식이 아닌 문이므로 변수에 할당할 수 없다</strong>. 하지만 다음 예제를 실행해보면 <strong>함수 선언문이 변수에 할당되는 것처럼 보인다</strong>.</li>
-</ol>
-</li>
-<li><img width="485" alt="스크린샷 2020-08-26 오후 3 03 53" src="https://user-images.githubusercontent.com/68043654/91267147-ad3c7380-e7ad-11ea-832d-cdf510d2b17e.png"></li>
-<li>이렇게 동작하는 이유는 자바스크립트 엔진이 코드의 문맥에 따라 동일한 함수 리터럴을 표현식이 아닌 문인 함수 선언문으로 해석하는 경우와 표현식인 문인 함수 리터럴 표현식으로 해석하는 경우가 있기 때문이다. 함수 선언문은 함수 이름을 생략할 수 없다는 점을 제외하면 함수 리터럴과 형태가 동일하다. 이는 <strong>함수 이름이 있는 기명 함수 리터럴은 함수 선언문 또는 함수 리터럴 표현식으로 해석될 가능성이 있다는 의미</strong>다.<ol>
-<li>예를 들어 {}는 블록문일 수도 있고 객체 리터럴일 수도 있다 즉 ,중괄호는 중의적 표현(하나의 문장이 둘 이상의 의미로 해석될 수 있는 표현)이다</li>
-<li>자바스크립트 엔진은 {}가 <strong>단독으로 존재하면 블록문으로 해석하고 값으로 평가되어야할 문맥에서 피연산자로 사용되면 객체 리터럴로 해석</strong>한다.</li>
-<li>기명 함수 리터럴도 중의적인 코드다, 따라서 코드의 문맥에 따라 해석이 달라질 수 있다. 자바스크립트 엔진은 </li>
-<li><strong>함수 이름이 있는 함수 리터럴을 단독으로 사용하면 함수 선언문으로 해석</strong>하고, </li>
-<li><strong>함수 리터럴이 값으로 평가되어야 하는 문맥, 예를들어 함수 리터럴을 변수에 할당하거나 피연산자로 사용하면 함수 리터럴 표현식으로 해석</strong>한다.</li>
-<li>이때 함수 선언문이든 함수 리터럴 표현식이든 함수가 생성하는 것은 동일하다 </li>
-<li>하지만 <strong>함수를 생성하는 내부 동작에 차이</strong>가 있다</li>
-<li><img width="485" alt="스크린샷 2020-08-26 오후 3 32 25" src="https://user-images.githubusercontent.com/68043654/91269194-aa438200-e7b1-11ea-9d03-4bb7ddff8830.png"></li>
-<li>단독으로 사용된 함수리터럴(foo)는 함수 선언문으로 해석된다</li>
-<li>하지만 그룹 연산자()내에 있는 함수 리터럴(bar)은 함수 리터럴 표현식으로 해석된다, 그룹 연산자의 피연산자는 값으로 평가될 수 있는 표현식이어야 한다 따라서 표현식이 아닌 문인 함수 선언문은 피연산자로 사용할 수 없다<ol>
-<li>위 예제는 값으로 평가될 수 없는 표현식이기 때문에 ReferenceError를 반환한다.</li>
-</ol>
-</li>
-<li>함수 선언문과 함수 리터럴 표현식은 <strong>함수 객체를 생성한다는 점에서 동일하지만 호출에 차이가 있다</strong></li>
-<li>위 예제에서 선언문 foo는 호출할 수 있으나 리터럴 표현식 bar는 호출할 수 없다 <ol>
-<li>앞에서 함수 이름은 “함수 몸체 내에서만 참조할 수 있는 식별자다”라고 했다 이는 함수 몸체 외부에서는 이름으로 참조할 수 없다는 의미이다 즉, 함수를 가리키는 식별자가 없다는 것과 마찬가지다 따라서 bar 함수는 호출 할 수 없다</li>
-<li><img width="538" alt="스크린샷 2020-08-26 오후 3 38 08" src="https://user-images.githubusercontent.com/68043654/91269668-761c9100-e7b2-11ea-9b80-94b5dd8af28e.png"></li>
-<li>하지만 위 예제에서 함수 선언문으로 정의된 함수는 foo라는 이름으로 호출할 수 있었다, foo는 bar와 마찬가지로 함수 몸체 내에서만 유효한 식별자인 함수이므로 호출할 수 없어야 한다. 그런데 위 예제에서 식별자 foo를 선언한적도, 할당한적도 없다 </li>
-<li>그럼에도 호출할 수 있는 이유는 Foo가 자바스크립트 엔진이 암묵적으로 생성한 식별자이기 때문이다.</li>
-<li><img width="538" alt="스크린샷 2020-08-26 오후 3 40 40" src="https://user-images.githubusercontent.com/68043654/91269906-d0b5ed00-e7b2-11ea-9714-969279b4c2c2.png"></li>
-<li>자바스크립트 엔진은 함수 선언문을 해석해 함수 객체를 생성한다. 이때 함수 이름은 함수 몸체 내부에서만 유효한 식별자이므로 함수 이름과는 별도로 생성된 함수 객체를 가리키는 식별자가 필요하다, 함수 객체를 가리키는 식별자가 없으면 생성된 함수 객체를 참조할 수 없으므로 호출할 수도 없다. </li>
-<li>따라서 <strong>자바스크립트 엔진은 생성된 함수를 호출하기 위해 함수 이름과 동일한 이름의 식별자를 암묵적으로 생성하고, 거기에 생성된 함수 객체를 할당</strong>한다.</li>
-<li>지금까지 살펴본 함수 선언문을 의사코드(pseudo code)로 표현하면 다음과 같다<ol>
-<li>의사 코드(pseudo code)란<ol>
-<li>프로그램을 작성할 때 각 모듈이 작동하는 논리를 표현하기 위한 언어이다</li>
-<li>특정 프로그래밍 언어의 문법에 따라 쓰인 것이 아니라 일반적인 언어로 코드를 흉내 내어 알고리즘을 써놓은 코드를 말한다</li>
-<li>특정 언어로 프로그램을 작성하기 전에 알고리즘의 모델을 대략적으로 모델링하는 데에 쓰인다.</li>
-</ol>
-</li>
-<li><img width="200" alt="스크린샷 2020-08-26 오후 4 09 15" src="https://user-images.githubusercontent.com/68043654/91272518-cd246500-e7b6-11ea-857f-af0ec504532c.png"></li>
-<li><strong>함수는 함수 이름으로 호출하는 것이 아니라 함수 객체를 가리키는 식별자로 호출한다</strong></li>
-<li>즉, 함수 선언문으로 생성한 함수를 호출한 것은 함수 이름 add가 아니라 자바스크립트 엔진이 암묵적으로 생성한 식별자 add인 것이다.</li>
-<li><img width="494" alt="스크린샷 2020-08-26 오후 4 13 38" src="https://user-images.githubusercontent.com/68043654/91272889-6b182f80-e7b7-11ea-9e3a-7fdd49b7e07b.png">
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><h4 id="함수-표현식-function-expression"><a href="#함수-표현식-function-expression" class="headerlink" title="함수 표현식(function expression)"></a>함수 표현식(function expression)</h4><ol>
-<li><p>자바스크립트의 함수는 객체 타입의 값이다, 이 함수는 값처럼 변수에 할당할 수 도 있고 프로퍼티 값이 될 수도 있으며 배열의 요소가 될 수도 있다. 이처럼 값의 성질을 갖는 객체를 일급 객체(first-class object)라고 한다 <strong>자바스크립트의 함수는 일급 객체이다.</strong> 함수가 일급 객체라는 것은 함수를 값처럼 자유롭게 사용할 수 있다는 의미다.</p>
-<ol>
-<li>일급 객체(first-class object)란<ol>
-<li>컴퓨터 프로그래밍 언어 디자인에서 일급객체란 다른 객체들에 일반적으로 적용 가능한 연산을 모두 지원하는 객체를 가리킨다 보통 함수에 매개변수로 넘기기, 수정하기, 변수에 대입하기와 같은 연산을 지원할 때 일급 객체 라고한다.</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>함수는 일급 객체이므로 함수 리터럴로 생성한 함수 객체를 변수에 할당할 수 있다. 이러한 함수 정의 방식을 함수 표현식(function expression)이라고 한다 함수 선언문으로 정의한 add 함수를 함수 표현식으로 바꿔서 정의하면 다음과 같다.</p>
-</li>
-<li><img width="200" alt="스크린샷 2020-08-26 오후 4 09 15" src="https://user-images.githubusercontent.com/68043654/91272518-cd246500-e7b6-11ea-857f-af0ec504532c.png">
-</li>
-<li><p>함수 리터럴의 함수 이름은 생략할 수 있다, 이러한 함수를 익명 함수(anonymous function)이라고 한다 함수 표현식의 함수 리터럴은 함수 이름을 생략하는 것이 일반적이다.</p>
-</li>
-<li><p>함수 선언문에서 살펴본 바와 같이 함수를 호출할 때는 함수 이름이 아니라 함수 객체를 가리키는 식별자를 사용해야 한다. 함수 이름은 함수 몸체 내부에서만 유효한 식별자이므로 함수 이름으로 함수를 호출할 수 없다.</p>
-</li>
-<li><img width="502" alt="스크린샷 2020-08-26 오후 4 46 10" src="https://user-images.githubusercontent.com/68043654/91276067-f693bf80-e7bb-11ea-8a8a-1dc2f5e60081.png">
-</li>
-<li><p>자바스크립트 엔진은 함수 선언문의 함수 이름으로 식별자를 암묵적 생성하고 생성된 함수 객체를 할당하므로 함수 표현식과 유사하게 동작하는 것처럼 보인다, 하지만 함수 표현식이 정확히 동일하게 동작하지는 않는다</p>
-</li>
-<li><p>함수 선언문은 “표현식이 아닌 문”이고 함수 표현식은 “표현식인 문”이다 따라서 미묘하지만 중요한 차이가 있다.</p>
-</li>
-<li><h4 id="함수-생성-시점과-함수-호이스팅"><a href="#함수-생성-시점과-함수-호이스팅" class="headerlink" title="함수 생성 시점과 함수 호이스팅"></a>함수 생성 시점과 함수 호이스팅</h4><ol>
-<li><img width="484" alt="스크린샷 2020-08-26 오후 5 14 20" src="https://user-images.githubusercontent.com/68043654/91278985-e5e54880-e7bf-11ea-9596-5d96263452dc.png"></li>
-<li>위 예제와 같이 함수 선언문으로 정의한 함수는 함수 선언문 이전에 호출할 수 있다, </li>
-<li>그러나 함수 표현식으로 정의한 함수는 함수 표현식 이전에 호출할 수 없다 .</li>
-<li>이는 <strong>함수 선언문으로 정의한 함수와 함수 표현식으로 정의한 함수의 생성 시점이 다르기 때문이다.</strong></li>
-<li>모든 선언문이 그렇듯 함수 선언문도 runtime이전에 자바스크립트 엔진에 의해 먼저 실행된다</li>
-<li>이처럼 <strong>함수 선언문이 코드의 선두로 끌어 올려진 것처럼 동작하는 자바스크립트 고유의 특징을 함수 호이스팅(function hoisting)이라고 한다.</strong></li>
-<li>함수 호이스팅과 변수 호이스팅의 차이<ol>
-<li>var 키워드를 사용한 변수 선언문과 함수 선언문은 런타임 이전에 엔진에 의해 먼저 실행되어 식별자를 생성한다는 점에서 동일하다</li>
-<li>하지만 var 키워드로 선언된 <strong>변수는 undefined로 초기화</strong>되고</li>
-<li>함수 선언문을 통해 <strong>암묵적으로 생성된 식별자는 함수 객체로 초기화</strong>된다.</li>
-<li>따라서 변수 선언문 이전에 변수를 참조하면 변수 호이스팅에 의해 undefined로 평가되고</li>
-<li>함수 선언문으로 정의한 함수를 함수 선언문 이전에 호출하면 함수 호이스팅에 의해 호출이 가능하다.</li>
-<li>함수 표현식은 변수에 할당되는 값이 함수 리터럴인 문이다 따라서 함수 표현식은 변수 선언문과 변수 할당문을 한번에 기술한 축약 표현과 동일하게 동작한다</li>
-<li>변수 선언은 런타임 이전에 실행되어 undefined로 초기화 되지만 </li>
-<li><strong>변수 할당문의 값은 할당문이 실행되는 시점, 즉 런타임에 평가되므로 함수 표현식의 함수 리터럴도 할당문이 실행, 즉 런타임에 평가되므로 함수 표현식의 함수 리터럴도 할당문이 실행되는 시점에 평가되어 함수 객체가 된다.</strong></li>
-<li>따라서 <strong>함수 표현식으로 함수를 정의하면 함수 호이스팅이 발생하는 것이 아니라 변수 호이스팅이 발생한다.</strong></li>
-<li>함수 표현식 이전에 함수를 참조하면 undefined로 평가된다 따라서 이때 함수를 호출하면 undefined를 호출하는 것과 마찬가지이므로 타입 에러(TypeError)가 발생한다. 따라서 함수 표현식으로 정의한 함수는 반드시 함수 표현식 이후에 참조 또는 호출해야 한다 .</li>
-<li>함수 호이스팅은 함수를 호출하기 전에 반드시 함수를 선언해야 한다는 당연한 규칙을 무시한다. 이 같은 문제 때문에 《JavaScript: The Good Parts(자바스크립트 핵심 가이드(한빛미디어, 2008))》 의 저자이자 JSON(JavaScript Object Notation)을 창안한 더글라스 크락포드(Douglas Crockford)는 <strong>함수 선언문 대신 함수 표현식을 사용할 것을 권장</strong>한다.</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><h4 id="function-생성자-함수-function-constructor"><a href="#function-생성자-함수-function-constructor" class="headerlink" title="function 생성자 함수(function constructor)"></a>function 생성자 함수(function constructor)</h4><ol>
-<li>자바스크립트가 기본 제공하는 빌트인 함수인 Function 생성자 함수에 매개변수 목록과 함수 몸체를 문자열로 전달하면서 new 연산자와 함께 호출하면 함수 객체를 생성해서 반환한다, 사실 new 연산자 없이 호출해도 결과는 동일하다</li>
-<li>생성자 함수는 객체를 생성하는 함수를 말한다 객체를 생성하는 방식은 객체 리터럴 이외에 다양한 방법이 있다.</li>
-<li><img width="418" alt="스크린샷 2020-08-26 오후 5 22 43" src="https://user-images.githubusercontent.com/68043654/91279920-11b4fe00-e7c1-11ea-9ec8-ad8597690fa9.png"></li>
-<li>Function 생성자 함수로 함수를 생성하는 방식은 일반적이지도 않으며 바람직하지도 않다, Function 생성자 함수로 생성한 함수는 클로저(closure)를 생성하지 않는 등, 함수 선언문이나 함수 표현식으로 생성한 함수와 다르게 동작한다.</li>
-<li>클러조는 아직 살펴보지 않는 내용이다, 지금은 함수 선언문이나 함수 표현식으로 생성한 함수와 Function 생성자 함수로 생성한 함수가 동일하게 동작하지 않는다는 데 주목하자.</li>
-</ol>
-</li>
-<li><h4 id="화살표-함수-arrow-function-ES6"><a href="#화살표-함수-arrow-function-ES6" class="headerlink" title="화살표 함수(arrow function):ES6"></a>화살표 함수(arrow function):ES6</h4><ol>
-<li>ES6에서 새롭게 도입된 화살표 함수(arrow function)는 function 키워드 대신 화살표(=&gt;)를 사용해 좀 더 간략한 방법으로 함수를 선언할 수 있다 화살표 함수는 <strong>항상 익명 함수로 정의</strong>한다.</li>
-<li><img width="418" alt="스크린샷 2020-08-26 오후 5 29 54" src="https://user-images.githubusercontent.com/68043654/91280701-129a5f80-e7c2-11ea-8df6-29dac49af821.png"></li>
-<li>화살표 함수는 기존의 함수 선언문 또는 함수 표현식을 완전히 대체하기 위해 디자인된 것은 아니다 </li>
-<li>화살표 함수는 기존의 함수보다 표현만 간략한 것이 아니라 내부 동작 또한 간략화되어 있다.</li>
-<li>화살표 함수는 생성자 함수로 사용할 수 없으며 기존의 함수와 this 바인딩 방식이 다르고, prototype property가 없으며 arguments 객체를 생성하지 않는다. </li>
-</ol>
-</li>
-<li><h4 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h4><ol>
-<li>함수는 함수정의와 함수 호출로 이루어져 있다</li>
-<li>함수는 함수 정의를 통해 생성한다, 함수를 정의하는 방법에는 4가지가 있다<ol>
-<li>함수 선언문<ol>
-<li>함수 리터럴과 형태가 동일하며 함수 이름을 생략할 수 없다</li>
-<li>표현식이 아닌 문이다</li>
-<li>함수 이름은 함수 몸체 내에서만 호출이 가능한데 코드의 문맥에 따라 엔진이 함수 이름과 동일한 이름의 식별자를 암묵적으로 생성하고 거기에 생성된 함수 객체를 할당한다.</li>
-<li>이와 같은 이유로 함수 선언문이 변수에 할당되는 것처럼 보인다.</li>
-<li>모든 선언문은 런타임 이전에 호이스팅이 일어나고 함수를 선언하기 전에 참조할 경우 함수 선언문이 호이스팅이 되고 자바스크립트 엔진은 함수 이름과 동일한 이름의 식별자를 암묵적으로 생성하고 생성된 함수 객체를 할당한다 때문에 호이스팅 시 함수 호이스팅에 의해 호출이 가능하다.</li>
-</ol>
-</li>
-<li>함수 표현식<ol>
-<li>함수는 일급 객체 이므로 함수 리터럴로 생성한 함수 객체를 변수에 할당할 수 있다, 이러한 방식을 함수 표현식이라고한다.</li>
-<li>표현식인 문이다</li>
-<li>함수 이름을 생략할 수 있다.</li>
-<li>자바스크립트 엔진은 함수 선언문의 함수 이름으로 식별자를 암묵적으로 생성하고 할당하는데 이와같은 이유로 함수 표현식과 유사하게 동작하는 것처럼 보이지만 정확히 동일하게 동작하지는 않는다.</li>
-</ol>
-</li>
-<li>Function 생성자 함수<ol>
-<li>자바스크립트의 기본 빌트인 함수로서 Function  생성자 함수에 매개변수 목록과 함수 몸체를 문자열로 전달하면서 new 연산자와 함께 호출하면 객체를 생성해서 반환한다</li>
-<li>Function 생성자 함수로 함수를 생성하는 방식은 일반적이지않고 바람직하지도 않다 </li>
-<li>함수 선언문이나 함수 표현식으로 생성한 함수와 다르게 동작하지 않는다는 정도만 알고 넘어가자.</li>
-</ol>
-</li>
-<li>화살표 함수<ol>
-<li>ES6 에서 새롭게 추가된 함수이고 기존의 함수보다 표현과 내부 동작이 간략화 되어 있다.</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>함수를 실행하기 위해서는 함수 호출이 필요하고 호출에서는 인수를 매개변수를 통해 함수에 전달하면서 실행한다</li>
-<li>함수를 사용하는 이유는 중복된 코드를 하나의 함수에 담아 유지보수의 편의성을 높이고 코드의 신뢰성을 높인다</li>
-<li>자바스크립트의 함수 = 객체 타입 값, 따라서 함수도 함수 리터럴로 생성할 수 있다</li>
-<li>함수 리터럴의 구성<ol>
-<li>function 키워드 , </li>
-<li>함수 이름, </li>
-<li>매개변수 목록,</li>
-<li>함수 몸체</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="함수-호출"><a href="#함수-호출" class="headerlink" title="함수 호출"></a>함수 호출</h3><ol>
-<li>함수는 함수를 가리키는 식별자와 한 쌍의 소괄호인 함수 호출 연산자로 호출한다,</li>
-<li>함수 호출 연산자 내에는 0개 이상의 인수를 쉼표로 구분해서 나열한다 .</li>
-<li>함수를 호출하면 현재의 실행 흐름을 중단하고 호출된 함수로 실행 흐름을 옮긴다 이때 매개변수에 인수가 순서대로 할당되고 함수 몸체의 문들이 실행되기 시작한다.</li>
-</ol>
-<h4 id="매개변수와-인수"><a href="#매개변수와-인수" class="headerlink" title="매개변수와 인수"></a>매개변수와 인수</h4><ol>
-<li>함수를 실행하기 위해 필요한 값을 함수 외부에서 함수 내부로 전달할 필요가 있는 경우, 매개변수(parameter, 인자)를 통해 인수(argument)를 전달한다. 인수는 값으로 평가될 수 있는 표현식이여야 한다. 인수는 함수를 호출할 때 지정하며, 개수와 타입에 제한이 없다.</li>
-<li>매개변수는 함수를 정의할 때 선언하며 함수 몸체 내부에서 변수와 동일하게 취급된다</li>
-<li>함수가 호출되면 함수 몸체 내에서 암묵적으로 매개변수가 생성되고 일반 변수와 마찬가지로 undefined로 초기화된 이후 인수가 순서대로 할당된다.</li>
-<li>함수가 호출될 때마다 매개변수는 아래와 같은 단계를 거친다 .</li>
-<li><img width="418" alt="스크린샷 2020-08-26 오후 10 38 23" src="https://user-images.githubusercontent.com/68043654/91310705-2c9d6780-e7ed-11ea-9435-a68dca5d90d2.png"></li>
-<li>매개변수는 함수 몸체 내부에서만 참조할 수 있고 외부에서는 참조할 수 없다.</li>
-<li>즉, 매개변수의 스코프(유효 범위)는 함수 내부이다.<ol start="8">
-<li><img width="418" alt="스크린샷 2020-08-26 오후 10 44 27" src="https://user-images.githubusercontent.com/68043654/91311404-03c9a200-e7ee-11ea-8f32-bf27f0f9c6d2.png"></li>
-<li>함수는 매개변수의 개수와 인수의 개수가 일치하는지 체크하지 않는다 </li>
-<li>즉 , 함수를 호출할 때 매개변수의 개수만큼 인수를 전달하는 것이 일반적이지만 그렇지 않은 경우에도 에러가 발생하지는 않는다.</li>
-</ol>
-</li>
-<li>인수가 부족해서 인수가 할당되지 않은 매개변수의 값은 undefined이다.<ol start="12">
-<li><img width="418" alt="스크린샷 2020-08-26 오후 10 59 56" src="https://user-images.githubusercontent.com/68043654/91313295-2fe62280-e7f0-11ea-86a4-b5a0dc43997d.png"></li>
-<li>위 예제의 매개변수 x에는 인수2가 전달되지만, 매개변수 y에는 전달할 인수가 없다 따라서 매개변수 y는 undefined로 초기화된 상태 그대로다 따라서 함수 몸체의 문 x + y 는. 2 + undefined와 같으므로 NaN을 반환한다 </li>
-</ol>
-</li>
-<li>매개변수보다 인수가 더 많은 경우 초과된 인수는 무시된다 .<ol>
-<li><img width="418" alt="스크린샷 2020-08-26 오후 11 02 33" src="https://user-images.githubusercontent.com/68043654/91313613-8a7f7e80-e7f0-11ea-8b8e-cbea8f62d1b9.png"></li>
-<li>사실 초과된 인수가 그냥 버려지는 것은 아니고, 모든 인수는 암묵적으로 arguments 객체의 프로퍼티로 보관된다.<ol>
-<li>브라우저 환경<img width="238" alt="스크린샷 2020-08-26 오후 11 06 47" src="https://user-images.githubusercontent.com/68043654/91314086-2315fe80-e7f1-11ea-9454-a497b0adb8f2.png"></li>
-<li>Node.js 환경<img width="543" alt="스크린샷 2020-08-26 오후 11 08 18" src="https://user-images.githubusercontent.com/68043654/91314267-58bae780-e7f1-11ea-989c-605d3b8a3f77.png"></li>
-<li>Arguments 객체는 함수를 정의할 때, 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하게 사용된다.<ol>
-<li>가변 인자 함수란 매개 변수의 지정없이 사용하는 함수 입니다.</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="인수-확인"><a href="#인수-확인" class="headerlink" title="인수 확인"></a>인수 확인</h3><ol>
-<li><img width="450" alt="스크린샷 2020-08-26 오후 11 26 45" src="https://user-images.githubusercontent.com/68043654/91316578-edbee000-e7f3-11ea-818f-4b0af5593513.png"></li>
-<li>위 코드는 자바스크립트 문법상 어떠한 문제도 없으므로 엔진은 아무런 이의 제기없이 위 코드를 실행할 것이다, 이러한 상황이 생긴 이유는 다음과 같다<ol>
-<li>자바스크립트 함수는 매개변수와 인수의 개수가 일치하는지 확인하지 않는다.</li>
-<li>자바스크립트는 동적 타입 언어다 따라서 자바스크립트 함수는 매개변수의 타입을 사전에 지정할 수 없다.</li>
-</ol>
-</li>
-<li>따라서 자바스크립트의 경우 함수를 정의할 때 적절한 인수가 전달되었는지 확인할 필요가 있다.</li>
-<li><img width="500" alt="스크린샷 2020-08-26 오후 11 32 57" src="https://user-images.githubusercontent.com/68043654/91317263-cae0fb80-e7f4-11ea-8ea3-5994840e9548.png"></li>
-<li>이처럼 함수 내부에서 적절한 인수가 전달되었는지 확인하더라도 부적절한 호출을 사전에 방지할 수는 없고 에러는 런타임에 발생하게 된다 따라서 타입스크립트(Typescript)와 같은 정적 타입을 선언할 수 있는 자바스크립트의 상위 확장을 도입해서 컴파일 시점에 부적절한 호출을 방지할 수 있게 하는 것도 하나의 방법이다.</li>
-<li>앞의 예제의 경우, 인수의 개수는 확인하고 있지 않지만 arguments 객체를 통해 인수 개수를 확인할 수도 있다 또는 인수가 전달되지 않은 경우 단축 평가를 사용해 매개변수에 기본값을 할당하는 방법도 있다.<ol>
-<li>단축평가란 표현식을 평가하는 도중에 평가 결과가 확정된 경우 나머지 평가 과정을 생략하는 것을 말한다 .</li>
-</ol>
-</li>
-<li><img width="421" alt="스크린샷 2020-08-26 오후 11 38 20" src="https://user-images.githubusercontent.com/68043654/91317878-8ace4880-e7f5-11ea-884e-85905c9bc831.png"></li>
-<li>ES6 에서 도입된 매개변수 기본값을 사용하면 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다, 매개변수 기본값은 매개변수에 인수를 전달하지 않았을 경우와 undefined를 전달한 경우에만 유효하다.</li>
-<li><img width="421" alt="스크린샷 2020-08-27 오전 12 30 10" src="https://user-images.githubusercontent.com/68043654/91324221-ca4c6300-e7fc-11ea-9769-80038f425a3d.png">
-
-</li>
-</ol>
-<h1 id="Javascript-TIL-200827"><a href="#Javascript-TIL-200827" class="headerlink" title="Javascript TIL 200827"></a>Javascript TIL 200827</h1><h3 id="매개변수의-최대-개수"><a href="#매개변수의-최대-개수" class="headerlink" title="매개변수의 최대 개수"></a>매개변수의 최대 개수</h3><ol>
-<li>ECMAscript 사양에서는 매개변수의 최대 개수에 대해 명시적으로 제한하고 있지 않다 하지만 물리적 한계는 있으므로 자바스크립트 엔진마다 매개변수의 최대 개수에 대한 제한이 있겠지만 충분히 많은 매개변수를 지정할 수 있다.</li>
-<li>매개변수는 순서에 의미가 있다, 따라서 매개변수가 많아지면 함수를 호출할 때 전달해야 할 인수의 순서를 고려해야 한다 이는 함수의 사용법을 이해하기 어렵게 만들고 실수를 발생시킬 가능성을 높힌다 또한 매개변수의 개수나 순서가 변경되면 함수의 호출 방법도 바뀌므로 함수를 사용하는 코드 전체가 영향을 받는다 즉, 유지보수성이 나빠진다.</li>
-<li>함수의 매개변수는 코드를 이해하는 데 방해가 되는 요소이므로 이상적인 매개변수 개수는 0개이며 적을 수록 좋다.</li>
-<li><strong>이상적인 함수는 한가지 일만 해야하며 가급적 작게 만들어야 한다.</strong></li>
-<li>따라서 매개변수는 최대 3개 이상을 넘지 않는 것을 권장한다, 만약 그 이상의 매개변수가 필요하다면 하나의 매개변수를 선언하고 객체를 인수로 전달하는 것이 유리하다</li>
-<li>객체를 인수로 사용하는 경우 프로퍼티 키만 정확히 지정하면 매개변수의 순서를 신경쓰지 않아도 된다 또한 명시적으로 인수의 의미를 설명하는 프로퍼티 키를 사용하게 되므로 코드의 가독성이 좋아지고 실수도 줄어드는 효과가 있다</li>
-<li>하지만 주의할 것은 함수 외부에서 내부로 전달한 객체를 함수 내부에서 변경하면 함수 외부의 객체가 변경되는 부수 효과가 발생한다는 것이다 .</li>
-</ol>
-<h3 id="반환문"><a href="#반환문" class="headerlink" title="반환문"></a>반환문</h3><ol>
-<li>함수는 return 키워드와 표현식(반환값)으로 이루어진 반환문을 사용해 실행 결과를 함수 외부로 반환(return)할 수 있다.</li>
-<li><img width="421" alt="스크린샷 2020-08-27 오후 3 50 58" src="https://user-images.githubusercontent.com/68043654/91406972-6cac2b00-e87d-11ea-83ac-e50fef324161.png"></li>
-<li>함수는 return 키워드를 사용해 자바스크립트에서 사용 가능한 모든 값을 반환할 수 있다 표현식에서 살펴 보았듯이 </li>
-<li><strong>함수 호출은 표현식이다</strong>, 함수 호출 표현식은 Return 키워드가 반환한 표현식의 평가 결과, 즉 반환값으로 평가된다.</li>
-<li>반환문은 두 가지 역할을 한다 </li>
-<li>첫째, 반환문은 함수의 실행을 중단하고 함수 몸체를 빠져 나간다 따라서 반환문 이후에 다른 문이 존재하면 그 문은 실행되지 않고 무시된다 .<ol>
-<li><img width="421" alt="스크린샷 2020-08-27 오후 3 55 24" src="https://user-images.githubusercontent.com/68043654/91407973-0a9ff580-e87e-11ea-97b0-e4960f747fae.png"></li>
-</ol>
-</li>
-<li>둘째, 반환문은 return 키워드 뒤에 오는 표현식을 평가해 반환한다 return 키워드 뒤에 반환값으로 사용할 표현식을 명시적으로 지정하지 않으면 undefined가 반환된다 . </li>
-<li><img width="451" alt="스크린샷 2020-08-27 오후 4 04 28" src="https://user-images.githubusercontent.com/68043654/91408741-4e472f00-e87f-11ea-8a85-085d1f5b88eb.png">
-
-</li>
-</ol>
-<h3 id="참조에-의한-전달과-외부-상태의-변경"><a href="#참조에-의한-전달과-외부-상태의-변경" class="headerlink" title="참조에 의한 전달과 외부 상태의 변경"></a>참조에 의한 전달과 외부 상태의 변경</h3><ol>
-<li>원시값은 값에 의한 전달(pass by value), 객체는 참조에 의한 전달(pass by reference) 방식으로 동작한다</li>
-<li>매개변수도 함수 몸체 내부에서 변수와 동일하게 취급되므로 매개변수 또한 타입에 따라 값에 의한 전달, 참조에 의한 전달 방식을 그대로 따른다.</li>
-<li>함수를 호출하면서 매개변수에 값을 전달하는 방식을 값에 의한 호출(call by value), 참조에 의한 호출(call by reference)로 구별해 부르는 경우도 있으나 동작 방식은 값에 의한 전달, 참조에 의한 전달과 동일하다 .</li>
-<li><img width="489" alt="스크린샷 2020-08-27 오후 4 16 56" src="https://user-images.githubusercontent.com/68043654/91409885-0cb78380-e881-11ea-8017-adb5105ef301.png"></li>
-<li>changeVal 함수는 매개변수를 통해 전달받은 원시 타입 인수와 객체 타입 인수를 함수 몸체에서 변경한다, 더 엄밀히 말하자면 원시 타입 인수를 전달받은 매개변수 primitive의 경우, 원시값은 변경 불가능한 값(immutable value)이므로 직접 변경할 수 없기 때문에 재할당을 통해 할당된 원시값을 새로운 원시값으로 교체 했고, 객체 타입 인수를 전달받은 매개변수 obj의 경우, 객체는 변경 가능한 값(mutable value)이므로 직접 변경할 수 있기 때문에 재할당 없이 직접 할당된 객체를 변경했다.</li>
-<li>이때 원시 타입 인수는 값 자체가 복사되어 매개변수에 전달되기 때문에 함수 몸체에서 그 값을 변경(재할당을 통한 교체)해도 원본은 훼손되지 않는다 , 다시말해 외부 상태 즉, 함수 외부에서 함수 몸체 내부로 전달한 참조값에 의해 원본 객체가 변경되는 부수 효과가 발생한다 .</li>
-<li><img width="696" alt="스크린샷 2020-08-27 오후 4 42 46" src="https://user-images.githubusercontent.com/68043654/91412363-a896be80-e884-11ea-86bf-8457305d359e.png"></li>
-<li>이처럼 함수가 외부 상태를 변경하면 상태변화를 추적하기 어려워진다 이는 코드의 복잡성을 증가시키고 가독성을 해치는 원인이 된다 함수 내부의 동작을 유심히 관찰하지 않으면 외부 상태가 변하는지 아닌지 알기 어렵기 때문이다 언제나 그러하듯 논리가 간단해야 버그가 숨어들지 못한다</li>
-<li>이러한 현상은 객체가 변경할 수 있는 값이며, 참조에 의한 전달 방식으로 동작하기 때문에 발생하는 부작용이다 여러 변수가 참조에 의한 전달 방식을 통해 참조 값을 공유하고 있다면 이 변수들은 언제든지 참조하고 있는 객체를 직접 변경할 수 있다 복잡한 코드에서 의도치 않은 객체의 변경을 추적하는것은 어려운 일이다 객체의 변경을 추적하려면 옵저버 패턴등을 통해 객체의 참조를 공유하는 모든 이들에게 변경 사실을 통지하고 이에 대처하는 추가 대응이 필요하다 .</li>
-<li>이러한 문제의 해결 방법 중 하나는 객체를 불변 객체(immutable object)로 만들어 사용하는 것이다 객체의 복사본을 새롭게 생성하는 비용은 들지만 객체를 마치 원시값처럼 변경 불가능한 값으로 동작하게 만드는 것이다 이를 통해 객체의 상태 변경을 원천봉쇄하고 객체의 상태 변경이 필요한 경우에는 객체의 방어적 복사(Defensive copy)를 통해 원본 객체를 완전히 복제, 즉 깊은 복사(deep copy)를 통해 새로운 객체를 생성하고 재할당을 통해 교체한다, 이를통해 외부 상태가 변경되는 부수 효과를 없앨 수 있다.</li>
-<li>외부 상태를 변경하지 않고 외부 상태에 의존하지도 않는 함수를 순수 함수라고한다 순수함수를 통해 부수 효과를 최대한 억제하여 오류를 피하고 프로그램의 안정성을 높이려는 프로그래밍 패러다임을 함수형 프로그래밍이라고 한다.</li>
-</ol>
-<h3 id="다양한-함수의-형태"><a href="#다양한-함수의-형태" class="headerlink" title="다양한 함수의 형태"></a>다양한 함수의 형태</h3><h4 id="즉시-실행함수"><a href="#즉시-실행함수" class="headerlink" title="즉시 실행함수"></a>즉시 실행함수</h4><ol>
-<li><img width="598" alt="스크린샷 2020-08-27 오후 5 22 02" src="https://user-images.githubusercontent.com/68043654/91416287-24dfd080-e88a-11ea-9886-a5947b11669c.png"><img width="367" alt="스크린샷 2020-08-27 오후 5 25 21" src="https://user-images.githubusercontent.com/68043654/91416615-9b7cce00-e88a-11ea-8e30-2262b0122825.png"></li>
-<li>그룹 연산자의 피연산자는 값으로 평가되므로 기명 또는 무명 함수를 그룹 연산자로 감싸면 함수 리터럴로 평가되어 함수 객체가 된다 .</li>
-<li>즉, 그룹 연산자로 함수를 묶은 이유는 먼저 함수 리터럴을 평가해서 함수 객체를 생성하기 위해서다 따라서 먼저 함수 리터럴을 평가해서 함수 객체를 생성할 수 있다면 다음과 같이 그룹 연산자 이외의 연산자를 사용해도 좋다 <ol>
-<li><img width="126" alt="스크린샷 2020-08-27 오후 5 33 51" src="https://user-images.githubusercontent.com/68043654/91417458-cb78a100-e88b-11ea-9ed4-412f406fefe3.png"></li>
-<li>가장 일반적인 방법은 첫 번째 방법이다</li>
-</ol>
-</li>
-<li><img width="374" alt="스크린샷 2020-08-27 오후 5 37 23" src="https://user-images.githubusercontent.com/68043654/91417811-4a6dd980-e88c-11ea-815d-154d12f7898e.png"></li>
-<li>즉시 실행 함수 내에 코드를 모아 두면 혹시 있을 수도 있는 변수나 함수 이름의 충돌을 방지할 수 있다</li>
-<li></li>
-</ol>
-<h4 id="재귀-함수"><a href="#재귀-함수" class="headerlink" title="재귀 함수"></a>재귀 함수</h4><ol>
-<li>함수가 자기 자신을 호출하는 것을 재귀 호출(recursive call)이라고 한다.</li>
-<li>재귀 함수(recursive function)은 자기 자신을 호출하는 행위, 즉 재귀 호출을 수행하는 함수를 말한다.</li>
-<li>재귀 함수는 반복되는 처리를 위해 사용한다 . 예를 들어 10부터 0까지 출력하는 함수를 구현해보자<ol>
-<li><img width="374" alt="스크린샷 2020-08-27 오후 5 41 50" src="https://user-images.githubusercontent.com/68043654/91418285-e861a400-e88c-11ea-8599-d8a33d6c972c.png"></li>
-<li>위 함수는 문제없이 잘 작동한다 하지만 반복문 없이도 재귀함수를 이용해 구현할 수 있다.</li>
-<li><img width="374" alt="스크린샷 2020-08-27 오후 5 43 00" src="https://user-images.githubusercontent.com/68043654/91418415-12b36180-e88d-11ea-80f5-798628d544b2.png"></li>
-<li>이처럼 자기 자신을 호출하는 재귀 함수를 사용하면 반복되는 처리를 반복문 없이 구현할 수 있다 예를 들어 ,팩토리얼은 재귀 함수로 간단히 구현할 수 있다.</li>
-<li><img width="474" alt="스크린샷 2020-08-27 오후 5 47 28" src="https://user-images.githubusercontent.com/68043654/91418867-b270ef80-e88d-11ea-827e-fd67f09dc642.png"></li>
-<li>factorial 함수 내부에서 자기 자신을 호출할 때 사용한 식별자 factorial은 함수 이름이다</li>
-<li>함수 이름은 함수 몸체 내부에서만 유효하다, 따라서 함수 내부에서는 함수 이름을 사용해 자기 자신을 호출할 수 있다</li>
-<li>함수 표현식으로 정의한 함수 내부에서는 함수 이름은 물론 함수를 가리키는 식별자로도 자기 자신을 재귀 호출 할 수 있다 </li>
-<li>단, 함수 외부에서 함수를 호출할 때는 반드시 함수를 가리키는 식별자로 해야한다 .</li>
-</ol>
-</li>
-</ol>
-<h4 id="중첩-함수"><a href="#중첩-함수" class="headerlink" title="중첩 함수"></a>중첩 함수</h4><ol>
-<li>함수 내부에 정의된 함수를 중첩 함수(nested function) 또는 내부 함수 (inner fuction)이라고 한다 그리고 중첩 함수를 포함하는 함수는 외부 함수(outer fuction)이라고 부른다 일반적으로 중첩 함수는 자신을 포함하는 외부 함수를 돕는 헬퍼 함수(helper function)의 역할을 한다 .</li>
-<li><img width="474" alt="스크린샷 2020-08-27 오후 8 02 03" src="https://user-images.githubusercontent.com/68043654/91434934-801cbd80-e8a0-11ea-8ceb-ca7fae757511.png"></li>
-<li>ES6부터 함수 정의는 문이 위치할 수 있는 문맥이라면 어디든지 가능하다 함수 선언문의 경우 ES6 이전에는 코드의 최상위 또는 다른 함수 내부에서만 정의할 수 있었으나 ES6부터는 if 문이나 for문 등의 코드 블록 내에서도 정의할 수 있다 .</li>
-<li>단 호이스팅으로 인해 혼란이 발생할 수 있으므로 if문이나 for 문 등의 코드 블록에서 함수 선언문을 통해 함수를 정의하는 것은 바람직하지 않다 중첩 함수는 스코프와 클로저에 깊은 관련이 있다</li>
-</ol>
-<h4 id="콜백-함수"><a href="#콜백-함수" class="headerlink" title="콜백 함수"></a>콜백 함수</h4><ol>
-<li>어떤 일을 반복 수행하는 repeat함수를 정의해 보자.</li>
-<li><img width="474" alt="스크린샷 2020-08-27 오후 8 06 34" src="https://user-images.githubusercontent.com/68043654/91435337-223ca580-e8a1-11ea-842a-f0a96c342395.png"></li>
-<li>repeat 함수는 매개변수를 통해 전달받은 숫자만큼 반복하며 console.log(i)를 호출한다 </li>
-<li>이때 repeat 함수는 console.log(i)에 강하게 의존하고 있어 다른 일을 할 수 없다 따라서 만약 repeat 함수의 반복문 내부에서 다른 일을 하고 싶다면 함수를 새롭게 정의해야 한다.</li>
-<li><img width="429" alt="스크린샷 2020-08-27 오후 8 09 16" src="https://user-images.githubusercontent.com/68043654/91435587-81021f00-e8a1-11ea-8c34-8f92e0df8243.png"></li>
-<li>위 예제의 함수들은 반복하는 일은 변하지 않고 공통적으로 수행하지만 반복하면서 하는 일의 내용은 다르다 즉, 함수의 일부분만이 다르기 때문에 매번 함수를 새롭게 정의해야 한다 이 문제는 함수를 합성하는 것으로 해결할 수 있다 함수의 변하지 않는 공통 로직은 미리 정의해 두고, 경우에 따라 변경되는 로직은 추상화해서 함수 외부에서 함수 내부로 전달하는 것이다 .</li>
-<li><img width="352" alt="스크린샷 2020-08-27 오후 9 02 43" src="https://user-images.githubusercontent.com/68043654/91440055-f9201300-e8a8-11ea-8d59-7b27e42baee8.png"></li>
-<li>위 repeat 함수는 경우에 따라 변경되는 일을 함수 f로 추상화했고 이를 외부에서 전달받는다 자바스크립트의 함수는 일급 객체 이므로 함수의 매개변수를 통해 함수를 전달할 수 있다 repeat 함수는 더이상 내부 로직에 강력히 의존하지 않고 외부에서 로직의 일부분을 함수로 전달받아 수행하므로 더욱 유연한 구조를 갖게되었다.</li>
-<li>이처럼 <strong>함수의 매개변수를 통해 다른 함수의 내부로 전달되는 함수를 콜백함수(callback function)라고 하며, 매개변수를 통해 함수의 외부에서 콜백 함수를 전달받은 함수를 고차 함수(higher-order function, HOF)라고 한다</strong></li>
-<li>매개변수를 통해 함수를 전달받거나 반환값으로 함수를 반환하는 함수를 함수형 프로그래밍 패러다임에서 고차 함수라 한다.</li>
-<li>중첩 함수가 외부 함수를 돕는 헬퍼 함수의 역할을 하는 것처럼</li>
-<li>콜백 함수도 고차 함수에 전달되어 헬퍼 함수의 역할을 한다</li>
-<li>단 중첩 함수는 고정되어 있어서 교체 하기 곤란하지만 콜백 함수는 함수 외부에서 고차 함수 내부로 주입하기 때문에 자유롭게 교체할 수 있다는 장접이 있다</li>
-<li>즉, <strong>고차 함수는 콜백 함수를 자신의 일부분으로 합성한다.</strong></li>
-<li><strong>고차 함수는 매개변수를 통해 전달받은 콜백 함수의 호출 시점을 결정해서 호출한다</strong></li>
-<li>다시 말해 <strong>콜백 함수는 고차 함수에 의해 호출되며 이때 고차 함수는 필요에 따라 콜백 함수에 인수를 전달할 수 있다.</strong></li>
-<li>따라서 고차 함수에 콜백 함수를 전달할 때 콜백 함수를 호출하지 않고 함수 자체를 전달해야 한다.</li>
-<li>모든 콜백 함수가 고차 함수에 의해 호출되는 건은 아니며, 이에 대한 내용은 뒤쪽에서 살펴보자</li>
-<li>콜백 함수가 고차 함수 내부에만 호출된다면 콜백 함수를 익명 함수 리터럴로 정의하면서 곧바로 고차 함수에 전달하는 것이 일반적이다</li>
-<li><img width="459" alt="스크린샷 2020-08-27 오후 9 45 57" src="https://user-images.githubusercontent.com/68043654/91443960-05a76a00-e8af-11ea-9af1-6486e75da462.png"></li>
-<li>이때 콜백 함수로서 전달된 함수 리터럴은 고차 함수가 호출될 때마다 평가되어 함수 객체를 생성한다 따라서 콜백 함수를 다른 곳에서도 호출할 필요가 있거나 콜백 함수를 전달받는 함수가 자주 호출된다면 함수 외부에서 콜백 함수를 정의한 후 참조를 고차 함수에 전달하는 편이 효율적이다.</li>
-<li><img width="459" alt="스크린샷 2020-08-27 오후 9 48 39" src="https://user-images.githubusercontent.com/68043654/91444217-646ce380-e8af-11ea-9236-8f136c869fd8.png"></li>
-<li>위 예제의 logOdds 함수는 단 한 번만 생성된다 하지만 콜백 함수를 익명 함수 리터럴로 정의하면서 곧바로 고차 함수에 전달하면 고차 함수가 호출될 때마다 콜백 함수가 생성된다.</li>
-<li>콜백 함수는 함수형 프로그래밍 패러다임 뿐만 아니라, 비동기 처리(이벤트 처리, Ajax 통신, Timer 함수 등)에 활용되는 중요한 패턴이다.</li>
-</ol>
-<h4 id="순수-함수와-비순수-함수"><a href="#순수-함수와-비순수-함수" class="headerlink" title="순수 함수와 비순수 함수"></a>순수 함수와 비순수 함수</h4><ol>
-<li>함수형 프로그래밍에서는 어떤 외부 상태에 의존하지도 않고 변경하지도 않는, 즉 부수 효과가 없는 함수를 순수 함수 (pure function)라고 하고,</li>
-<li>외부 상태에 의존하거나 외부 상태를 변경하는 , 즉 부수 효과가 있는 함수를 비순수 함수(impure function)라고 한다.</li>
-<li>순수 함수는 동일한 인수가 전달되면 언제나 동일한 값을 반환하는 함수다 </li>
-<li>즉, 순수 함수는 어떤 외부 상태에도 의존하지 않고 오직 매개변수를 통해 함수 내부로 전달된 인수에게만 의존해 반환값을 만든다 </li>
-<li>함수의 외부 상태에 의존하는 함수는 외부 상태에 따라 반환값이 달라진다 .</li>
-<li>순수 함수의 또 하나의 특징은 함수의 외부 상태를 변경하지 않는다는 것이다 즉, 순수 함수는 어떤 외부 상태에도 의존하지 않으며 외부 상태를 변경하지도 않는 함수다 .</li>
-<li><img width="481" alt="스크린샷 2020-08-27 오후 9 55 43" src="https://user-images.githubusercontent.com/68043654/91444922-5ff4fa80-e8b0-11ea-82cf-223dddb46391.png"></li>
-<li>반대로 함수의 외부 상태에 따라 반환값이 달라지는 함수, 다시 말해 외부 상태에 의존하는 함수를 비순수 함수라고한다</li>
-<li>비순수 함수의 또 하나의 특징은 순수 함수와는 달리 함수의 외부 상태를 변경하는 부수 효과(side effect)가 있다는 것이다 즉, 비순수 함수는 외부 상태에 의존하거나 외부 상태를 변경하는 함수다</li>
-<li><img width="481" alt="스크린샷 2020-08-27 오후 9 58 41" src="https://user-images.githubusercontent.com/68043654/91445205-cb3ecc80-e8b0-11ea-895f-284fd8042672.png"></li>
-<li>위 예제와 같이 함수 내부에서 외부 상태를 직접 참조하면 외부 상태에 의존하게 되어 반환값이 변할 수 있고,</li>
-<li>외부 상태도 변경할 수 있으므로 비순수 함수가 된다, 함수 내부에서 외부 상태를 직접 참조하지 않더라도 매개변수를 통해 객체를 전달받으면 비순수 함수가 된다.</li>
-<li>함수가 외부 상태를 변경하면 상태 변화를 추적하기 어려워진다 따라서 함수 외부 상태의 변경을 지양하는 순수 함수를 사용하는 것이 좋다</li>
-<li>비순수 함수를 최대한 줄이는 것은 부수 효과를 최대한 억제하는 것과 같다</li>
-<li>함수형 프로그래밍은 순수 함수와 보조 함수의 조합을 통해 외부 상태를 변경하는 부수 효과를 최소화 해서 불변성(immutablity)을 지향하는 프로그래밍 패러다임이다.</li>
-<li>로직 내에 존재하는 조건문과 반복문을 제거해서 복잡성을 해결하며, 변수 사용을 억제하거나 생명주기를 최소화해서 상태 변경을 피해 오류를 최소화하는 것을 목표로 한다.</li>
-<li>조건문이나 반복문은 로직의 흐름을 이해하기 어렵게 해서 가독성을 해치고 변수의 값은 누군가에 의해 언제든지 변경될 수 있어 오류 발생의 근본적 원인이 될 수 있기 때문이다.</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2228,7 +2055,7 @@ console.log(person); // &#123;name: &quot;Lee&quot;, address: &#123;city: &quot;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

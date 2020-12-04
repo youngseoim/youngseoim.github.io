@@ -148,6 +148,296 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/12/04/react-Components%20and%20Props/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/04/react-Components%20and%20Props/" class="post-title-link" itemprop="url">react-components and props</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-04 11:30:59 / Updated at: 16:13:03" itemprop="dateCreated datePublished" datetime="2020-12-04T11:30:59+09:00">2020-12-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Components-and-Props"><a href="#Components-and-Props" class="headerlink" title="Components and Props"></a>Components and Props</h1><ol>
+<li>컴포넌트를 통해 Ui를  재사용 가능한 개별적인 여러 조각으로 나누고, 각 조각을 개별적으로 살펴볼 수 있습니다. 이 페이지에서는 컴포넌트의 개념을 소개합니다.</li>
+<li>[컴포넌트 API Reference][<a target="_blank" rel="noopener" href="https://ko.reactjs.org/docs/react-component.html]">https://ko.reactjs.org/docs/react-component.html]</a></li>
+<li>개념적으로 컴포넌트는 Js 함수와 유사합니다. “props”라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환합니다.</li>
+</ol>
+<h2 id="함수-컴포넌트와-클래스-컴포넌트"><a href="#함수-컴포넌트와-클래스-컴포넌트" class="headerlink" title="함수 컴포넌트와 클래스 컴포넌트"></a>함수 컴포넌트와 클래스 컴포넌트</h2><ol>
+<li><p>컴포넌트를 정의하는 가장 간단한 방법은 Js 함수를 작성하는 것입니다.</p>
+<ol>
+<li><pre><code class="react">function Welcom(props) &#123;
+  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;
+&#125;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. 이 함수는 데이터를 가진 하나의 &amp;quot;props&amp;quot;(props는 속성을 나타내는 데이터입니다.) 객체 인자를 받은 후 React 엘리먼트를 반환하므로 유효한 React 컴포넌트 입니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   3. 이러한 컴포넌트는 Js 함수이기 때문에 말그대로 &amp;quot;함수 컴포넌트&amp;quot;라고 말합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 또한 ES6 class를 사용하여 컴포넌트를 정의할 수 있습니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      class Welcome extends React.Component &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        render() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          return &amp;lt;h1&amp;gt;Hello, &amp;#123;this.props.name&amp;#125;&amp;lt;&amp;#x2F;h1&amp;gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><p>React의 관점에서 볼 때 두 가지 유형의 컴포넌트는 동일합니다.</p>
+</li>
+<li><p>함수 컴포넌트와 클래스 컴포넌트는 몇 가지의 추가 기능이 있으며 이에 대해서는 다음장에서 설명합니다.</p>
+</li>
+</ol>
+</li>
+<li><p>ㅇ</p>
+</li>
+<li><p>ㅇ</p>
+</li>
+<li><p>ㅇ</p>
+</li>
+<li></li>
+</ol>
+<h2 id="컴포넌트-렌더링"><a href="#컴포넌트-렌더링" class="headerlink" title="컴포넌트 렌더링"></a>컴포넌트 렌더링</h2><ol>
+<li><p>이전까지는 React 엘리먼트를 DOM 태그로 나타냈습니다.</p>
+</li>
+<li><pre><code class="react">const element = &lt;div /&gt;;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있습니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   const element &amp;#x3D; &amp;lt;Welcome name&amp;#x3D;&amp;quot;Young seo&amp;quot;&amp;#x2F;&amp;gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><p>React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면 JSX 어트리뷰트와 자식을 해당 컴포넌트에 단일 객체로 전달합니다. 이 객체를 “props”라고 합니다.</p>
+</li>
+<li><p>다음은 페이지에 “Hello, Young seo”를 렌더링하는 예시입니다.</p>
+</li>
+<li><pre><code class="react">function Welcome(props) &#123;
+  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;
+&#125;
+const element = &lt;Welcome name = &quot;Young seo&quot;/&gt;;
+ReactDOM.render(
+element,
+document.getElementById(&#39;root&#39;)
+);
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. 이 예시에서는 다음과 같은 일들이 일어납니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1. &amp;lt;Welcome name&amp;#x3D;&amp;quot;Young seo&amp;quot;&amp;#x2F;&amp;gt; 엘리먼트로 ReactDOM.render()를 호출합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      2. React는 &amp;#123;name: &amp;quot;Young seo&amp;quot;&amp;#125;를 props로 하여 Welcome 컴포넌트를 호출합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      3. Welcome 컴포넌트는 결과적으로 &amp;lt;h1&amp;gt;Hello, Youngse&amp;lt;&amp;#x2F;h1&amp;gt;엘리먼트를 반환합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 컴포넌트 합성&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1. 컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있습니다. 이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미합니다. React앱에서는 버튼, 폼, 다이얼로그. 화면 등의 모든 것들이 흔히 컴포넌트로 표현됩니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. 예를 들어 Welcome을 여러 번 렌더링하는 App 컴포넌트를 만들 수 있습니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   function Welcome(props) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     return &amp;lt;h1&amp;gt;Hello, &amp;#123;props.name&amp;#125;&amp;lt;&amp;#x2F;h1&amp;gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   function App() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     return (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;lt;div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &amp;lt;Welcome name&amp;#x3D; &amp;quot;Im&amp;quot;&amp;#x2F;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &amp;lt;Welcome name&amp;#x3D; &amp;quot;Lee&amp;quot;&amp;#x2F;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &amp;lt;Welcome name&amp;#x3D; &amp;quot;Kim&amp;quot;&amp;#x2F;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;lt;&amp;#x2F;div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   ReactDOM.render(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;lt;App&amp;#x2F;&amp;gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    document.getElementById(&amp;#39;root&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     );&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><p>일반적으로 새 React 앱은 최상위에 단일 App 컴포넌트를 가지고 있습니다.</p>
+</li>
+<li><p>하지만 기존 앱에 React를 통합하는 경우에는 Button과 같은 작은 컴포넌트부터 시작해서 뷰 계층의 상단으로 올라가면서 점진적으로 작업해야 할 수 있습니다.</p>
+</li>
+</ol>
+<h2 id="컴포넌트-추출"><a href="#컴포넌트-추출" class="headerlink" title="컴포넌트 추출"></a>컴포넌트 추출</h2><ol>
+<li><p>컴포넌트를 여러 개의 작은 컴포넌트로 나누는 것을 두려워하지 마세요.</p>
+</li>
+<li><p>다른 Comment 컴포넌트를 살펴봅시다.</p>
+</li>
+<li><pre><code class="react">function Comment(props) &#123;
+  return (
+  &lt;div className=&quot;Comment&quot;&gt;
+
+      &lt;div className=&quot;Userinfo&quot;&gt;
+
+        &lt;img className=&quot;Avatar&quot;
+          src=&#123;props.author.avartarUrl&#125;
+          alt=&#123;props.author.name&#125;
+          /&gt;
+        &lt;div className=&quot;UserInfo-name&quot;&gt;
+          &#123;props.author.name&#125;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+      &lt;div className=&quot;Comment-text&quot;&gt;
+        &#123;props.text&#125;
+          &lt;/div&gt;
+
+      &lt;div className=&quot;Comment-date&quot;&gt;
+        &#123;formatDate(props.date)&#125;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  );
+&#125;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. 이 컴포넌트는 author(객체), text(문자열) 및 date(날짜)를 props로 받은 후 소셜 미디어 웹 사이트의 코멘트를 나타냅니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. 이 컴포넌트는 구성요소들이 모두 중첩 구조로 이루어져 있어서 변경하기 어려울 수 있으며, 각 구성요소를 개별적으로 재사용하기도 힘듭니다. 이 컴포넌트에서 몇 가지 컴포넌트를 추출하겠습니다 .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   function Avatar(props) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     return (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;lt;img className&amp;#x3D;&amp;quot;Avatar&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       src&amp;#x3D;&amp;#123;props.user.avatarUrl&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       alt&amp;#x3D;&amp;#123;props.user.name&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;#x2F;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><p>Avatar는 자신이 Comment 내에서 렌더링 된다는 것을 알 필요가 없습니다, 따라서 props의 이름을 author에서 더욱 일반화된 user로 변경하였습니다.</p>
+</li>
+<li><p>props의 이름은 사용될 context가 아닌 컴포넌트 자체의 관점에서 짓는것을 권장하니다.</p>
+<ol>
+<li>컴포넌트 관점에서 짓는다는게 어떤걸 의미할까요?</li>
+</ol>
+</li>
+<li><p>이제 Comment 컴포넌트가 더욱 단순해졌습니다.</p>
+</li>
+<li><pre><code class="react">function Comment(props) &#123;
+  return (
+  &lt;div className=&quot;Comment&quot;&gt;
+      &lt;UserInfo user=&#123;props.author&#125; /&gt;
+      &lt;div className=&quot;comment-text&quot;&gt;
+        &#123;props.text&#125;
+      &lt;/div&gt;
+      &lt;div className=&quot;Comment-date&quot;&gt;
+          &#123;formatDate(props.date)&#125;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+&#125;</code></pre>
+</li>
+<li><p>처음에는 컴포넌트를 추출하는 작업이 지루해 보일 수 있습니다. 하지만 재사용 가능한 컴포넌트를 만들어 놓는 것은 더 큰 앱에서 작업할 때 두각을 나타냅니다. UI 일부가 여러 번 사용되거나 (Button, Paner, Avatar), UI일부가 자체적으로 복잡한 (App, FeedStory, Comment) 경우에는 별도의 컴포넌트로 만드는게 좋습니다.</p>
+</li>
+</ol>
+<h2 id="props는-읽기-전용입니다"><a href="#props는-읽기-전용입니다" class="headerlink" title="props는 읽기 전용입니다."></a>props는 읽기 전용입니다.</h2><ol>
+<li>함수 컴포넌트나 클래스 컴포넌트 모두 컴포넌트의 자체 props를 수정해서는 안 됩니다. 다음 sum 함수를 살펴봅시다.</li>
+<li>React는 매우 유연하지만 한 가지 엄격한 규칙이 있습니다.</li>
+<li><strong>모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수처럼 동작해야 합니다.</strong></li>
+<li>물론 애플리케이션 UI는 동적이며 시간에 따라 변합니다.다음장에서는 “State”라는 새로운 개념을 소개합니다 </li>
+<li>React 컴포넌트는 State를 통해 위 규칙을 위반하지 않고 사용자 액션, 네트워크 응답 및 다른 요소에 대한 응답으로시간에 따라 자신의 출력값을 변경할 수 있습니다.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/12/03/react%20-%20jsx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youngseoim">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youngseo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/03/react%20-%20jsx/" class="post-title-link" itemprop="url">react-jsx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-03 20:30:59 / Updated at: 20:34:19" itemprop="dateCreated datePublished" datetime="2020-12-03T20:30:59+09:00">2020-12-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><ol>
+<li><p>JSX란?</p>
+<ol>
+<li>Javascript를 확장한 문법</li>
+<li>React에서는 이벤트가 처리되는 방식, 시간에 따라 상태가 변하는 방식, 렌더링 되기 전 데이터가 준비되는 방식등 렌더링 로직이 본질적으로 다른 UI로직과 연결된다.</li>
+<li>React는 기존의 별도의 파일에 html,css,Js를 인위적으로 분리하는 대신 둘 다 포함하는 “컴포넌트”의 개념을 사용해서 한개의 파일에서 html,css,js를 작성해서 하나의 유닛 처럼 사용한다.</li>
+<li>JSX는 Element를 생성한다.</li>
+</ol>
+</li>
+<li><p>JSX에 표현식 사용하기</p>
+<ol>
+<li><p>JSX의 중괄호 안에는 유효한 모든 Javascript 표현식을 넣을 수 있다.</p>
+</li>
+<li><pre><code class="react">const name = &#39;Im&#39;;
+const element = &lt;h1&gt;Hello, &#123;name&#125;&lt;/h1&gt;;
+
+ReactDOM.render(
+element,
+document.getElementById(&#39;root&#39;)
+);
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. 즉, JSX를 if문이나 for문으로 순회가 가능하고 변수에 할당하거나 인자로서 받아들이거나, 함수로부터 반환할 수 있습니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. 속성에 따옴표를 이용해 문자열 리터럴을 정의할 수 있습니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const element &amp;#x3D; &amp;lt;div tabIndex&amp;#x3D;&amp;quot;0&amp;quot;&amp;gt;&amp;lt;&amp;#x2F;div&amp;gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><p>또 중괄호를 사용해서 어트리뷰트에 Js 표현식을 삽입할 수도 있습니다.</p>
+<ol>
+<li><pre><code class="react">const element =&lt;img src=&#123;user.avatarUrl&#125;&gt;&lt;/img&gt;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      2. 어트리뷰트에 Js 표현식을 삽입할 때 중괄호 주변에 따옴표를 입력하지 마세요, 따옴표 또는 중괄호중 하나만 사용하고 동일한 어트리뷰트에 두가지를 동시에 사용하면 안됩니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      3. JSX 는 HTML 보단 Js에 가깝기 때문에 React DOM은 프로퍼티 명명 규칙은 카멜케이스로  사용합니다.asdf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. JSX로 자식요소 정의&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. 모든 태그는 XML 처럼 &amp;#x2F;&amp;gt;를 이용해 바로 닫아주어야 합니다. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      1. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         const element &amp;#x3D; &amp;lt;img src&amp;#x3D;&amp;#123;user.avatarUrl&amp;#125; &amp;#x2F;&amp;gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+</ol>
+</li>
+<li><p>JSX 태그는 자식을 포함할 수 있습니다.</p>
+<ol>
+<li><pre><code class="react">const element = (
+    &lt;div&gt;
+    &lt;h1&gt;Hello!&lt;/h1&gt;
+    &lt;h2&gt;Good to see you here.&lt;/h2&gt;
+  &lt;/div&gt;
+);
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. JSX는  Prevents Injection Attacks(주입 공격 방지)을 방지합니다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. XSS(cross-site-cription) 공격이란 웹 애플리케이션에서 많이 나타나는 취약점 의 하나로 관리자가 아닌 이가 웹 페이지에 악성 스크립트를 삽입할 수 있는 취약점이다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. React의 경우는 JSX에 삽입된 모든 값을 렌더링하기 이전에 escape하므로 모든 항목은 렌더링 되기전에 문자열로 변환이 되고, 때문에 애플리케이션에 명시적으로 작성되지 않은 내용은 주입되지 않습니다. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. JSX는 객체를 표현합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   1. Babel은 JSX를 React.createElement() 호출로 컴파일합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   2. 다음 두 예시는 동일합니다&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   3. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const element &amp;#x3D; (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;lt;h1 className&amp;#x3D;&amp;quot;greeting&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Hello, world!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;&amp;#x2F;h1&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      );&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+</ol>
+</li>
+<li><pre><code class="react">const element = React.createElement(
+  &#39;h1&#39;,
+  &#123;className: &#39;greeting&#39;&#125;,
+  &#39;Hello, world!&#39;
+);
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. React.createElement()는 버그가 없는 코드를 작성하는데 도움이 되도록 몇 가지 검사를 수행하며, 기본적으로 다음과 같은 객체를 생성합니다.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6. &amp;#96;&amp;#96;&amp;#96;react&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#x2F;&amp;#x2F; Note: this structure is simplified&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   const element &amp;#x3D; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     type: &amp;#39;h1&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     props: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       className: &amp;#39;greeting&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       children: &amp;#39;Hello, world!&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+</li>
+<li><p>이러한 객체를 React 엘리먼트 라고 하며 이를 렌더링되는 항목에 대한 설명이라고 생각할 수 있습니다 .</p>
+</li>
+<li><p>React는 이러한 객체를 읽은 후 DOM을 구성하고 최신으로 유지하는 데 이러한 객체를 사용합니다.</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/11/10/todos-v4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1774,385 +2064,6 @@ console.log(x); // ?
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/22/Javascript%20TIL%2020200922%20(%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AA%20%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%80%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6)/" class="post-title-link" itemprop="url">Javascript TIL (Function and first-class object)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-09-22 18:30:59" itemprop="dateCreated datePublished" datetime="2020-09-22T18:30:59+09:00">2020-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-09-23 20:42:56" itemprop="dateModified" datetime="2020-09-23T20:42:56+09:00">2020-09-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="일급-객체"><a href="#일급-객체" class="headerlink" title="일급 객체"></a>일급 객체</h2><ol>
-<li>무명의 리터럴로 생성할 수 있다 즉, 런타임에 생성이 가능하다.</li>
-<li>변수나 자료구조(객체, 배열 등)에 저장할 수 있다.</li>
-<li>함수의 매개변수에게 전달할 수 있다.</li>
-<li>함수의 반환값으로 사용할 수 있다.</li>
-<li>위와 같은 조건을 만족하는 객체를 <strong>일급 객체</strong>라고 하고 자바스크립트의 함수는 위의 조건을 모두 만족하므로 일급 객체이다.</li>
-<li><img width="478" alt="스크린샷 2020-09-22 오후 4 56 44" src="https://user-images.githubusercontent.com/68043654/93857108-09cf7780-fcf5-11ea-845b-f1bd1ce58f0c.png"></li>
-<li>함수가 일급 객체라는 것은 함수를 객체와 동일하게 사용할 수 있다는 의미다. 객체는 값이므로 함수는 값과 동일하게 취급할 수 있다. 따라서 함수는 값을 사용할 수 있는 곳(변수 할당문, 객체의 프로퍼티 값, 배열의 요소, 함수 호출의 인수, 함수 반환문)이라면 어디서든지 리터럴로 정의할 수 있으며 런타임(runtime)에 함수 객체로 평가된다.</li>
-<li>일급 객체로서 함수가 가지는 가장 큰 특징은 일반 객체와 같이 함수의 매개변수에 전달할 수 있으며, 함수의 반환값으로 사용할 수도 있다는 것이다. 이는 함수형 프로그래밍을 가능케하는 자바스크립트의 장점 중에 하나이다.</li>
-<li>함수는 객체이지만 일반 객체와는 차이가 있다 일반 객체는 호출할 수 없지만 함수 객체는 호출할 수 있다 그리고 함수 객체는 일반 객체에는 없는 함수 고유 프로퍼티를 소유한다.</li>
-</ol>
-<h2 id="함수-객체의-프로퍼티"><a href="#함수-객체의-프로퍼티" class="headerlink" title="함수 객체의 프로퍼티"></a>함수 객체의 프로퍼티</h2><ol>
-<li>함수는 객체이다 . 따라서 함수도 프로퍼티를 가질 수 있다. 브라우저 콘솔에서 console.dir 메서드를 사용하여 함수 객체의 내부를 들여다 보자.</li>
-<li><img width="237" alt="스크린샷 2020-09-22 오후 5 02 57" src="https://user-images.githubusercontent.com/68043654/93857659-e6f19300-fcf5-11ea-8e8d-25c91cd05819.png"></li>
-<li>square 함수의 모든 프로퍼티의 프로퍼티 어트리뷰트를 Object.getOwnPropertyDescriptors 메서드로 확인해보면 다음과 같다 </li>
-<li><img width="654" alt="스크린샷 2020-09-22 오후 5 07 43" src="https://user-images.githubusercontent.com/68043654/93858088-92024c80-fcf6-11ea-850b-68826d08cab8.png"></li>
-<li>이처럼 arguments, caller, length, prototype 프로퍼티는 모두 함수 객체의 데이터 프로퍼티다</li>
-<li>이들 프로퍼티는 일반 객체에는 없는 함수 객체 고유의 프로퍼티다. 하지만 __ proto __ 는 접근자 프로퍼티이며, 함수 객체 고유의 프로퍼티가 아니라 Object.prototype 객체의 프로퍼티를 상속받은 것을 알 수 있다.</li>
-<li>Object.prototype 객체의 프로퍼티는 모든 객체가 상속받아 사용할 수 있다. 즉 Object.prototype 객체의 __ proto __ 접근자 프로퍼티는 모든 객체가 사용할 수 있다.</li>
-</ol>
-<h3 id="함수-객체의-프로퍼티-1"><a href="#함수-객체의-프로퍼티-1" class="headerlink" title="함수 객체의 프로퍼티"></a>함수 객체의 프로퍼티</h3><ol>
-<li><h4 id="arguments-프로퍼티"><a href="#arguments-프로퍼티" class="headerlink" title="arguments 프로퍼티"></a>arguments 프로퍼티</h4><ol>
-<li><p>함수 객체의 arguments 프로퍼티 값은 arguments 객체다 </p>
-</li>
-<li><p>Arguments 객체는 함수 호출 시 전달된 인수(arguments)들의 정보를 담고 있는 순회 가능한(iterable) 유사 배열 객체이며, 함수 내부에서 지역 변수처럼 사용된다. 즉 , 함수 외부에서는 참조할 수 없다 .</p>
-</li>
-<li><p>함수 객체의 arguments 프로퍼티는 현재 일부 브라우저에서 지원하고 있지만 ES3부터 표준에서 폐지되었다. 따라서 function.arguments와 같은 사용법은 권장되지 않으며 함수 내부에서 지역 변수처럼 사용할 수 있는 arguments 객체를 참조하도록 한다 .</p>
-</li>
-<li><p>자바스크립트는 함수의 매개변수와 인수의 개수가 일치하는지 확인하지 않는다 따라서 함수 호출 시 매개변수 개수만큼 인수를 전달하지 않아도 에러가 발생하지 않는다 .</p>
-</li>
-<li><p>함수를 정의할 때 선언한 매개변수는 함수 몸체 내부에서 변수와 동일하게 취급된다 즉, 함수가 호출되면 함수 몸체 내에서 암묵적으로 매개변수가 선언되고 undefined로 초기화된 이후 인수 가 할당된다.</p>
-</li>
-<li><p>선언된 매개변수의 개수보다 인수를 적게 전달했을 경우 인수가 전달되지 않은 매개변수는 undefined로 초기화된 상태를 유지한다. </p>
-</li>
-<li><p>매개변수의 개수보다 인수를 더 많이 전달한 경우 초과된 인수는 무시된다.</p>
-</li>
-<li><p>초과된 인수는 그냥 버려지는 것이아니고 모든 인수는 암묵적으로 arguments 객체의 프로퍼티로 보관된다 .</p>
-</li>
-<li><img width="404" alt="스크린샷 2020-09-22 오후 5 32 20" src="https://user-images.githubusercontent.com/68043654/93860771-84e75c80-fcfa-11ea-8e1a-ddd8ec81e7f9.png">
-</li>
-<li><p>arguments 객체는 인수를 프로퍼티 값으로 소유하며 프로퍼티 키는 인수의 순서를 나타낸다 arguments 객체의 callee 프로퍼티는 호출되어 arguments 객체를 생성한 함수 즉, 함수 자신을 가리키고 argumetns 객체의 length 프로퍼티는 인수의 개수를 가리킨다.</p>
-</li>
-<li><p>arguments 객체의 Symbol(Symbol.iterator) 프로퍼티</p>
-<p>arguments 객체의 Symbol(Symbol.iterator) 프로퍼티는 arguments 객체를 순회 가능한 자료구조인 이터러블(iterable)로 만들기 위한 프로퍼티다. Symbol.iterator를 프로퍼티 키로 사용한 메서드를 구현하는 것에 의해 이터러블이 된다</p>
-</li>
-<li><p>선언된 매개 변수의 개수와 함수를 호출할 때 전달하는 인수의 개수를 확인하지 않는 자바스크립트의 특성 때문에 함수가 호출되면 인수 개수를 확인하고 이에 따라 함수의 동작을 달리 정의할 필요가 있을 수 있다 이때 유용하게 사용되는 것이 arguments 객체다.</p>
-</li>
-<li><p>argumetns 객체는 매개변수 개수를 확정할 수 없는 <strong>가변 인자 함수</strong>를 구현할 때 유용하다.</p>
-</li>
-<li><img width="616" alt="스크린샷 2020-09-22 오후 6 04 38" src="https://user-images.githubusercontent.com/68043654/93863498-8581f200-fcfe-11ea-9cad-981670fc35d9.png">
-</li>
-<li><p>Arguments 객체는 배열 형태로 인자 정보를 담고 있지만 실제 배열이 아닌 유사 배열 객체(array-like object)다.</p>
-</li>
-<li><p>유사 배열 객체란 length 프로퍼티를 가진 객체로 for 문으로 순회할 수 있는 객체를 말한다.</p>
-</li>
-<li><p>유사배열 객체와 이터러블</p>
-<ol>
-<li>ES6에서 도입된 [이터레이션 프로토콜]을 준수하면 순회 가능한 자료구조인 이터러블이 된다. 이터러블의 개념이 없었던 ES5에서 arguments 객체는 유사 배열 객체로 구분되었다. 하지만 이터러블이 도입된 ES6부터 arguments 객체는 유사 배열 객체이면서 동시에 이터러블이다.</li>
-</ol>
-</li>
-<li><p>유사 배열 객체는 배열이 아니므로 배열 메서드를 사용할 경우 에러가 발생한다 따라서 배열 메서드를 사용하려면 Function.prototype.call, Function.prototype.apply를 사용해 간접 호출해야 하는 번거로움이 있다.</p>
-</li>
-<li><img width="500" alt="스크린샷 2020-09-22 오후 6 11 38" src="https://user-images.githubusercontent.com/68043654/93864210-7fd8dc00-fcff-11ea-9ddc-29480560f3c0.png">
-</li>
-<li><p>이러한 번거로움을 해결하기 위해 ES6에서는 Rest 파라미터를 도입했다</p>
-</li>
-<li><img width="500" alt="스크린샷 2020-09-22 오후 6 13 55" src="https://user-images.githubusercontent.com/68043654/93864408-d1816680-fcff-11ea-8cef-ee9a79db560f.png">
-</li>
-<li><p>ES6 Rest 파라미터의 도입으로 모던 자바스크립트에서는 arguments 객체의 중요성이 이전 같지는 않지만 언제나 ES6만 사용하지는 않을 수 있기 때문에 알아둘 필요가 있다.</p>
-</li>
-</ol>
-</li>
-<li><h3 id="Length-프로퍼티"><a href="#Length-프로퍼티" class="headerlink" title="Length 프로퍼티"></a>Length 프로퍼티</h3><ol>
-<li>함수 객체의 length 프로퍼티는 함수를 정의할 때 선언한 매개변수의 개수를 가리킨다.</li>
-<li><img width="253" alt="스크린샷 2020-09-22 오후 6 18 29" src="https://user-images.githubusercontent.com/68043654/93864858-74d27b80-fd00-11ea-8ec0-4c3d59566dc4.png"></li>
-<li>arguments 객체의 length 프로퍼티와 함수 객체의 length 프로퍼티의 값은 다를 수 있으므로 주의해야 한다. arguments 객체의 length 프로퍼티는 인자 (arguments)의 개수를 가리키고 함수 객체의 length 프로퍼티는 매개변수(parameter)의 개수를 가리킨다.</li>
-</ol>
-</li>
-<li><h3 id="name-프로퍼티"><a href="#name-프로퍼티" class="headerlink" title="name 프로퍼티"></a>name 프로퍼티</h3><ol>
-<li>함수 객체의 name 프로퍼티는 함수 이름을 나타낸다 . name 프로퍼티는 ES6 이전까지는 비표준이었다가 ES6에서 정식 표준이 되었다</li>
-<li>name 프로퍼티는 ES5 와 ES6에서 동작을 달리하므로 주의해야한다 <ol>
-<li>익명 함수 표현식의 경우 ES5에서 name 프로퍼티는 빈 문자열을 값으로 갖는다 하지만 ES6에서는 함수 객체를 가리키는 식별자를 값으로 갖는다 .</li>
-<li><img width="415" alt="스크린샷 2020-09-22 오후 6 23 07" src="https://user-images.githubusercontent.com/68043654/93865320-1a85ea80-fd01-11ea-85b9-c6d5a520e5ec.png"></li>
-<li>함수 이름과 함수 객체를 가리키는 식별자는 의미가 다르다는 것을 잊지 말아야 한다 함수를 호출할 때는 함수 이름이 아닌 함수 객체를 가리키는 식별자로 호출한다 .</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="__ proto __ 접근자 프로퍼티"></a>__ proto __ 접근자 프로퍼티</h3><ol>
-<li>모든 객체는 [[prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다.</li>
-<li>__ proto __ 프로퍼티는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다 내부 슬롯에는 직접 접근할 수 없고 간접적인 방법을 제공하는 경우에 한하여 접근할 수 있다. [[prototype]] 내부 슬롯에도 직접 접근할 수 없으며 __ proto __ 접근자 프로퍼티를 통해 간접적으로 프로토타입 객체에 접근할 수 있다.</li>
-<li><img width="565" alt="스크린샷 2020-09-22 오후 6 26 25" src="https://user-images.githubusercontent.com/68043654/93865650-9122e800-fd01-11ea-8539-a909009b5c94.png"></li>
-<li>hasOwnProperty 메서드는 이름에서 알 수 있듯이 인수로 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.</li>
-</ol>
-</li>
-<li><h3 id="prototype-프로퍼티"><a href="#prototype-프로퍼티" class="headerlink" title="prototype 프로퍼티"></a>prototype 프로퍼티</h3><ol>
-<li>Prototype 프로퍼티는 생성자 함수로 호출할 수 있는 함수 객체, 즉 constructor만이 소유하는 프로퍼티다 일반 객체와 생성자 함수로 호출할 수 없는 non-constructor에는 prototype 프로퍼티가 없다.</li>
-<li><img width="420" alt="스크린샷 2020-09-22 오후 6 28 40" src="https://user-images.githubusercontent.com/68043654/93865873-e19a4580-fd01-11ea-8523-f177e5094f57.png"></li>
-<li>prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 호출될 때 생성자 함수가 생성할 인스턴스의 프로토타입 객체를 가리킨다.</li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://github.com/youngseoim.github.io/2020/09/21/Javascript%20TIL%2020200921%2017%E1%84%80%E1%85%A1%E1%86%BC(%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A6%20%E1%84%8B%E1%85%B4%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="youngseoim">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Youngseo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/21/Javascript%20TIL%2020200921%2017%E1%84%80%E1%85%A1%E1%86%BC(%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%A1%20%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%8B%E1%85%A6%20%E1%84%8B%E1%85%B4%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20)/" class="post-title-link" itemprop="url">Javascript TIL (Object creation by constructor function)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-09-21 22:25:59 / Updated at: 22:27:58" itemprop="dateCreated datePublished" datetime="2020-09-21T22:25:59+09:00">2020-09-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="생성자-함수에-의한-객체-생성"><a href="#생성자-함수에-의한-객체-생성" class="headerlink" title="생성자 함수에 의한 객체 생성"></a>생성자 함수에 의한 객체 생성</h2><ol>
-<li>다양한 객체 생성 방식 중 생성자 함수를 사용하여 객체를 생성하는 방식을 살펴보자.</li>
-<li>객체 리터럴을 사용하여 객체를 생성하는 방식과의 장단점을 살펴보자.</li>
-</ol>
-<h3 id="Object-생성자-함수"><a href="#Object-생성자-함수" class="headerlink" title="Object 생성자 함수"></a>Object 생성자 함수</h3><ol>
-<li>New 연산자와 함께 Object 생성자 함수를 호출하면 빈 객체를 생성하여 반환한다. 빈 객체를 생성한 이후 프로퍼티 또는 메서드를 추가하여 객체를 완성할 수 있다.</li>
-<li><img width="437" alt="스크린샷 2020-09-21 오후 7 49 19" src="https://user-images.githubusercontent.com/68043654/93758764-f912f900-fc43-11ea-9c6c-47440a333983.png"></li>
-<li>생성자 함수 (constructor)란 new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수를 말한다. 생성자 함수에 의해 생성된 객체를 인스턴스(instance)라고 한다 .</li>
-<li>자바스크립트는 Object 생성자 함수 이외에도 String,Number,Boolean,Function, Array, Date, RegExp,Promise 등의 빌트인 생성자 함수를 제공한다.</li>
-<li><img width="546" alt="스크린샷 2020-09-21 오후 7 54 29" src="https://user-images.githubusercontent.com/68043654/93759187-b1d93800-fc44-11ea-850d-8c2a9bf66154.png">
-<img width="546" alt="스크린샷 2020-09-21 오후 7 54 51" src="https://user-images.githubusercontent.com/68043654/93759207-bdc4fa00-fc44-11ea-81f3-76110ec74d39.png"></li>
-<li>반드시 Object 생성자 함수를 사용해 빈 객체를 생성해야 하는 것은 아니다. 객체를 생성하는 방법은 객체 리터럴을  사용하는 것이 더 간편하다. Object 생성자 함수를 사용해 객체를 생성하는 방식은 특별한 이유가 없다면 그다지 유용해 보이지 않는다,</li>
-</ol>
-<h3 id="생성자-함수"><a href="#생성자-함수" class="headerlink" title="생성자 함수"></a>생성자 함수</h3><h4 id="객체-리터럴에-의한-객체-생성-방식의-문제점"><a href="#객체-리터럴에-의한-객체-생성-방식의-문제점" class="headerlink" title="객체 리터럴에 의한 객체 생성 방식의 문제점"></a>객체 리터럴에 의한 객체 생성 방식의 문제점</h4><ol>
-<li>객체 리터럴에 의한 객체 생성 방식은 직관적이고 간편하다. 하지만 객체 리터럴에 의한 객체 생성 방식은 단 하나의 객체 생성한다. 따라서 동일한 프로퍼티를 갖는 객체를 여러개 생성해야 하는 경우 매번 같은 프로퍼티를 기술해야 하기 때문에 비효율적이다.</li>
-<li><img width="458" alt="스크린샷 2020-09-21 오후 8 07 54" src="https://user-images.githubusercontent.com/68043654/93760228-91aa7880-fc46-11ea-9abb-29a85951d078.png"></li>
-<li>객체는 프로퍼티를 통해 객체 고유의 상태(state)를 표현한다. 그리고 메서드를 통해 상태 데이터인 프로퍼티를 참조하고 조작하는 동작(behavior)을 표현한다. 따라서 프로퍼티는 객체마다 프로퍼티 값이 다를 수 있지만 메서드는 내용이 동일한 경우가 일반적이다.</li>
-<li>원을 표현한 객체인 circle1 객체와 circle2 객체는 프로퍼티 구조가 동일하다, 객체 고유의 상태 데이터인 radius 프로퍼티의 값은 객체마다 다를 수 있지만 getDiameter 메서드는 완전히 동일하다.</li>
-<li>하지만 객체 리터럴에 의해 객체를 생성하는 경우 프로퍼티 구조가 동일함에도 불구하고 매번 같은 프로퍼티와 메서드를 기술해야 한다. 앞의 예제처럼 객체가 한두개라면 넘어갈 수도 있겠지만 만약 수십 개의 객체를 생성해야 한다면 문제가 크다.</li>
-</ol>
-<h4 id="생성자-함수에-의한-객체-생성-방식의-장점"><a href="#생성자-함수에-의한-객체-생성-방식의-장점" class="headerlink" title="생성자 함수에 의한 객체 생성 방식의 장점"></a>생성자 함수에 의한 객체 생성 방식의 장점</h4><ol>
-<li><p>생성자 함수에 의한 객체 생성 방식은 마치 객체(인스턴스)를 생성하기 위한 템플릿(클래스)처럼 생성자 함수를 사용하여 프로퍼티 구조가 동일한 객체 여러 개를 간편하게 생성할 수 있다.</p>
-</li>
-<li><img width="520" alt="스크린샷 2020-09-21 오후 8 21 52" src="https://user-images.githubusercontent.com/68043654/93761290-85271f80-fc48-11ea-8805-5ded4a9fc2dc.png">
-</li>
-<li><p>this는 객체 자신의 프로퍼티나 메서드를 참조하기 위한 자기 참조 변수(self-referencing variable)다. <strong>this가 가리키는 값, 즉 this  바인딩은 함수 호출 방식에 따라 동적으로 결정된다.</strong></p>
-</li>
-<li><table>
-<thead>
-<tr>
-<th align="left">함수 호출 방식</th>
-<th align="left">this가 가리키는 값(this 바인딩)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">일반 함수로서 호출</td>
-<td align="left">전역 객체</td>
-</tr>
-<tr>
-<td align="left">메서드로서 호출</td>
-<td align="left">메서드를 호출한 객체(마침표 앞의 객체)</td>
-</tr>
-<tr>
-<td align="left">생성자 함수로서 호출</td>
-<td align="left">생성자 함수가 (미래에) 생성할 인스턴스</td>
-</tr>
-</tbody></table>
-</li>
-<li><img width="487" alt="스크린샷 2020-09-21 오후 8 31 01" src="https://user-images.githubusercontent.com/68043654/93762028-cc61e000-fc49-11ea-9011-4aeb9da6b873.png">
-</li>
-<li><p>생성자 함수는 이름 그대로 객체(인스턴스)를 생성하는 함수다. 하지만 자바와 같은 클래스 기반 객체지향 언어의 생성자(constructor)와는 다르게 그 형식이 정해져 있는 것이 아니라 일반 함수와 동일한 방법으로 생성자 함수를 정의하고 <strong>new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다.</strong> 만약 new 연산자와 함께 생성자 함수를 호출하지 않으면 생성자 함수가 아니라 일반 함수로 동작한다 .</p>
-</li>
-<li><img width="501" alt="스크린샷 2020-09-21 오후 8 47 31" src="https://user-images.githubusercontent.com/68043654/93763275-1a77e300-fc4c-11ea-9049-d759ca867326.png">
-
-</li>
-</ol>
-<h4 id="생성자-함수의-인스턴스-생성-과정"><a href="#생성자-함수의-인스턴스-생성-과정" class="headerlink" title="생성자 함수의 인스턴스 생성 과정"></a>생성자 함수의 인스턴스 생성 과정</h4><ol>
-<li>먼저 생성자 함수의 함수 몸체에서 수행해야 하는 것이 무엇인지 생각해보자. 생성자 함수의 역할은 프로퍼티 구조가 동일한 인스턴스를 생성하기 위한 템플릿(클래스)으로서 동작하여 <strong>인스턴스를 생성</strong>하는 것과 **생성된 인스턴스를 초기화(인스턴스 프로퍼티 추가 및 초기값 할당)**하는 것이다 </li>
-<li>생성자 함수가 인스턴스를 생성하는 것은 필수이고 생성된 인스턴스를 초기화하는 것은 옵션이다.</li>
-<li><img width="444" alt="스크린샷 2020-09-21 오후 8 53 45" src="https://user-images.githubusercontent.com/68043654/93763770-f8cb2b80-fc4c-11ea-9ff8-7c6dfd323ade.png"></li>
-<li>생성자 함수 내부의 코드를 살펴보면 this에 프로퍼티를 추가하고 필요에 따라 전달된 인수를 프로퍼티의 초기값으로서 할당하여 인스턴스를 초기화한다 하지만 인스턴스를 생성하고 반환하는 코드는 보이지 않는다</li>
-<li>자바스크립트 엔진은 암묵적인 처리를 통해 인스턴스를 생성하고 반환한다. new 연산자와 함께 생성자 함수를 호출하면 자바스크립트 엔진은 다음과 같은 과정을 거쳐 암묵적으로 인스턴스를 생성하고 인스턴스를 초기화한 후 암묵적으로 인스턴스를 반환한다.</li>
-<li><strong>인스턴스 생성과 this 바인딩</strong><ol>
-<li>암묵적으로 빈 객체가 생성된다 . 이 빈 객체가 바로(아직 완성되지는 않았지만) 생성자 함수가 생성한 인스턴스다 그리고 암묵적으로 생성된 빈 객체 즉 인스턴스는 this에 바인딩된다.</li>
-<li>생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유가 바로 이것이다 이 처리는 함수 몸체의 코드가 한 줄씩 실행되는 런타임 이전에 실행된다.</li>
-<li><strong>바인딩(binding)이란</strong><ol>
-<li>식별자와 값을 연결하는 과정을 의미한다 예를 들어 변수 선언은 변수 이름(식별자)과 확보된 메모리 공간의 주소를 바인딩하는 것이다. this 바인딩은 this(키워드로 분류되지만 식별자 역할을 한다)와 가리킬 객체를 바인딩하는 것이다.</li>
-<li><img width="458" alt="스크린샷 2020-09-21 오후 9 19 46" src="https://user-images.githubusercontent.com/68043654/93765911-9bd17480-fc50-11ea-84d7-420a6ac6df8c.png"></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><strong>인스턴스 초기화</strong><ol>
-<li>생성자 함수에 기술되어 있는 코드가 한 줄씩 실행되어 this에 바인딩되어 있는 인스턴스를 초기화한다 즉 ,this에 바인딩되어 있는 인스턴스에 프로퍼티나 메서드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다. 이 처리는 개발자가 기술한다.</li>
-<li><img width="458" alt="스크린샷 2020-09-21 오후 9 29 05" src="https://user-images.githubusercontent.com/68043654/93766781-e99aac80-fc51-11ea-969c-6b0138b2f7d7.png"></li>
-</ol>
-</li>
-<li><strong>인스턴스 반환</strong><ol>
-<li>생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스의 바인딩된 this가 암묵적으로 반환된다.</li>
-<li><img width="420" alt="스크린샷 2020-09-21 오후 9 30 55" src="https://user-images.githubusercontent.com/68043654/93766912-29fa2a80-fc52-11ea-8b4d-6c044b07e659.png"></li>
-<li>만약 this가 아닌 다른 객체를 명시적으로 반환하면 this가 반환되지 못하고 return문에 명시한 객체가 반환된다.</li>
-<li><img width="425" alt="스크린샷 2020-09-21 오후 9 34 40" src="https://user-images.githubusercontent.com/68043654/93767247-af7dda80-fc52-11ea-8cd2-a77049d1a041.png"></li>
-<li>하지만 명시적으로 원시값을 반환하면 원시값 반환은 무시되고 암묵적으로 this가 반환된다.</li>
-<li><img width="475" alt="스크린샷 2020-09-21 오후 9 39 08" src="https://user-images.githubusercontent.com/68043654/93767700-51052c00-fc53-11ea-915e-159a6b3729cb.png"></li>
-<li>이처럼 생성자 함수 내부에서 명시적으로 this가 아닌 다른 값을 반환하는 것은 생성자 함수의 기본 동작을 훼손한다. 따라서 생성자 함수 내부에서 return 문을 반드시 생략해야 한다 .</li>
-</ol>
-</li>
-</ol>
-<h4 id="내부-메서드-call-과-construct"><a href="#내부-메서드-call-과-construct" class="headerlink" title="내부 메서드 [[call]]과 [[construct]]"></a>내부 메서드 [[call]]과 [[construct]]</h4><ol>
-<li>함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다.</li>
-<li>생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.</li>
-<li>함수는 객체이므로 일반 객체와 동일하게 동작할 수 있다. 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드를 모두 가지고 있기 때문이다 .</li>
-<li><img width="276" alt="스크린샷 2020-09-21 오후 9 48 31" src="https://user-images.githubusercontent.com/68043654/93768617-9f66fa80-fc54-11ea-8af6-b98d7eb5d960.png"></li>
-<li>함수는 객체이지만 일반 객체와는 다르다. <strong>일반 객체는 호출할 수 없지만 함수는 호출할 수 있다.</strong> 따라서 함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드는 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[Environment]], [[FormalParameters]]등의 내부 슬롯과 [[Call]], [[Construct]] 같은 내부 메서드를 추가로 가지고 있다.</li>
-<li>함수가 일반 함수로서 호출되면 함수 객체의 내부 메서드[[Call]]이 호출되고 new 연산자와 함께 생성자 함수로서 호출되면 내부 메서드 [[Construct]]가 호출된다.</li>
-<li><img width="322" alt="스크린샷 2020-09-21 오후 9 52 19" src="https://user-images.githubusercontent.com/68043654/93768965-287e3180-fc55-11ea-9414-c6e0fe2fb54f.png"></li>
-<li>내부 메서드 [[Call]]을 갖는 함수 객체를 callable이라 하며,<ol>
-<li>callable은 호출할 수 있는 객체, 즉 함수를 말한다</li>
-</ol>
-</li>
-<li>내부 메서드 [[Construct]]를 갖는 함수 객체를 constructor,<ol>
-<li>constrictor는 생성자 함수로서 호출할 수 있는 함수</li>
-</ol>
-</li>
-<li>[[Constructor]]를 갖지 않는 함수 객체를 non-constructor라고 부른다.<ol>
-<li>non-constructor는 객체를 생성자 함수로서 호출할 수 없는 함수</li>
-</ol>
-</li>
-<li>결론적으로 함수 객체는 constructor이거나 callable이면서 non-constructor다  즉, 모든 함수 객체는 호출할 수 있지만 모든 함수 객체를 생성자 함수로서 호출할 수 있늨 것은 아니다.</li>
-</ol>
-<h4 id="constructor-와-non-contructor의-구분"><a href="#constructor-와-non-contructor의-구분" class="headerlink" title="constructor 와 non-contructor의 구분"></a>constructor 와 non-contructor의 구분</h4><ol>
-<li>자바스크립트 엔진은 함수 정의를 평가하여 함수 객체를 생성할 때 함수 정의 방식에 따라 함수를 contructor와 non-constructor로 구분한다.<ol>
-<li>Constructor = 함수 선언문, 함수 표현식, 클래스(클래스도 함수)</li>
-<li>non-constructor = 메서드(ES6 메서드 축약 표현), 화살표 함수</li>
-</ol>
-</li>
-<li>이때 주의할 것은 ECMAScript 사양에서 메서드로 인정하는 범위가 일반적인 의미의 메서드 보다 좁다는 것이다. 다음 예제를 살펴보자.</li>
-<li><img width="507" alt="스크린샷 2020-09-21 오후 10 03 13" src="https://user-images.githubusercontent.com/68043654/93770075-ad1d7f80-fc56-11ea-9ea3-486f52f992eb.png"></li>
-<li>함수를 프로퍼티 값으로 사용하면 일반적으로 메서드로 통칭한다. 하지만 ECMAScript 사양에서 메서드랑 ES6의 메서드 축약표현 만을 의미한다. 다시 말해 함수가 어디에 할당되어 있는지에 따라 메서드인지를 판단하는 것이 아니라</li>
-<li>함수 정의 방식에 따라 constructor와 non-contructor를 구분한다.</li>
-<li>따라서 위 예제와 같이 일반 함수 , 즉 함수 선언문과 함수 표현식으로 정의된 함수만이 constructor이고 ES6의 화살표 함수와 메서드 축약 표현으로 정의된 함수는 non-constructor다</li>
-<li>함수를 일반 함수로서 호출하면 함수 객체의 내부 메서드[[call]]이 호출되고 new 연산자와 함께 생성자 함수로서 호출하면 내부 메서드 [[Construct]]가 호출된다 non-constructor인 함수 객체는 내부 메서드[[Constructor]]를 갖지 않는다 따라서 non-constructor인 함수 객체를 생성자 함수로서 호출하면 에러가 발생한다.</li>
-<li><img width="507" alt="스크린샷 2020-09-21 오후 10 07 51" src="https://user-images.githubusercontent.com/68043654/93770574-53698500-fc57-11ea-861d-abbe400ccc4e.png"></li>
-<li>주의할 것은 생성자 함수로서 호출될 것을 기대하고 정의하지 않은 일반 함수(callable이면서 construcotr)에 new 연산자를 붙여 호출하면 생성자 함수처럼 동작할 수 있다는 것이다 .</li>
-</ol>
-<h4 id="new-연산자"><a href="#new-연산자" class="headerlink" title="new 연산자"></a>new 연산자</h4><ol>
-<li>일반 함수와 생성자 함수에 특별한 형식적 차이는 없다. new 연산자와 함께 함수를 호출하면 해당 함수는 생성자 함수로 동작한다 </li>
-<li>다시 말해, 함수 객체의 내부 메서드 [[Call]]이 호출되는 것이 아니라 [[Constructor]]가 호출된다 단 new 연산자와 함께 호출하는 함수는 non-constructor가 아닌 constructor여야 한다.</li>
-<li><img width="507" alt="스크린샷 2020-09-21 오후 10 16 00" src="https://user-images.githubusercontent.com/68043654/93771441-76486900-fc58-11ea-9fe8-35aac45bf33b.png"></li>
-<li>반대로 new 연산자 없이 생성자 함수를 호출하면 일반 함수로 호출된다. 다시 말해, 함수 객체의 내부 메서드[[Constructor]]가 호출되는 것이 아니라 [[Call]]이 호출된다.</li>
-<li><img width="507" alt="스크린샷 2020-09-21 오후 10 17 18" src="https://user-images.githubusercontent.com/68043654/93771562-a55eda80-fc58-11ea-9191-0725c0a4963e.png"></li>
-<li>Circle 함수를 new 연산자와 함께 생성자 함수로서 호출하면 함수 내부의 this 는 Circle 생성자 함수가 생성할 인스턴스를 가리킨다 하지만 Circle 함수를 일반적인 함수로서 호출하면 함수 내부의 this는 전역 객체 window를 가리킨다.</li>
-<li>위 예제의 Circle 함수는 일반 함수로서 호출되었기 때문에 Circle 함수 내부의 this는 전역 객체 window를 가리킨다 따라서 radius 프로퍼티와 getDiameter메서드는 전역 객체의 프로퍼티와 메서드가 된다.</li>
-<li>일반 함수와 생성자 함수에 특별한 형식적 차이는 없다 따라서 생성자 함수는 일반적으로 첫 문자를 대문자로 기술하는 파스칼 케이스로 명명하여 일반 함수와 구별할 수 있도록 노력한다.</li>
-</ol>
-<h4 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a>new.target</h4><ol>
-<li>생성자 함수가 new 연산자 없이 호출되는 것을 방지하기 위해 파스칼 케이스 컨벤션을 사용한다 하더라도 실수는 언제나 발생할 수 있다. 이러한 위험성을 회피하기 위해 ES6에서는 new.target을 지원한다.</li>
-<li>new.target은 this와 유사하게 constructor인 모든 함수 내부에서 암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티라고 부른다. 참고로 IE는 new.target을 지원하지 않으므로 주의하기 바란다.</li>
-<li>함수 내부에서 new.target을 사용하면 new 연산자와 함께 생성자 함수로서 호출되었는지 확인할 수 있다. <strong>new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 함수 자신을 가리킨다. new 연산자 없이 일반 함수로서 호출된 함수 내부의 new.target은 undefined다.</strong></li>
-<li>따라서 함수 내부에서 new.target을 사용하여 new 연산자와 생성자 함수로서 호출했는지 확인하여 그렇지 않은 경우 new 연산자와 함께 재귀 호출을 통해 생성자 함수로서 호출할 수 있다.</li>
-<li><img width="514" alt="스크린샷 2020-09-21 오후 10 23 06" src="https://user-images.githubusercontent.com/68043654/93772155-7432da00-fc59-11ea-9151-2ace04a4077a.png"></li>
-<li>스코프 세이프 생성자 패턴(scope-safe constructor)<ol>
-<li>new.target은 ES6에서 도입된 최신 문법으로 IE에서는 지원하지 않는다. new.target을 사용할 수 없는 상황이라면 스코프 세이프 생성자 패턴을 사용할 수 있다.</li>
-</ol>
-</li>
-<li><img width="514" alt="스크린샷 2020-09-21 오후 10 23 57" src="https://user-images.githubusercontent.com/68043654/93772247-93316c00-fc59-11ea-8ee5-672115aa23d1.png"></li>
-<li>new 연산자와 함께 생성자 함수에 의해 생성된 객체(인스턴스)는 프로토타입에 의해 생성자 함수와 연결된다. 이를 이용해 new 연산자와 함께 호출되었는지 확인할 수 있다.</li>
-<li>참고로 대부분의 빌트인 생성자 함수(Object, String, Number, Boolean, Function, Array, Date, RegExp, Promise 등)는 new 연산자와 함께 호출되었는지를 확인한 후 적절한 값을 반환한다.</li>
-<li>예를 들어, Object와 Function 생성자 함수는 new 연산자 없이 호출해도 new 연산자와 함께 호출했을 때와 동일하게 동작한다.</li>
-<li><img width="381" alt="스크린샷 2020-09-21 오후 10 24 55" src="https://user-images.githubusercontent.com/68043654/93772338-b52aee80-fc59-11ea-9f6e-0b073ee7ea13.png"></li>
-<li>하지만 String, Number, Boolean 생성자 함수는 new 연산자와 함께 호출했을 때 String, Number, Boolean 객체를 생성하여 반환하지만 new 연산자 없이 호출하면 문자열, 숫자, 불리언 값을 반환한다. 이를 통해 데이터 타입을 변환하기도 한다.</li>
-<li><img width="375" alt="스크린샷 2020-09-21 오후 10 25 51" src="https://user-images.githubusercontent.com/68043654/93772489-d68bda80-fc59-11ea-9cb2-00eac7a19e20.png">
-
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2222,7 +2133,7 @@ console.log(x); // ?
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
